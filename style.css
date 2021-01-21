@@ -11,14 +11,14 @@ nav {
 
 
 nav a {
-  color:#00407a/* #ae8f68*/;
+  color:#00407a/* #00407a*/;
   font-weight: bold;
 
 }
 
 nav a:hover{
-   border-bottom: 3px solid  #00407a/*#ae8f68*/;
-   color:#00407a /* #ae8f68*/;
+   border-bottom: 3px solid  #00407a/*#00407a*/;
+   color:#00407a /* #00407a*/;
    font-weight: bold;
    text-decoration: none;
 
@@ -82,7 +82,7 @@ footer a:hover{
 }
 
 .main-text hr{
-  border: 1px solid #ae8f68;
+  border: 1px solid #00407a;
 
 }
 
