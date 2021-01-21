@@ -11,14 +11,14 @@ nav {
 
 
 nav a {
-  color:#ae8f68;
+  color:#00407a/* #ae8f68*/;
   font-weight: bold;
 
 }
 
 nav a:hover{
-   border-bottom: 3px solid  #ae8f68;
-   color:#ae8f68;
+   border-bottom: 3px solid  #00407a/*#ae8f68*/;
+   color:#00407a /* #ae8f68*/;
    font-weight: bold;
    text-decoration: none;
 
