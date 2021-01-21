@@ -11,14 +11,14 @@ nav {
 
 
 nav a {
-  color:#00407a/* #00407a*/;
+  color:#00407a;
   font-weight: bold;
 
 }
 
 nav a:hover{
-   border-bottom: 3px solid  #00407a/*#00407a*/;
-   color:#00407a /* #00407a*/;
+   border-bottom: 3px solid  #00407a;
+   color:#00407a;
    font-weight: bold;
    text-decoration: none;
 
@@ -40,7 +40,7 @@ footer{
 }
 
 footer a {
-  color:#e56646;
+  color:#00407a;
   text-decoration: underline;
   font-weight: bold;
 
@@ -48,7 +48,7 @@ footer a {
 }
 
 footer a:hover{
-  color:#e56646;
+  color:#00407a;
   font-weight: bold;
 
 
@@ -67,7 +67,7 @@ footer a:hover{
 }
 
 .main-text a:hover{
-  color:#e56646;
+  color:#00407a;
 }
 
 .main-text{
@@ -78,7 +78,7 @@ footer a:hover{
 
 
 .main-text i{
-  color:#e56646;
+  color:#00407a;
 }
 
 .main-text hr{
