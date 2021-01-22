@@ -1,0 +1,41 @@
+---
+title: "Problem solving task 1, MXB262 2021"
+author: "Dr Kate Helmstedt"
+date: "Due"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+# PROBLEM SOLVING TASK (PST 1) FOR SUBMISSION 
+
+Use these principles of narration and stort-telling to back-engineer a total of four story boards:
+
+- ONE story board from the given list of visualisations
+
+- THREE that we haven't given you of your own selection (don't forget to report where you got it from so we can click through and see its environment). Please include one from each of these categories:
+
+    - either [fivethirtyeight](fivethiryeight.com), [The Guardian](theguardian.com), or another online news source
+    - either [#tidytuesday on Twitter](https://twitter.com/search?q=%23tidytuesday&src=typed_query), [r/dataisbeautiful on Reddit](https://www.reddit.com/r/dataisbeautiful/), or any data visualisation about COVID-19
+    - one figure from a paper that one of your lecturers (not Kate!), or any academic you know from QUT or elsewhere has published. Most academics will have a [Google Scholar](scholar.google.com) website, so search them up and browse their papers
+    
+- Post ONE of the websites you're using to Slack in the #vizsources channel. Feel free to use the websites people post there for inspiration!
+
+- Direct message Kate on Slack with ONE sentence: what have you found most challenging about the programming in this unit so far?
+
+**If you haven't embedded the image so that we can see them in the knitted file, you will receive maximum 50% for that story board **
+
+**If this PS submission is not written in an R markdown that we are able to knit, you will receive maximum 50% of the total grade for PST 1 **
+
+For this reason: please make an R markdown file as soon as possible that contains all of your images. This is critical to your success in this and all PS tasks in MXB262, so get on top of it during your workshop or over Slack.
+
+**Submit** the R markdown file, the knitted html or pdf file, and all image files through Blackboard. It is easiest to put all files into a folder and zip it up, submitting the .zip file. 
+
+**Due this Sunday XX at midnight**
+
+**Worth 5%** of your total grade for this unit.
+

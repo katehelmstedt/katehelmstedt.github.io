@@ -1,0 +1,66 @@
+---
+title: "Problem Solving Tasks 2"
+author: "Your name"
+date: "3/26/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+```
+
+## Problem solving task 2, for submission
+
+Problem solving task 2 is due Sunday 4th April at midnight, and is worth 5% of your final grade. 
+
+This task will have two sections: first, you will need to make the plots to answer the questions given here (based on the lecture and workshop sheet in week 5 -- 1D and 2D visualisation). For each question you need at least one plot, and you need to explicitly answer the question in words (short is fine, but it must be supported by the figure).
+
+Then, next week we will add tasks that are based on the lecture and workshop in week 6. You will add those to this document and edit your plots, so save a copy of this somewhere you will have access to it for both workshops.
+
+Where you are being asked to justify your choices or answer questions, please limit your answers to two to three sentences where possible.
+
+## Part 1
+
+See next week's workshop for Part 2
+
+### Question 1
+
+Using the datasets `beaver1` and `beaver2`, is activity correlated with body temperature? Do the beavers respond in the same way to activity?
+
+Justify your choice of plot type and variables.
+
+### Question 2
+
+Explore the datasets already loaded into your R workshpace by typing `data()`, and use one of these to design a visualisation that shows the variation of tree heights.
+
+Justify your choice of plot type and variables.
+
+
+### Question 3
+
+Using the datasets already loaded into R, explore the datasets to find one that you can use to create a barplot. Create it, and in a sentence please justify why this variable is suitable to be visualised as a bar plot.
+
+### Question 4
+
+Using the dataset `warpbreaks`, what should I do to minimise my yarn breakage?
+
+Justify your choice of plot type and variables.
+
+
+### Question 5
+
+Using the `covdat` dataset from the workshop in Week 4, compare the Covid-19 cases of four countries.
+
+Justify you choice of plot type and variables
+
+
+### Question 6
+Explore any of the pre-loaded datasets you like. Choose two. 
+
+For each, produce two plots, justify your choice of plot type and variables, and explain what I might discover from that plot.
+

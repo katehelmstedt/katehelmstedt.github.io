@@ -1,0 +1,138 @@
+---
+title: "Problem Solving Task 1"
+author: "Your name and student number here"
+date: "Date submitted"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+###### Remember: you need to put the libraries you need to load into this section! You do not need to install them here though, please assume we will already have the packages
+
+#library()
+```
+
+## Visualisation 1
+
+**Visualisation Title & Link:**    
+
+**Image:**  
+
+Insert the image here (See the workshop for instructions if you missed it). If you're grabbing this from the internet, make sure you right click on the image and select ('Copy image address'). If it's an animation, you'll need to take a screenshot and embed that filepath here. Please include all images in your submission.
+
+##### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+
+**What is the action the visualisation is aiming for? Consider each audience here:**      
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+
+**How has the data been used to convey the action?:**       
+
+##### B. Genre   
+
+**Which of the seven genres listed above best dsecribes the data visualisation?** 
+
+
+##### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
+
+
+## Visualisation 2
+
+**Visualisation Title & Link:**    
+
+**Image:**  
+
+Insert the image here (See the workshop for instructions if you missed it). If you're grabbing this from the internet, make sure you right click on the image and select ('Copy image address'). If it's an animation, you'll need to take a screenshot and embed that filepath here. Please include all images in your submission.
+
+##### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+
+**What is the action the visualisation is aiming for? Consider each audience here:**      
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+
+**How has the data been used to convey the action?:**       
+
+##### B. Genre   
+
+**Which of the seven genres listed above best dsecribes the data visualisation?** 
+
+
+##### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
+
+## Visualisation 3
+
+**Visualisation Title & Link:**    
+
+**Image:**  
+
+Insert the image here (See the workshop for instructions if you missed it). If you're grabbing this from the internet, make sure you right click on the image and select ('Copy image address'). If it's an animation, you'll need to take a screenshot and embed that filepath here. Please include all images in your submission.
+
+##### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+
+**What is the action the visualisation is aiming for? Consider each audience here:**      
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+
+**How has the data been used to convey the action?:**       
+
+##### B. Genre   
+
+**Which of the seven genres listed above best dsecribes the data visualisation?** 
+
+
+##### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
+
+
+## Visualisation 4
+
+**Visualisation Title & Link:**    
+
+**Image:**  
+
+Insert the image here (See the workshop for instructions if you missed it). If you're grabbing this from the internet, make sure you right click on the image and select ('Copy image address'). If it's an animation, you'll need to take a screenshot and embed that filepath here. Please include all images in your submission.
+
+
+##### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+
+**What is the action the visualisation is aiming for? Consider each audience here:**      
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+
+**How has the data been used to convey the action?:**       
+
+##### B. Genre   
+
+**Which of the seven genres listed above best dsecribes the data visualisation?** 
+
+
+##### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
