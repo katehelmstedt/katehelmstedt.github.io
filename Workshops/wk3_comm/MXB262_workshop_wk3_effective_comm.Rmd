@@ -1,0 +1,235 @@
+---
+title: 'MXB262 Workshop week 3: Effective Visual Communication'
+author: "Dr Kate Helmstedt"
+date: 'Semester 1, 2021'
+output:
+  html_document: default
+#output: learnr::tutorial
+#runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+#library(learnr)
+library(ggplot2)
+library(knitr)
+```
+
+<style>
+hide {
+  background-color: #d6d6d6;
+  color: #d6d6d6;
+}
+hide:hover {
+  background-color: white;
+  color: black;
+}
+</style>
+
+
+## This week
+
+This week you will learn how to:  
+
+1. Embed an image in a markdown file   
+2. Create a story board using the narrative approach to data visualisation   
+3. Submit an R markdown file for the Problem Solving Task assessment (**make sure you have a version that knits well before the due date even if it is relatively empty, so that you can post issues to Slack or come to the workshop if you need a hand knitting it for submission**)
+4. Start some initial data exploration in R -- we won't be visualising this today, but lots of the techniques you learn will be invaluable when we are exploring data using visualisation next week, and in your projects
+
+
+
+
+
+
+
+
+## 1. Adding Images
+
+Since this is a visualisation unit, we will be using and examining many different images -- and you will need to submit some in your Problem Solving Tasks and Projects. There are two types of images we will be using, and each is added to an R markdown document differently. 
+- Most frequently, we will be making new visualisations using R commands and raw datasets. To make these images, we will add code chunks to the R markdown documents that generate the figures. That way, the visualisation is created when we knit the R markdown document.
+- Sometimes, including this week, we will need to refer to and examine existing images from other sources. These need to be added to the R markdown documents. Use the line of code `![Optional Caption](insert URL or file path){width=some percentage of the text width from 0 to 100}` to embed images within the R markdown document. This does not need to be added within a code chunk. 
+
+For example, the command `![What's the deal with Leonardo DiCaprio](https://i.redd.it/erdv3yn78d941.png){width=75%}` prints one of my favourite visualisations a student found in a previous year in this Problem Solving Task, which is being pulled from the reddit website
+![What's the deal with Leonardo DiCaprio](https://i.redd.it/erdv3yn78d941.png){width=75%} 
+
+To find the URL of an image online, right click on the image and select "Coppy Image Address". 
+
+To add an image from your computer instead, replace the URL with a file path. If you choose to do this, please make sure you're submitting the image file along with your code and your knitted version.
+ 
+ 
+ 
+
+ 
+ 
+
+## 2. Narrative visualisations and story telling
+
+In this week's lecture you learnt about: 
+
+a. _Context elements of a story - Who/What/When/How_ 
+b. _Genres of Narrative Visualisation_ 
+
+![Genres of Narrative Visualisation (Segel, 2010). Source: https://www.mdpi.com/2078-2489/9/3/65/htm](https://www.mdpi.com/information/information-09-00065/article_deploy/html/images/information-09-00065-g021-550.jpg)   
+
+c. _Author vs Audience Driven Visualisations_ (See lecture notes).           
+
+
+## Story board Example 1
+
+Your Problem Solving task this week will be to create a few storyboards for different visualisations (including one you need to find yourself!).
+
+We're going to run you through a couple of examples first, which use the information you learned in the lecture this week.
+
+**Title & Link:**  [How fast emissions would reduce if other plans were adopted](https://www.nytimes.com/interactive/2019/02/13/climate/cut-us-emissions-with-policies-from-other-countries.html) -- take a look at the link, it is a graphic that builds on itself to give context.
+
+**Image:**
+This is just a static screenshot of an animated visualisation, which you will need to include if you use any animated  visualisations. Please click through to see the whole animation before exploring the storyboard below.
+  
+![How fast emissions would reduce if other plans were adopted. Sourced from: https://i1.wp.com/flowingdata.com/wp-content/uploads/2019/02/Cut-U.S.-emissions.png?w=2048&ssl=1](https://i1.wp.com/flowingdata.com/wp-content/uploads/2019/02/Cut-U.S.-emissions.png?w=2048&ssl=1){width=75%}
+
+
+#### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+Educated readers from the general public (i.e. not necessarily policy-makers or scientists) who are informed about the climate crisis, and agree with the goal to reduce emissions.          
+
+**What is the action the visualisation is aiming for? Consider each audience here if you have multiple:**      
+
+- Agree/learn/realise that even with strong action, emissions goals will be missed.
+- Act to reduce carbon emissions.
+- Realise that switching all electricity sources to zero-carbon energy sources will not be enough to reach the national goal.   
+- Realise and agree that more drastic and urgent action is needed now.             
+- Act to introduce policy that does a better job at reducing emissions to national goal.
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+Animated image allows multple shots at communication to build the graphic. In each static graphic, multiple factors have been used to suggest order: colour, line angle, colour intensity, and enclosure.                
+
+**How has the data been used to convey the action?:**       
+Line plot of current emissions, compared with line plot of projected emissions if zero-carbon energy sources were used, compared with the national goal in red. Text labelling has been used.
+
+#### B. Genre   
+
+**Which of the seven genres listed above best describes the data visualisation?** 
+
+Slide show.
+
+#### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
+
+Author-driven, since new information is revealed in the order the author dictates.  
+
+
+## Story boardExample 2
+
+We will work progressively through this one together. This is not a marked exercise, but I suggest you think about your answers  to practice before revealing some suggested answers by hovering your mouse over the text. Thinking back to the Leonardo DiCaprio visualisation, ![What's the deal with Leonardo DiCaprio](https://i.redd.it/erdv3yn78d941.png){width=75%} 
+
+#### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+<hide> "Some options include: Leonardo DiCaprio fans, People interested in celebrity news" </hide>
+
+**"What is the action the visualisation is aiming for? Consider each audience here if you have multiple:**
+
+<hide> Some options include: Remember that Leonardo DiCaprio only dates younger women, Agree that it is unusual to only date women below 25. </hide>
+
+<hide> Answers that are not correct include: Learn the names of Leonardo DiCaprio's ex-girlfriends, Remember Leonardo DiCaprio's current age. This is because although the visualisation does include this information, it is not a key feature or takeaway of the image. </hide>
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**
+
+<hide> All information is given at once in a static image. </hide>
+
+<hide> Colour has been used to differentiate between Leonardo DiCaprio's age and the ages of the women he dates, suggesting that the ages of the women should be read at the same time as one group, and then compared to Leonardo. Order down the page suggests that the plot should be read first, and then the years that correspond to each ex-partner should be read later. The size of a small quote at the bottom (compared to the text of the rest of the plot) suggest it should be read last, as an additional piece of background information not critical to the story. </hide>
+
+**How has the data been used to convey the action?:**
+
+<hide> A bar plot indicating women's ages, and a time series line plot indicating Leonardo DiCaprio's age. These are aligned on the same axis, suggesting they are compared at each point in time. Text labelling and images have been used to annotated the timeline. </hide>
+
+
+#### B. Genre   
+
+**Which of the seven genres listed above best describes the data visualisation?:**
+
+<hide> Annotated chart. </hide>
+
+#### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?:**
+
+<hide> Reader-driven as the information can be read in any order. </hide>
+
+
+## TASK: Create a storyboard
+
+> Task 1: Use these principles of narration and stort-telling to back-engineer ONE story boards with all of the elements above from the list of visualisations below. This will contribute to your Problem Solving Task for submission.
+
+1. [Counting the cost of the education revolution](https://www.abc.net.au/news/2018-11-22/counting-the-cost-of-the-education-revolution/10495756) 
+2. [Australian Cancer Atlas](https://atlas.cancer.org.au/)  - launch the atlas to see the visualisation.  
+3. [Global wind map](https://earth.nullschool.net/#current/wind/isobaric/1000hPa/orthographic=25.77,0.41,440)    
+4. [The most violent cities in the world](https://www.behance.net/gallery/70033395/The-Most-Violent-Cities/)   
+5. [Yes, there is a lot of space junk](https://www.axios.com/yes-there-really-is-a-lot-of-space-junk-930b166d-68c4-4803-9bd6-9e23514eb942.html)   
+6. [Climate stripes](https://showyourstripes.info/)
+
+
+**Visualisation Title & Link:**    
+
+**Image:**  
+
+If you're grabbing this from the internet, make sure you right click on the image and select ('Copy image address'). If it's an animation, you'll need to take a screenshot and embed that filepath here. Please include all images in your submission.
+
+
+```{r echo=FALSE, message=FALSE}
+# insert an image of the visualisation by pasting the following text outside of this code chunk. Be sure to remove the hashtag. 
+
+#![Optional Caption](insert file path or web location.png)
+
+```
+
+
+##### A. Describing the context
+
+**Who is the audience or audiences?:  **  
+
+
+**What is the action the visualisation is aiming for? Consider each audience here:**      
+
+
+**When can the communication happen, and what tools have been used to suggest an order:**      
+ 
+
+**How has the data been used to convey the action?:**       
+
+##### B. Genre   
+
+**Which of the seven genres listed above best dsecribes the data visualisation?** 
+
+
+##### C. Author-driven vs Reader-driven
+
+**Where on the spectrum from author- to reader-driven is this visualisation?** 
+
+
+## TASK: R for Data Science
+
+> 2. Work through [Chapters 4 (short) and 5 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html). Read and follow all the examples along in your own R console for:
+
+- [Chapter 4](https://r4ds.had.co.nz/workflow-basics.html)  
+- [Sections 5.1](https://r4ds.had.co.nz/transform.html#introduction-2)
+- [5.2 (exercises 1-3)](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
+- [5.3 (and all exercises)](https://r4ds.had.co.nz/transform.html#arrange-rows-with-arrange)
+- [5.4 (skip these exercises)](https://r4ds.had.co.nz/transform.html#select)
+- [5.5 (exercises 1-5)](https://r4ds.had.co.nz/transform.html#add-new-variables-with-mutate)
+- [5.6.1 and 5.6.2.](https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise) 
+
+You can go back to the exercises you skipped outside of class time, although they aren't critical at this stage of the unit. 
+
+*Reminder:* You may want to just play around in R and get things to work before copying them into R markdown files for your PST. To do this, or to follow along these examples in the textbook, you can type straight into the Console. That is quick and easy, but doesn't let you save your code. You'll need to load the libraries we need into the Console in that case. 
+
+If you want to save R code but don't necessarily want it in the .Rmd file for your assessment, click File > New file > R script, and you can type away in there -- and save it as a separate file (similar to an m file in matlab). To run code from an R file, highlight the section you want to run and click 'Run' above, or just copy paste it into the console. That way you can edit multiple lines at once, and save the whole script. This is a really useful option for keeping useful commends from these workshops all in one place. At the beginning of each R script, it is good practice to add the `library()` lines that load the packages you need -- you will thank yourself later!
+
+Remember that if you get an error when you try to load a package, you might not have installed it on that computer yet. `install.packages("package_name_that_you_want_to_use_goes_here_dont_forget_the_quotation_marks_every_beginner_does")` is your trusty command to install the packages you need. 
+

@@ -1,0 +1,53 @@
+---
+title: "Problem Solving Task 6, MXB262 2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+## Problem solving task 6, for submission
+
+Problem solving task 6 is due Sunday 31st May at midnight, and is worth 5% of your final grade. 
+
+You must upload an .Rmd file with your answers below plus a knitted version (preferably pdf, but html is fine if your computer doesn't like pdf). 
+
+Note that you will be graded on the effective data visualisation choices you make in addition to your technical ability to produce the plots (i.e.: make it nice, and an effective communication tool).
+
+
+## TASK 
+
+### Question 1.
+
+Last week we learned about choropleths, and this week we worked on cartograms.
+
+(a) Using the African dataset we used in the workshop this week or the global dataset we used last week, create a cartogram and choropleth of the same information. 
+
+(b) Comment briefly on the main drawback of each version.
+
+(c) What is the benefit of a choropleth map over a cartogram in general?
+
+(d)	What is the benefit of a cartogram over a choropleth map in general?
+
+(e)	Identify one potential audience for each, and describe why that choice is suitable.
+
+
+### Question 2.
+
+Use what you've learnt about creating a Digital Elevation Model (DEM) to plot a Digital Surface Model in feet. Use the data in the the raster: SJER2013_DSM.tif (in the workshop files you downloaded from Bb). Create numeric breaks in the colours that makes sense given the distribution of the data, and justify the choice of breaks using non-spatial visualisation of the data.
+
+### Question 3.
+
+Has this unit made you think differently about the visualisations or data reporting you see in your studies, or in the outside world? If so, how? If not, why not? 
+
+
+### Question 4.
+
+If you could choose one group of people in the world learn more about either the technical side of data visualisation or about critically evaluating data visualisations, who would you choose and why? How might that make the world a different place?
+
+
+### Question 5.
+
+What was the most challenging part of this unit, and how did you take responsibility for overcoming the challenge?
+
+

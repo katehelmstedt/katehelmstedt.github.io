@@ -1,0 +1,713 @@
+---
+title: 'MXB262 Workshop week 4: Effective Data Viz'
+author: "Dr Kate Helmstedt"
+date: 'Semester 1, 2021'
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+library(tidyverse)
+#library(ggthemes)
+library(viridis)
+library(ggplot2)
+#library(ggrepel)
+library(ozmaps)
+```
+
+## Setup
+
+The libraries we will use this week are:
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(viridis)
+library(ggplot2)
+library(ggrepel)
+library(ozmaps)
+
+```
+
+We need the names of the Australian states for some of what we're doing today, which can be found in the `ozmaps` package, so install and load that package too. The names of the states are contained in the object `ozmap_states$NAME`. State names for many different countries can be downloaded as data packages, so just have a google to see what you can find if you need different ones.
+
+We will use the `covdat` package from last week too, so let's set that back up:
+
+```{r, echo-TRUE, eval=TRUE}
+  #remotes::install_github("kjhealy/covdata@main") # uncomment this if you need to install the package on a different computer this week
+  library(covdata)
+
+#  Australia's data
+  mobility_australia <- apple_mobility %>% 
+      filter(region == 'Australia', transportation_type == 'driving')
+  
+# Australia's data by state
+  mobility_states <- apple_mobility %>% 
+      filter(region %in% ozmap_states$NAME, transportation_type == 'driving') # note that I have used the `%in%` command here instead of the `==` above -- this   will filter for any words in the vector, which here is the whole list of Australian state names
+```
+
+
+## What is ` aes() ` 
+
+
+ The `aes()` function describes how the data variables are mapped to the `geom_` function. 
+ `aes()` can be set within `ggplot()`, which is how we have seen it so far. When placed here, the settings becomes the default 
+ for all added `geom_()`. 
+ Alternatively, it can be defined in the individual `geom_()` layers, and different settings can then apply to each `geom_`.
+ For example the following two lines of code create the same plot 
+
+### Including `aes()` within `ggplot()`
+
+Create this plot...
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line() +
+  geom_point()
+
+```
+
+### Including aes() within `geom_()`
+
+...and confirm the output is identical with this formulation:
+```{r}
+ggplot(mobility_australia) + 
+  geom_line(aes(date, score)) +
+  geom_point(aes(date, score)) # Note that we need to include the `aes()` here too since it isn't overridden in `ggplot()`
+```
+
+### Multiple lines through `aes()`
+
+ If we have multiple datasets (e.g. multiple states), we can tell `ggplot` to 
+ include them all through the `aes()` command.
+ 
+```{r}
+ggplot(mobility_states,
+        aes(date, score, color=region)) +
+  geom_line()  
+```
+ 
+ 
+
+
+
+
+## Manipulating plot features  
+
+
+### Titles
+
+Plot each of these to examine their effect:
+
+#### Using ggtitle()
+
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  ggtitle("People in Australia sure were chill in April") 
+
+```
+
+#### Titles over multiple lines
+ 
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  ggtitle("People in Australia sure were chill \n in April") 
+```
+
+#### Add a subtitle
+ 
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  ggtitle("People in Australia sure were chill in April", 
+          subtitle = "Good work, Australia") 
+```
+
+
+#### Use lab() - an altentative to Titles and captions
+ 
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  labs(title = "Boo, Covid-19 sucks", 
+       subtitle = "But Australia is good at controlling it", 
+       caption = "labs() lets me add a caption but ggtitle() doesn't")
+```
+
+
+#### Centre title
+ 
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  ggtitle("In April I was sad :(") +
+  theme(plot.title = element_text(hjust = 0.5 ))
+```
+
+
+#### Adjust text size, make bold, add a margin around title
+ 
+```{r}
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line()+ 
+  ggtitle("In April many of us were sad :(")  + 
+  theme(plot.title = element_text(hjust = 0.5, size = 20, 
+                                  face = "bold", margin = margin(10,0,10,0) ))
+```
+
+
+ > NOTE: you can also add titles, subtitles etc within ` theme() `. 
+ You can see more on themes here - https://www.datanovia.com/en/blog/ggplot-title-subtitle-and-caption/
+ 
+ 
+### Legends
+
+ Remember that `<-` is how we assign (or store) values or snippets of code to a 
+ variable name. You can do this with plots too! Remember though that the line that 
+ assigns or stores will NOT then also run the code or print the result -- you need 
+ to them type the variable name in order to see the output
+
+For example
+
+ First store it
+ 
+`test1 <- 3 + 4`
+
+ Then display it
+ 
+`test1`
+
+ Then use it
+ 
+`test1 + 5`
+
+ First store it
+```{r}
+g <- ggplot(mobility_states,
+        aes(date, score, color=region)) +
+  geom_line()  
+```
+ 
+
+ Then display it
+ 
+`g`
+
+ Then use it:
+
+#### Turn off legend title
+
+```{r}
+g + theme(legend.title = element_blank()) 
+```
+
+
+
+#### Change legend colour, size and to bold
+
+```{r}
+g + theme(legend.title = element_text(colour="chocolate", size=16, face="bold")) 
+```
+
+#### Change legend title
+
+Here, we need to match the input (i.e. color) to the
+ attribute we assigned it to above. See how we used `color = country` here? We
+ now use `labs(color = )` to change the title of the legend.
+ 
+```{r}
+g + labs(color = "This is a different legend title") 
+```
+ 
+#### Everything together 
+
+```{r}
+ggplot(mobility_states,
+        aes(date, score, color=region)) +
+  geom_line()   + 
+  theme(legend.title = element_text(colour="chocolate", size=16, face="bold")) + 
+  labs(color = "Australian State")
+```
+
+### Axes
+
+#### Axis labels 
+
+```{r}
+ggplot(mobility_states,
+        aes(date, score, color=region)) +
+  geom_line() + 
+  labs(x = "Time", y = "Cumulative confirmed cases") 
+
+```
+
+ > NOTE: I'll create an object called `axis_labels` so I don't have to type so much.
+ Not only am I kind of lazy, but this also helps to make more readable code. The person 
+ reading the code just has to read once how I created axis_labels, understand and agree
+ with it once, and then doesn't have to see all that code every time.
+
+ First store it
+
+```{r}
+axis_labels <- ggplot(mobility_states,
+        aes(date, score, color=region)) +
+  geom_line()  + 
+  labs(x = "Time", y = "Cumulative confirmed cases") 
+```
+
+ Then display it
+
+```{r}
+ 
+axis_labels
+
+```
+
+ Then use it:
+
+#### Customise angle shape and size using `theme()` 
+
+```{r}
+axis_labels + theme(axis.text.x = element_text(angle = 50, size = 10, vjust = 0.5))
+```
+
+#### Change colour of axis title and labels
+
+```{r}
+ 
+axis_labels + theme(
+      axis.text.x = element_text(angle = 50, size = 10, vjust = 0.5, colour = 'forestgreen'), 
+      axis.title.x = element_text(colour = "blue"))
+
+```
+
+### Maniulate axes
+
+#### Truncate axes 
+#######################################################
+
+```{r}
+ 
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line() + xlim(as.date("2020-01-13", "2020-06-08"))
+
+```
+
+ Flip Axes
+
+```{r remedy007}
+ 
+ggplot(top_global_counts, aes(y=confirm, x=name)) + 
+geom_bar(position="dodge", stat="identity") 
+
+```
+
+ flipped
+
+```{r remedy008}
+ 
+ggplot(top_global_counts, aes(y=confirm, x=name)) + 
+  geom_bar(position="dodge", stat="identity") +
+  coord_flip()
+
+```
+
+ -- TASK: Use the method from last week to sort this bar plot 
+
+ Scatterplot options
+ to avoid extra typing, create an object called dots and assign the ggplot() function 
+ to it so that you just have to add the different geom layers. 
+dots <- ggplot(Australia, aes(time, cum_confirm)) 
+
+ colour 
+
+```{r remedy009}
+ 
+dots + geom_point(color="firebrick")
+
+```
+
+ transparency 
+
+```{r remedy010}
+ 
+dots + geom_point(alpha = 0.2)
+
+```
+
+ size 
+
+```{r remedy011}
+ 
+dots + geom_point(size = 5)
+
+```
+
+ shape 
+ 
+```{r remedy012}
+
+dots + geom_point(shape = 4)  # add a shape name or a number for example 'cross' or '4'. 
+
+
+```
+ --TASK:how many different shapes can you find?
+
+ All together 
+
+```{r remedy013}
+ 
+dots + geom_point(colour = "firebrick", size = 3, alpha = 0.5, shape = 5)
+
+```
+
+ Background
+
+ Colour 
+
+```{r remedy014}
+ 
+ggplot(Australia,aes(time, cum_confirm)) +
+  geom_line()   + theme(panel.background = element_rect(fill = 'grey75')) 
+
+```
+
+ --TASK: Uncomment the previous plot to change the background colour to a darker grey.   
+
+ Grid lines 
+
+```{r remedy015}
+ 
+ggplot(Australia,aes(time, cum_confirm)) +
+  geom_line() + 
+  theme(panel.grid.major = element_line(colour = "yellow", size=2),
+        panel.grid.minor = element_line(colour = "blue"))
+
+```
+
+ Margins
+
+```{r remedy016}
+ 
+ggplot(Australia,aes(time, cum_confirm)) +
+  geom_line() + 
+  theme(plot.background=element_rect(fill="darkseagreen"))
+
+```
+
+ all together
+
+```{r remedy017}
+ 
+ggplot(Australia,aes(time, cum_confirm)) +
+  geom_line() + 
+  theme(panel.grid.major = element_line(colour = "yellow", size=2),
+        panel.grid.minor = element_line(colour = "purple"), 
+        plot.background = element_rect(fill = "darkseagreen"))
+
+
+```
+
+
+  Themes  
+
+
+ `theme()` is a useful layer that can be used to customise features of a plot. 
+ You can customize the non-data aspects of the plot with themes. 
+ Such as font type, font size, title position, subtitle colour, add a caption and many others
+ This is a way to keep all plots within your
+ document, website, thesis, or publication the same. This of it as a coded style guide -- plots will keep the
+ theme and be recognisable as parts of a whole.
+
+```{r remedy018}
+
+ggplot(Australia,aes(time, cum_confirm)) +
+  geom_line() + 
+  theme_bw()
+
+```
+
+ ggplot2 has 8 built in themes
+ TASK: re-plot the graph with another built-in theme (type "theme_" and options will pop up)
+
+ You can also control the individual components of the plot within a theme, like text size:
+
+```{r remedy019}
+
+ggplot(Australia) +
+  geom_line(aes(time, cum_confirm)) + 
+  theme(text = element_text(size = 16))
+
+```
+
+ There's a bunch more in the ggthemes() package created by Jeffrey Arnold. Install and load the package.
+
+ The theme from fivethirtyeight.com
+
+```{r remedy020}
+ 
+ggplot(Australia) +
+  geom_line(aes(time, cum_confirm)) + 
+  theme_fivethirtyeight()
+
+```
+
+ The theme from The Economist
+
+```{r remedy021}
+ 
+ggplot(Australia) +
+  geom_line(aes(time, cum_confirm)) + 
+  theme_economist()
+
+
+```
+ The theme from Excel (why?)
+
+```{r remedy022}
+ 
+ggplot(Australia) +
+  geom_line(aes(time, cum_confirm)) + 
+  theme_excel()
+
+```
+
+ -- TASK: re-create the plot above using a different theme. Type `theme_` and select tab, a drop down list of themes will appear. 
+
+
+ Colours 
+library(RColorBrewer)
+ Colour must be mapped to a variable using aes(), this can be in ggplot() or in geom(). 
+ After you've identified which variable will be coloured you can then use one of the 
+ `scale......()` functions to define the colours. 
+
+ map colour using aes() within ggplot() - outline colour
+
+```{r remedy023}
+ 
+colour_outline <- ggplot(iris, aes(Species, Sepal.Length, colour = Species)) +
+  geom_boxplot()
+
+```
+  
+colour_outline  note that I created `colour_outline` so we don't have to keep typing the ggplot() function over and over again. 
+
+
+ add colour using aes() within geom() - fill colour
+
+```{r remedy024}
+ 
+colour_fill <- ggplot(iris, aes(Species, Sepal.Length)) + 
+  geom_boxplot(aes(fill = Species))  
+colour_fill
+
+```
+
+ --NOTE: Colour has not been specified in the previous two plots. The colours in the plots are default settings. 
+
+
+```{r remedy025}
+ specify colour by adding  ` + scale_colour_manual` (outline) or `+ scale_fill_manual` (fill) 
+colour_outline + scale_colour_manual(values = c("00AFBB", "E7B800", "FC4E07"))
+colour_fill + scale_fill_manual(values = c("00AFBB", "E7B800", "FC4E07"))
+
+```
+
+ specify colour using a palette. Here we use an existing palette. But you can also create your own. 
+
+```{r remedy026}
+ 
+colour_fill + scale_fill_brewer(palette = "Dark2")
+colour_outline + scale_colour_brewer(palette = "Dark2")  
+
+```
+
+see other palettes here - https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/ 
+
+```{r remedy027}
+
+ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point() + geom_jitter(width = 0.2) + scale_colour_gradient()
+ 
+
+```
+ Colours available in R - http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+
+ Vertical and Horizontal Lines 
+
+```{r remedy028}
+
+ggplot(Australia) +
+  geom_line(aes(time, cum_confirm))  +
+  geom_hline(yintercept = 1000)
+
+```
+
+ Annotations: It can be useful to label individual observations, and groups.
+ Replace the legend with in-text
+
+```{r remedy029}
+ 
+irislabels <- iris %>%
+  group_by(Species) %>%
+  summarize_all(mean)
+
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color = Species)) + 
+  geom_point() + geom_text(data  = irislabels, aes(x=Sepal.Length, y=Sepal.Width, label = Species)) + 
+  theme(legend.position = "none")
+
+
+```
+ Add a figure number
+
+```{r remedy030}
+ 
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color = Species)) + 
+  geom_point() + annotate("text", x=4.2, y=4.4, label = "A")
+
+```
+
+ TASK: Make the annotated "A" larger
+
+
+
+ 
+    Overplotting       
+
+ We're going to create a dataset for this section of the workshop -- it 
+ intentionally has overplotting problems, but you'll also see these kinds 
+ of problems in your real-world and simulation datasets.
+
+ Dataset:
+
+```{r remedy031}
+ 
+a <- data.frame( x=rnorm(20000, 10, 1.2), y=rnorm(20000, 10, 1.2), group=rep("A",20000))
+b <- data.frame( x=rnorm(20000, 14.5, 1.2), y=rnorm(20000, 14.5, 1.2), group=rep("B",20000))
+c <- data.frame( x=rnorm(20000, 9.5, 1.5), y=rnorm(20000, 15.5, 1.5), group=rep("C",20000))
+synthetic_data <- do.call(rbind, list(a,b,c))               
+
+```
+
+ Oveplotting is common and occurs when your dataset is too large. 
+ See the following scatterplot of the data we just created.  
+
+```{r remedy032}
+ 
+ggplot(synthetic_data, aes(x=x, y=y)) +
+  geom_point() 
+
+```
+
+ There doesn't seem to be a relationship between x and y. But if you 
+ explore the following steps for addressing overplotting, you will 
+ see a relationship emerge. 
+
+ First, when we suspect there might be an overplotting issue, we can view the 
+ point density using the ggplotpointdensity package. Install it and load the
+ library now. Then:
+
+```{r remedy033}
+ 
+ggplot(synthetic_data, aes(x=x, y=y)) +
+  geom_pointdensity() 
+
+```
+
+ We can see areas of high density here (in lighter blue with this default
+ colour scheme). Now that we have identified an overplotting issue, there are a 
+ couple of options for viewing the data in a more representitive way:
+
+ 1. Dot size
+
+```{r remedy034}
+ 
+ggplot(synthetic_data, aes(x=x, y=y)) +
+  geom_point(size = 0.2) 
+
+```
+
+ 2. Transparency
+
+```{r remedy035}
+ 
+ggplot(synthetic_data, aes(x=x, y=y)) +
+  geom_point(size = 0.2, alpha = 0.01) 
+
+```
+
+ -- Q. what argument manipulated transparency? is it in ggplot() or in geom_point()?
+ -- Q. increase the dot size, does this improve the plot?
+ -- TASK: try a few different combinations of `alpha` and `size`.
+
+ 3. Sampling
+ Sometimes less is more. Plotting a subset of the data (5% here) can help avoid overplotting, 
+ and can also greatly reduce the computing time.   
+
+ take a sample of the data
+
+```{r remedy036}
+ 
+synthetic_data_subset <- sample_frac(synthetic_data, 0.05)
+
+ggplot(synthetic_data_subset, aes(x=x, y=y)) +
+  geom_point(size=2)
+
+```
+
+ -- Q. did this help you see the data? Did you lose much information? When might this not be a good idea?
+
+ 4. Grouping with colour
+
+```{r remedy037}
+ 
+ggplot(synthetic_data, aes(x=x, y=y, color=group)) +
+  geom_point( size=2, alpha=0.1) +
+  scale_color_viridis(discrete=TRUE) 
+
+```
+
+ -- NOTE: the colour argument is within the ggplot( aes() ) function and not in geo_point(). 
+ Also that `group` is a variable in the data set (look back up at where we simulated it), 
+ and not a specific colour. 
+
+ 5. Highlighting just one group 
+ This assumes there is a grouping variable in the data set. 
+
+```{r remedy038}
+ 
+ggplot(synthetic_data, aes(x=x, y=y)) +
+  geom_point(color="grey", size=2) +
+  geom_point(data = synthetic_data %>% filter(group=="B"), color="69b3a2", size=2)
+
+```
+
+ -- Q. what argument in geom_point() changes the colour? Test what other common colour names work. 
+ -- Q does the Australian/UK spelling of colour work as well?
+ -- Q can you put the colour argument in the ggplot() function instead of geom_point()?
+ -- Q. Can the colour argument in geom_point() be set to `group`, similarly to No. 4 above?
+
+ 6. Jittering 
+ Here's the example of jittering that we saw last week. This is another way to deal with overplotting
+
+```{r remedy039}
+
+ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point() 
+ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point() + geom_jitter(width = 0.2)
+
+```
+
+
+
+
+
+

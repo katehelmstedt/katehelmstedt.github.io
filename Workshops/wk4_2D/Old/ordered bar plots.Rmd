@@ -1,0 +1,110 @@
+---
+title: "Reordering frequency bar plots"
+author: "Kate Helmstedt"
+date: "3/31/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
+library(ggplot2)
+```
+
+## Unordered bar plot
+
+I'll make some fake data to explore, so I'm not replicating exactly what you might do in PS2:
+
+```{r}
+stg <- data.frame(StudentID = c( rep("A", 2), rep("B", 3), rep("A", 2), rep("C", 5), rep("D", 2)  ),
+                  SectorID  = c(rep("Team_1", 3), rep("Team_2", 3), rep("Team_3", 5), rep("Team_1", 3)),               
+                  ClassID     = c(rep("Class_1", 7), rep("Class_2", 7) )            
+)
+```
+
+Take a look at that data, and plot it as a simple unordered bar plot
+
+```{r}
+head(stg)
+```
+
+```{r}
+ggplot(stg, aes( x = stg$StudentID) ) + geom_bar()
+```
+
+## Ordered bar plot
+
+First, let's examine the data we will be plotting
+
+```{r}
+class(stg$StudentID)
+```
+
+The class of this data is `factor` -- great! Remember that's R's way of saying
+it's a categorical variable, which is what we need for a bar plot.
+
+```{r}
+head(stg$StudentID)
+```
+
+You can see that this categorical variable has four `levels`, i.e. possible
+values: `A`, `B`, `C`, and `D`. The unordered bar plot above just put them in alphabetical order, but we want to sort them by the bar height (i.e. their frequency).
+
+We will create a new data frame that stores the count of each level
+
+```{r}
+cnt <- count(stg$StudentID) # make it
+cnt # examine it
+```
+
+Note that there are two columns: `x` (which is the name of the level), and `freq` (the frequency of the level -- i.e., the height that will be shown in the bar plot).
+Look now at the object that stores the frequencies:
+```{r}
+cnt$freq
+```
+
+This is where the fequencies are stored -- this is what we want to use to order the bars. In its current form, the order of cnt$freq is `[freq of A, freq of B, freq of C, freq of D]`. We can use the function `order()` to put those in numerical order for us. The output of `order()` is a sorted list of the indices, in ascending order. For example, if we perform 
+```{r}
+order(c(10,8,9)) 
+```
+the output is 2 3 1 -- this is telling us that the second entry in `c(10,8,9)` is the
+smallest, then the third, then the first.
+
+If we perform (and note that we aren't storing this variable anywhere, just seeing what happens),
+```{r}
+order(cnt$freq)
+```
+we see that the fourth entry is the smallest, then the second, then the first, then the third entry is the largest. If we want to know what levels these correspond to (remembering that those are stored in `cnt$x`), we can look up each of the names of the levels corresponding to the indices, by
+
+```{r}
+cnt$x[order(cnt$freq)]
+```
+So, `D` is the smallest, then `B`, then `A`, then `C`. We can use that ordering function to reorder the elements in `stg$StudentID`:
+
+```{r}
+stg$StudentID <- factor(stg$StudentID, 
+                        levels = cnt$x[order(cnt$freq)])
+```
+
+And when we plot it, we will see the bars have been reordered:
+
+```{r}
+ggplot(stg, aes( x = StudentID) ) + geom_bar()
+```
+
+
+There was a lot of info there, to make the steps clear. Jumping just straight to the plotting function, we could have just used this snippet (and this is what you can adapt and build from now that you know what it's doing):
+
+```{r}
+stg$StudentID <- factor(stg$StudentID, 
+                        levels = cnt$x[order(cnt$freq)])
+ggplot(stg, aes( x = StudentID) ) + geom_bar()
+```
+
+And if instead you'd like them to be sorted in descending order:
+
+```{r}
+stg$StudentID <- factor(stg$StudentID, 
+                        levels = cnt$x[order(cnt$freq, decreasing=TRUE)])
+ggplot(stg, aes( x = StudentID) ) + geom_bar()
+```

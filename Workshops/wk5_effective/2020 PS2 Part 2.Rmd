@@ -1,0 +1,25 @@
+---
+title: "Problem Solving Task 2 part 2"
+author: "Your name"
+date: "Due Sunday 5/4/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Go back to your plots from the assessment last week and re-design them using the theory from lectures and techniques from the workshop. In the .Rmd file for submission, for each question include your original image (from last week, with no consideration of encoding attributes) at half size with the code hidden (see below how to do this)  and the re-designed one with the code printed. For each question give 1 sentence justification for the aesthetics you chose (in addition to the justification and explanation you had for each plot from Part 1). 
+
+Please include all responses from last week and this week into one .Rmd file, knit to PDF or html, and upload both as your assignment submission to Blackboard.
+
+In Rmarkdown, to suppress the code from being printed:
+Use ` ech0 = FALSE ` in the very top line of a code chunk to stop the code from being shown in the rendered file. 
+
+In Rmarkdown, to change the size of the figure being printed:
+Use ` out.width = "70%" ` or ` out.width = "200px" ` in the very top line of a code chunk. 
+You can use % or pixels (px), either must be in double quotation marks. 
+
+You'll need a comma between the two inputs. See the .Rmd from the workshop in week 2 for examples of where these inputs need to go when defining the code chunk.

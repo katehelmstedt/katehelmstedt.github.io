@@ -1,0 +1,2 @@
+load("/Users/helmstek/Dropbox/Work/000_teaching/MXB262/MXB262 2019 materials/Material/7 - Visualising network data/Workshop/UMN workshop/Data/Edgelist_farms.Rdata")
+ls()

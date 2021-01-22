@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://www.neonscience.org/raster-res-extent-pixels-r -->
+<html lang="en" class="js js no-touch geolocation history cssanimations cssgradients csstransforms csstransforms3d csstransitions generatedcontent svg inlinesvg svgclippaths"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels | NSF NEON | Open Data to Understand our Ecosystems</title>
+  <meta name="Generator" content="Drupal 7 (http://drupal.org)">
+<link rel="canonical" href="https://www.neonscience.org/raster-res-extent-pixels-r">
+<link rel="shortlink" href="https://www.neonscience.org/node/6376">
+<link rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/icons.data.svg.css"><script async="" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/analytics.js"></script><script type="text/javascript" async="" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/recaptcha__en.js"></script><script async="" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/gtm.js"></script><script src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/api.js" async="async" defer="defer"></script>
+<link rel="shortcut icon" href="https://www.neonscience.org/sites/all/themes/neon/favicon.ico" type="image/vnd.microsoft.icon">
+
+<meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="cleartype" content="on">
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
+  (window,document,'script','dataLayer','GTM-K4S83R2');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/font-awesome.min.css">
+
+  <script>
+    /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+    window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+    grunticon(["https://www.neonscience.org/sites/all/themes/neon/img/grunticon/icons.data.svg.css", "https://www.neonscience.org/sites/all/themes/neon/img/grunticon/icons.data.png.css", "https://www.neonscience.org/sites/all/themes/neon/img/grunticon/icons.fallback.css"]);
+  </script>
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.neonscience.org/sites/all/themes/neon/favicon.ico">
+  <link type="text/css" rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css_tGTNtRAsNJmcVz4r7F6YCijbrQGDbBmziHSrRd1Stqc.css" media="all">
+<link type="text/css" rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css_EeOiJMmiEbJvW2gnhQtgZ06aPKlgmuCV0vWpmNVoyL4.css" media="all">
+<link type="text/css" rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css_Er6hjMzIGMlcVddNqJvqo49Net1QwC-Tr5vz09ItAbQ.css" media="all">
+<link type="text/css" rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css_kWGmnsS9etGOdfyoXXTcLUUfgkwrRMIF3GKQODtFKH0.css" media="all">
+<link type="text/css" rel="stylesheet" href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/css_tb26y1ozg835epKrvY_jrZ8cc-d24Sptbb8x0vKnlNE.css" media="print">
+</head>
+
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-6376 node-type-ds-tutorial sn-active">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4S83R2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="skip-link">
+    <a href="https://www.neonscience.org/raster-res-extent-pixels-r#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+  <div id="page" class="page">
+  <div class="region-utility">
+        <div id="block-menu-global-menu" class="block block-menu">
+
+        <h2 class="block-title block-title">Global Menu</h2>
+    
+  <div class="block-content block-content">
+    <ul class="nav"><li class="first leaf nav-item depth--1"><a href="https://www.neonscience.org/" class="nav-link">Neon Science</a></li>
+<li class="last leaf nav-item depth--1"><a href="https://data.neonscience.org/home" title="" class="nav-link">Data Portal</a></li>
+</ul>  </div>
+</div>
+  </div>
+  
+  <header id="header">
+  <div class="l--constrained clearfix">
+
+    <!-- If homepage, need clearfix for floating elements -->
+    
+      <!-- Main Site Logo -->
+      <div id="branding">
+        <a href="https://www.neonscience.org/" title="Home" rel="home" class="branding-link"><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/logo--blue.png" alt="NSF NEON | Open Data to Understand our Ecosystems"></a>      </div>
+
+      <!-- Mobile Menu Icon -->
+      <div id="mobile-menu-trigger" class="icon--mobile-menu"></div>
+
+      <!-- NSF Logo -->
+      
+      <!-- Search - Homepage -->
+      
+        
+    <!-- Search - Interior Pages -->
+    <div class="header--utilities">
+
+      <div class="search-box">
+                <form action="https://www.neonscience.org/search" method="get" id="views-exposed-form-search-relevancy-page" accept-charset="UTF-8"><div><div class="views-exposed-form">
+  <div class="views-exposed-widgets clearfix">
+          <div id="edit-keyword-wrapper" class="views-exposed-widget views-widget-filter-search_api_views_fulltext">
+                  <label for="edit-keyword">
+            Search          </label>
+                        <div class="views-widget">
+          <div class="form-item form-type-textfield form-item-keyword"><input placeholder="Search" type="text" id="edit-keyword" name="keyword" value="" size="30" maxlength="128" class="form-text"><span class="field-suffix"></span></div>        </div>
+              </div>
+                    <div class="views-exposed-widget views-submit-button">
+      <input type="submit" id="edit-submit-search-relevancy" name="" value="Apply" class="form-submit">    </div>
+      </div>
+</div>
+</div></form>      </div>
+    </div>
+
+    <!-- Mobile Menu Icon -->
+    <nav id="main-menu" class="clearfix">
+      <div id="block-menu-block-1" class="block block-menu-block">
+
+      
+  <div class="block-content block-content">
+    <div class="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-0 menu-level-1">
+  <ul class="nav nav--main nav--dropdown is-collapsed"><li class="home-link-item"><a href="https://www.neonscience.org/" class="home-link"><span class="hideText">Home</span></a></li><li class="first expanded menu-mlid-1336 nav-item depth--1 nav-item--about"><a href="https://www.neonscience.org/about" class="nav-link nav-link--about">About</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-1337 nav-item depth--2"><a href="https://www.neonscience.org/about/about" class="nav-link">About NEON</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1356 nav-item depth--3"><a href="https://www.neonscience.org/about/about/spatiotemporal-design" class="nav-link">Spatiotemporal Design</a></li>
+<li class="leaf menu-mlid-1864 nav-item depth--3"><a href="https://www.neonscience.org/about/about/science-design" class="nav-link">Science Design</a></li>
+<li class="last expanded menu-mlid-1344 nav-item depth--3 hasFourthDepth"><a href="https://www.neonscience.org/about/about/history" class="nav-link">History</a>               <span class="nav--dropdown--trigger" style="height: 26px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-1345 nav-item depth--4"><a href="https://www.neonscience.org/observatory/history/historical-documents" class="nav-link">Historical Documents</a></li>
+</ul></li>
+</ul></li>
+<li class="expanded menu-mlid-1339 nav-item depth--2"><a href="https://www.neonscience.org/observatory/observatory-blog" class="nav-link">Observatory Blog</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-2347 nav-item depth--3"><a href="https://www.neonscience.org/observatory/observatory-blog/newsletter-archive" class="nav-link">Newsletter Archive</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1402 nav-item depth--2"><a href="https://www.neonscience.org/about/contact-us" class="nav-link">Contact Us</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1343 nav-item depth--3"><a href="https://www.neonscience.org/observatory/staff" class="nav-link">Staff</a></li>
+<li class="leaf menu-mlid-2361 nav-item depth--3"><a href="https://www.neonscience.org/about/contact-us/field-offices" class="nav-link">Field Offices</a></li>
+<li class="last leaf menu-mlid-2582 nav-item depth--3"><a href="https://www.neonscience.org/about/contact-us/media-inquiries" class="nav-link">Media Inquiries</a></li>
+</ul></li>
+<li class="last expanded menu-mlid-1346 nav-item depth--2"><a href="https://www.neonscience.org/about/strategic-development" class="nav-link">Strategic Development</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1347 nav-item depth--3"><a href="https://www.neonscience.org/about/strategic-development/coopeus-project" class="nav-link">COOPEUS</a></li>
+<li class="leaf menu-mlid-1877 nav-item depth--3"><a href="https://www.neonscience.org/about/strategic-development/strategic-collaboration-council-scc" class="nav-link">Strategic Collaboration Council</a></li>
+<li class="leaf menu-mlid-1880 nav-item depth--3"><a href="https://www.neonscience.org/about/strategic-development/kepler-workflow-project" class="nav-link">Kepler Workflow Project</a></li>
+<li class="leaf menu-mlid-1879 nav-item depth--3"><a href="https://www.neonscience.org/about/strategic-development/plant-phenology-ontologies-ppo-project" class="nav-link">Plant Phenology Ontologies (PPO) Project</a></li>
+<li class="last leaf menu-mlid-1878 nav-item depth--3"><a href="https://www.neonscience.org/about/strategic-development/geo-carbon-project" class="nav-link">GEO Carbon Project</a></li>
+</ul></li>
+</ul></li>
+<li class="expanded menu-mlid-1348 nav-item depth--1 nav-item--data-collection"><a href="https://www.neonscience.org/data-collection" class="nav-link nav-link--data-collection">Data Collection</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-1349 nav-item depth--2"><a href="https://www.neonscience.org/data-collection/airborne-remote-sensing" class="nav-link">Airborne Remote Sensing</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-2360 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/flight-schedules-coverage" class="nav-link">Flight Schedules and Coverage</a></li>
+<li class="leaf menu-mlid-1988 nav-item depth--3"><a href="https://www.neonscience.org/daily-flight-reports" title="" class="nav-link">Daily Flight Reports</a></li>
+<li class="leaf menu-mlid-2359 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/airborne-remote-sensing/aop-data-hard-drive-request" class="nav-link">AOP Data Hard Drive Request</a></li>
+<li class="last collapsed menu-mlid-1368 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/airborne-remote-sensing/tips-getting-airborne-data" class="nav-link">Tips for Getting Airborne Data</a></li>
+</ul></li>
+<li class="expanded menu-mlid-2339 nav-item depth--2"><a href="https://www.neonscience.org/data-collection/automated-instruments" class="nav-link">Automated Instruments</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-2355 nav-item depth--3 hasFourthDepth"><a href="https://www.neonscience.org/data-collection/meteorology" class="nav-link">Meteorology</a>               <span class="nav--dropdown--trigger" style="height: 26px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-2357 nav-item depth--4"><a href="https://www.neonscience.org/data-collection/flux-tower-measurements" class="nav-link">Flux Tower Measurements</a></li>
+</ul></li>
+<li class="leaf menu-mlid-2358 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/phenocams" class="nav-link">Phenocams</a></li>
+<li class="leaf menu-mlid-2354 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/soil-sensors" class="nav-link">Soil Sensors</a></li>
+<li class="leaf menu-mlid-2353 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/surface-water" class="nav-link">Surface Water</a></li>
+<li class="last leaf menu-mlid-2352 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/groundwater" class="nav-link">Groundwater</a></li>
+</ul></li>
+<li class="expanded menu-mlid-2338 nav-item depth--2"><a href="https://www.neonscience.org/data-collection/observational-sampling" class="nav-link">Observational Sampling</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first collapsed menu-mlid-2346 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/aquatic-organisms" class="nav-link">Aquatic Organisms</a></li>
+<li class="leaf menu-mlid-2345 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/terrestrial-organisms" class="nav-link">Terrestrial Organisms</a></li>
+<li class="leaf menu-mlid-2351 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/soils-sediments" class="nav-link">Soils and Sediments</a></li>
+<li class="leaf menu-mlid-2356 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/dna-sequences" class="nav-link">DNA Sequences</a></li>
+<li class="leaf menu-mlid-2476 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/biogeochemical" class="nav-link">Biogeochemical</a></li>
+<li class="leaf menu-mlid-2475 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/geomorphology" class="nav-link">Geomorphology</a></li>
+<li class="last leaf menu-mlid-2365 nav-item depth--3"><a href="https://www.neonscience.org/data-collection/pathogens" class="nav-link">Pathogens</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-1338 nav-item depth--2"><a href="https://www.neonscience.org/data-collection/protocols-standardized-methods" class="nav-link">Protocols &amp; Standardized Methods</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1355 nav-item depth--1 nav-item--field-sites"><a href="https://www.neonscience.org/field-sites" class="nav-link nav-link--field-sites">Field Sites</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-1358 nav-item depth--2"><a href="https://www.neonscience.org/field-sites/field-sites-map" class="nav-link">Field Sites Map</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-1393 nav-item depth--3"><a href="https://www.neonscience.org/field-sites/field-sites-map/list" title="" class="nav-link">Field Site List</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1357 nav-item depth--2"><a href="https://www.neonscience.org/field-sites/types-neon-field-sites" class="nav-link">Types of Field Sites</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-2336 nav-item depth--3"><a href="https://www.neonscience.org/field-sites/types-neon-field-sites/aquatic-field-sites" class="nav-link">Aquatic Field Sites</a></li>
+<li class="last leaf menu-mlid-2335 nav-item depth--3"><a href="https://www.neonscience.org/field-sites/types-neon-field-sites/terrestrial-field-sites" class="nav-link">Terrestrial Field Sites</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-1655 nav-item depth--2"><a href="https://www.neonscience.org/field-sites/doing-research-neon-sites" class="nav-link">Doing Research at NEON Sites</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1360 nav-item depth--1 nav-item--data"><a href="https://www.neonscience.org/data" class="nav-link nav-link--data">Data</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-1361 nav-item depth--2"><a href="https://www.neonscience.org/data/data-themes" class="nav-link">Data Themes</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1362 nav-item depth--3"><a href="https://www.neonscience.org/data/data-themes/atmosphere" class="nav-link">Atmosphere</a></li>
+<li class="leaf menu-mlid-1363 nav-item depth--3"><a href="https://www.neonscience.org/data/data-themes/organisms-populations-communities" class="nav-link">Organisms, Populations and Communities</a></li>
+<li class="leaf menu-mlid-1364 nav-item depth--3"><a href="https://www.neonscience.org/data/data-themes/biogeochemistry" class="nav-link">Biogeochemistry</a></li>
+<li class="leaf menu-mlid-1365 nav-item depth--3"><a href="https://www.neonscience.org/data/data-themes/ecohydrology" class="nav-link">Ecohydrology</a></li>
+<li class="last leaf menu-mlid-1366 nav-item depth--3"><a href="https://www.neonscience.org/data/data-themes/land-cover-processes" class="nav-link">Land Cover and Processes</a></li>
+</ul></li>
+<li class="leaf menu-mlid-1370 nav-item depth--2"><a href="https://www.neonscience.org/data/spatial-data-maps" class="nav-link">Spatial Data &amp; Maps</a></li>
+<li class="expanded menu-mlid-1367 nav-item depth--2"><a href="https://www.neonscience.org/data/about-data" class="nav-link">About Data</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-2332 nav-item depth--3"><a href="https://www.neonscience.org/data/about-data/getting-started-neon-data" class="nav-link">Getting Started with NEON Data</a></li>
+<li class="leaf menu-mlid-1373 nav-item depth--3"><a href="https://www.neonscience.org/data/about-data/data-processing" class="nav-link">Data Processing</a></li>
+<li class="last leaf menu-mlid-1659 nav-item depth--3"><a href="https://www.neonscience.org/data/about-data/data-policies" class="nav-link">Data Policies</a></li>
+</ul></li>
+<li class="last expanded menu-mlid-1371 nav-item depth--2"><a href="https://www.neonscience.org/data/neon-biorepository" class="nav-link">NEON Biorepository</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1403 nav-item depth--3"><a href="https://www.neonscience.org/data/neon-biorepository/archival-samples-catalog" class="nav-link">Archival Samples Catalog</a></li>
+<li class="last leaf menu-mlid-1372 nav-item depth--3"><a href="https://www.neonscience.org/data/neon-biorepository/request-archival-samples" class="nav-link">Request Archival Samples</a></li>
+</ul></li>
+</ul></li>
+<li class="expanded menu-mlid-1375 nav-item depth--1 nav-item--resources"><a href="https://www.neonscience.org/resources" class="nav-link nav-link--resources">Resources</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed nav--dropdown--right"><li class="first leaf menu-mlid-2221 nav-item depth--2"><a href="https://www.neonscience.org/resources/code-resources" class="nav-link">Code Resources</a></li>
+<li class="expanded menu-mlid-1832 nav-item depth--2"><a href="https://www.neonscience.org/resources/data-skills" class="nav-link">Data Skills</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1376 nav-item depth--3"><a href="https://www.neonscience.org/resources/data-tutorials" title="" class="nav-link">Data Tutorials</a></li>
+<li class="leaf menu-mlid-1829 nav-item depth--3"><a href="https://www.neonscience.org/resources/teaching-modules" title="" class="nav-link">Teaching Modules</a></li>
+<li class="leaf menu-mlid-1377 nav-item depth--3"><a href="https://www.neonscience.org/resources/workshops" title="" class="nav-link">Workshops</a></li>
+<li class="leaf menu-mlid-1378 nav-item depth--3"><a href="https://www.neonscience.org/resources/data-skills/science-videos" class="nav-link">Science Videos</a></li>
+<li class="leaf menu-mlid-2362 nav-item depth--3"><a href="https://www.neonscience.org/resources/data-skills/citizen-science-activities" class="nav-link">Citizen Science Activities</a></li>
+<li class="last leaf menu-mlid-2363 nav-item depth--3"><a href="https://www.neonscience.org/resources/data-skills/k-12-activities" class="nav-link">K-12 Activities</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1379 nav-item depth--2"><a href="https://www.neonscience.org/resources/information-researchers" class="nav-link">Information for Researchers</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-1692 nav-item depth--3"><a href="https://www.neonscience.org/resources/information-researchers/letters-support" class="nav-link">Letters of Support</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-1792 nav-item depth--2"><a href="https://www.neonscience.org/resources/communication-resources" class="nav-link">Communication Resources</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1869 nav-item depth--1 nav-item--community"><a href="https://www.neonscience.org/community" class="nav-link nav-link--community">Community</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-2225 nav-item depth--2"><a href="https://www.neonscience.org/community/faculty-mentoring-networks" class="nav-link">Faculty Mentoring Networks</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-2348 nav-item depth--3"><a href="https://www.neonscience.org/community/faculty-mentoring-networks/neon-data-education-fellows" class="nav-link">NEON Data Education Fellows</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1340 nav-item depth--2"><a href="https://www.neonscience.org/community/advisory-groups" title="" class="nav-link">Advisory Groups</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1656 nav-item depth--3"><a href="https://www.neonscience.org/community/advisory-groups/about-our-technical-working-groups" class="nav-link">About our Technical Working Groups</a></li>
+<li class="last leaf menu-mlid-2331 nav-item depth--3"><a href="https://www.neonscience.org/community/advisory-groups/about-our-steac" class="nav-link">About our STEAC</a></li>
+</ul></li>
+<li class="expanded menu-mlid-1870 nav-item depth--2"><a href="https://www.neonscience.org/community/papers-publications" title="" class="nav-link">Papers and Publications</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-1342 nav-item depth--3"><a href="https://www.neonscience.org/observatory/papers-publications/technical-memos" class="nav-link">Technical Memos</a></li>
+</ul></li>
+<li class="last expanded menu-mlid-2222 nav-item depth--2"><a href="https://www.neonscience.org/community/community-feedback" class="nav-link">Community Feedback</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first last leaf menu-mlid-1876 nav-item depth--3"><a href="https://www.neonscience.org/community/community-feedback/neon-science-community-forum" class="nav-link">NEON Science Community Forum</a></li>
+</ul></li>
+</ul></li>
+<li class="last expanded menu-mlid-1380 nav-item depth--1 nav-item--opportunities"><a href="https://www.neonscience.org/opportunities" class="nav-link nav-link--opportunities">Opportunities</a>               <span class="nav--dropdown--trigger" style="height: 25px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed nav--dropdown--right"><li class="first expanded menu-mlid-1381 nav-item depth--2"><a href="https://www.neonscience.org/opportunities/careers" class="nav-link">Careers</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first expanded menu-mlid-1382 nav-item depth--3 hasFourthDepth"><a href="https://www.neonscience.org/opportunities/careers/research-internships" class="nav-link">Research Internships</a>               <span class="nav--dropdown--trigger" style="height: 26px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1383 nav-item depth--4"><a href="https://www.neonscience.org/opportunities/careers/research-internships/2016-interns" class="nav-link">2016 Interns</a></li>
+<li class="leaf menu-mlid-1384 nav-item depth--4"><a href="https://www.neonscience.org/opportunities/careers/research-internships/2015-interns" class="nav-link">2015 Interns</a></li>
+<li class="leaf menu-mlid-1385 nav-item depth--4"><a href="https://www.neonscience.org/opportunities/careers/research-internships/2014-interns" class="nav-link">2014 Interns</a></li>
+<li class="leaf menu-mlid-1386 nav-item depth--4"><a href="https://www.neonscience.org/opportunities/careers/research-internships/2013-interns" class="nav-link">2013 Interns</a></li>
+<li class="last leaf menu-mlid-1387 nav-item depth--4"><a href="https://www.neonscience.org/opportunities/careers/research-internships/what-expect" class="nav-link">What to expect</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-1388 nav-item depth--3"><a href="https://www.neonscience.org/opportunities/careers/seasonal-fieldwork-opportunities" class="nav-link">Seasonal Fieldwork Opportunities</a></li>
+</ul></li>
+<li class="leaf menu-mlid-1389 nav-item depth--2"><a href="https://www.neonscience.org/opportunities/learning-opportunities" class="nav-link">Learning Opportunities</a></li>
+<li class="expanded menu-mlid-1390 nav-item depth--2"><a href="https://www.neonscience.org/assignable-assets" class="nav-link">Use NEON Infrastructure for Research</a>               <span class="nav--dropdown--trigger" style="height: 48px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-2333 nav-item depth--3"><a href="https://www.neonscience.org/assignable-assets/request-mobile-deployment-platform-mdp" class="nav-link">Request a Mobile Deployment Platform (MDP)</a></li>
+<li class="last leaf menu-mlid-2334 nav-item depth--3"><a href="https://www.neonscience.org/assignable-assets/request-airborne-remote-sensing-survey" class="nav-link">Request an Airborne Remote Sensing Survey</a></li>
+</ul></li>
+<li class="last expanded menu-mlid-1391 nav-item depth--2"><a href="https://www.neonscience.org/opportunities/upcoming-events" class="nav-link">Upcoming Events</a>               <span class="nav--dropdown--trigger" style="height: 24px;">                 <span class="nav--dropdown--indicator icon--plus"></span>               </span>             <ul class="nav nav--main nav--dropdown is-collapsed"><li class="first leaf menu-mlid-1392 nav-item depth--3"><a href="https://www.neonscience.org/opportunities/past-events" class="nav-link">Past Events</a></li>
+<li class="last leaf menu-mlid-2364 nav-item depth--3"><a href="https://www.neonscience.org/workshops-courses" class="nav-link">Workshops &amp; Courses</a></li>
+</ul></li>
+</ul></li>
+</ul></div>
+  </div>
+</div>
+    </nav>
+
+  </div>
+</header>
+
+  <div id="main" class="pattern--fade--top">
+
+      
+      
+      <div id="main-content" class="l--constrained">
+
+        <div class="breadcrumbs"><a href="https://www.neonscience.org/" class="breadcrumb-link--home icon--home--small" title="Home"></a> <span class="breadcrumb-separator">›</span> <a href="https://www.neonscience.org/resources">Resources</a> <span class="breadcrumb-separator">›</span> <a href="https://www.neonscience.org/resources/data-tutorials">Data Tutorials</a> <span class="breadcrumb-separator">›</span> The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels</div>
+        
+        
+                  <h1 class="page-title">
+            The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels          </h1>
+                  
+                
+        <div id="content" class="no-above-content">
+
+          
+              <div class="ds-2col-stacked node node-ds-tutorial node-full view-mode-full  clearfix">
+
+  
+  <div class="group-header">
+      </div>
+
+  <div class="group-left ds-left-container">
+    <div><div class="label-inline field--authors-label">Authors:&nbsp;</div>Leah A. Wasser</div><div class="field field--body"><div id="scrollNav-1" class="scroll-nav-series__section"><div class="field field--field-ds-overview-label field-label">Table of Contents</div><div id="ds-objectives">
+
+<h2>Learning Objectives:</h2>
+
+<p>After completing this activity, you will be able to:</p>
+
+<ul>
+<li>Explain the key attributes required to work with raster data including: spatial 
+extent, coordinate reference system and spatial resolution.</li>
+<li>Describe what a spatial extent is and how it relates to resolution.</li>
+<li>Explain the basics of coordinate reference systems.</li>
+</ul>
+
+<h2>Things You’ll Need To Complete This Tutorial</h2>
+
+<p>You will need the most current version of R and, preferably, <code>RStudio</code> loaded 
+on your computer to complete this tutorial.</p>
+
+<h3>Install R Packages</h3>
+
+<ul>
+<li><strong>raster</strong>: <code>install.packages("raster")</code></li>
+<li><strong>rgdal</strong>: <code>install.packages("rgdal")</code></li>
+</ul>
+
+<h3>Data to Download</h3>
+
+<p></p><div id="node-6332" class="node node-include">
+  <h3> <a href="https://ndownloader.figshare.com/files/7907590"> NEON Teaching Data Subset: Field Site Spatial Data</a></h3>
+
+<p>These remote sensing data files provide information on the vegetation at the 
+<a href="https://www.neonscience.org/" target="_blank"> National Ecological Observatory Network's</a> 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SJER" target="_blank"> San Joaquin Experimental Range</a> 
+and 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SOAP" target="_blank"> Soaproot Saddle</a> 
+field sites. The entire dataset can be accessed by request from the 
+<a href="http://data.neonscience.org/" target="_blank"> NEON Data Portal</a>.</p>
+
+<p><a href="https://ndownloader.figshare.com/files/7907590" class="link--button link--arrow">
+Download Dataset</a></p>
+
+<p>
+</p>
+</div>
+<p></p>
+
+<p>The LiDAR and imagery data used to create the rasters in this dataset were 
+collected over the San Joaquin field site located in California (NEON Domain 17) 
+and processed at <a href="https://www.neonscience.org/" target="_blank">NEON </a> 
+headquarters. The entire dataset can be accessed by request from the NEON website.</p>
+
+<p>This data download contains several files used in related tutorials. The path to 
+the files we will be using in this tutorial is:
+NEON-DS-Field-Site-Spatial-Data/SJER/.<br>
+You should set your working directory to the parent directory of the downloaded 
+data to follow the code exactly.</p>
+
+</div><p>This tutorial will overview the key attributes of a raster object, including 
+spatial extent, resolution and coordinate reference system. When working within
+a GIS system often these attributes are accounted for. However, it is important
+to be more familiar with them when working in non-GUI environments such as 
+ R or even <code>Python</code>.</p><p>In order to correctly spatially reference a raster that is not already georeferenced,
+you will also need to identify:</p><ol>
+<li>The lower left hand corner coordinates of the raster.</li>
+<li>The number of columns and rows that the raster dataset contains.</li>
+</ol><div id="scrollNav-1-1" class="scroll-nav-series__sub-section"><h2>Spatial Resolution</h2><p>A raster consists of a series of pixels, each with the same dimensions 
+and shape. In the case of rasters derived from airborne sensors, each pixel 
+represents an area of space on the Earth's surface. The size of the area on the 
+surface that each pixel covers is known as the spatial resolution of the image. 
+For instance, an image that has a 1 m spatial resolution means that each pixel in 
+the image represents a 1 m x 1 m area.</p><figure>
+    <a href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/pixelDetail.png">
+    <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/pixelDetail.png"></a>
+    <figcaption>The spatial resolution of a raster refers the size of each cell 
+    in meters. This size in turn relates to the area on the ground that the pixel 
+    represents. Source: National Ecological Observatory Network (NEON) </figcaption>
+</figure><figure>
+    <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/raster1.png">
+    <figcaption>A raster at the same extent with more pixels will have a higher
+    resolution (it looks more "crisp"). A raster that is stretched over the same
+    extent with fewer pixels will look more blury and will be of lower resolution. 
+    Source: National Ecological Observatory Network (NEON)
+    </figcaption>
+</figure></div><div id="scrollNav-1-2" class="scroll-nav-series__sub-section"><h2>Load the Data</h2><p>Let's open up a raster in R to see how the attributes are stored. We are 
+going to work with a Digital Terrain Model from the San Joaquin Experimental 
+Range in California.</p><pre><code class="hljs r"><span class="hljs-comment"># load packages </span>
+<span class="hljs-keyword">library</span>(raster)  
+<span class="hljs-keyword">library</span>(rgdal)
+
+<span class="hljs-comment"># Load raster in an R object called 'DEM'</span>
+DEM &lt;- raster(<span class="hljs-string">"NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel/SJER2013_DTM.tif"</span>)  
+
+<span class="hljs-comment"># set working directory to data folder</span>
+<span class="hljs-comment">#setwd("pathToDirHere")</span>
+
+
+<span class="hljs-comment"># View raster attributes </span>
+DEM
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 5060, 4299, 21752940  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 1, 1  (x, y)</span>
+<span class="hljs-comment">## extent      : 254570, 258869, 4107302, 4112362  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=utm +zone=11 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : /Users/mjones01/Documents/data/NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel/SJER2013_DTM.tif </span>
+<span class="hljs-comment">## names       : SJER2013_DTM</span>
+</code></pre><p>Note that this raster (in GeoTIFF format) already has an extent, resolution, and 
+CRS defined. The resolution in both x and y directions is 1. The CRS tells us 
+that the x,y units of the data are meters (m).</p></div><div id="scrollNav-1-3" class="scroll-nav-series__sub-section"><h2>Spatial Extent</h2><p>The spatial extent of a raster, represents the "X, Y" coordinates of the corners 
+of the raster in geographic space. This information, in addition to the cell 
+size or spatial resolution, tells the program how to place or render each pixel 
+in 2 dimensional space.  Tools like R, using supporting packages such as <code>rgdal</code> 
+and associated raster tools have functions that allow you to view and define the 
+extent of a new raster.</p><pre><code class="hljs r"><span class="hljs-comment"># View the extent of the raster</span>
+DEM@extent
+
+<span class="hljs-comment">## class       : Extent </span>
+<span class="hljs-comment">## xmin        : 254570 </span>
+<span class="hljs-comment">## xmax        : 258869 </span>
+<span class="hljs-comment">## ymin        : 4107302 </span>
+<span class="hljs-comment">## ymax        : 4112362</span>
+</code></pre><figure>
+    <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/raster2.png">
+    <figcaption>If you double the extent value of a raster - the pixels will be
+    stretched over the larger area making it look more "blury".  Source: National
+    Ecological Observatory Network (NEON)
+    </figcaption>
+</figure><h3>Calculating Raster Extent</h3><p>Extent and spatial resolution are closely connected. To calculate the extent of a 
+raster, we first need the bottom <strong>left hand</strong> (X,Y) coordinate of the raster. In 
+the case of the UTM coordinate system which is in meters, to calculate
+the raster's extent, we can add the number of columns and rows to the X,Y corner 
+coordinate location of the raster, multiplied by the resolution (the pixel size) 
+of the raster.</p><figure>
+    <a href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/sat_image_corners.png">
+    <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/sat_image_corners.png"></a>
+   
+    <figcaption>To be located geographically, a raster's location needs to be 
+    defined in geographic space (i.e., on a spatial grid). The spatial extent 
+    defines the four corners of a raster within a given coordinate reference 
+    system. Source: National Ecological Observatory Network. </figcaption>
+</figure><p>Let's explore that next, using a blank raster that we create.</p><pre><code class="hljs r"><span class="hljs-comment"># create a raster from the matrix - a "blank" raster of 4x4</span>
+myRaster1 &lt;- raster(nrow=<span class="hljs-number">4</span>, ncol=<span class="hljs-number">4</span>)
+
+<span class="hljs-comment"># assign "data" to raster: 1 to n based on the number of cells in the raster</span>
+myRaster1[]&lt;- <span class="hljs-number">1</span>:ncell(myRaster1)
+
+<span class="hljs-comment"># view attributes of the raster</span>
+myRaster1
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 4, 4, 16  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 90, 45  (x, y)</span>
+<span class="hljs-comment">## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 1, 16  (min, max)</span>
+
+<span class="hljs-comment"># is the CRS defined?</span>
+myRaster1@crs
+
+<span class="hljs-comment">## CRS arguments:</span>
+<span class="hljs-comment">##  +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0</span>
+</code></pre><p>Wait, why is the CRS defined on this new raster? This is the default values
+for something created with the <code>raster()</code> function if nothing is defined.</p><p>Let's get back to looking at more attributes.</p><pre><code class="hljs r"><span class="hljs-comment"># what is the raster extent?</span>
+myRaster1@extent
+
+<span class="hljs-comment">## class       : Extent </span>
+<span class="hljs-comment">## xmin        : -180 </span>
+<span class="hljs-comment">## xmax        : 180 </span>
+<span class="hljs-comment">## ymin        : -90 </span>
+<span class="hljs-comment">## ymax        : 90</span>
+
+<span class="hljs-comment"># plot raster</span>
+plot(myRaster1, main=<span class="hljs-string">"Raster with 16 pixels"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/create-raster-cont-1.png" alt=" "></p><p>Here we see our raster with the value of 1 to 16 in each pixel.</p><p>We can resample the raster as well to adjust the resolution. If we want a <strong>higher
+resolution</strong> raster, we will apply a grid with <strong>more pixels</strong> within the same extent.
+If we want a <strong>lower resolution</strong> raster, we will apply a grid with <strong>fewer pixels</strong>
+within the same extent.</p><p>One way to do this is to create a raster of the resolution you want and then 
+<code>resample()</code> your original raster. The resampling will be done for either
+nearest neighbor assignments (for categorical data) or bilinear interpolation (for
+numerical data).</p><pre><code class="hljs r"><span class="hljs-comment">## HIGHER RESOLUTION</span>
+<span class="hljs-comment"># Create 32 pixel raster</span>
+myRaster2 &lt;- raster(nrow=<span class="hljs-number">8</span>, ncol=<span class="hljs-number">8</span>)
+
+<span class="hljs-comment"># resample 16 pix raster with 32 pix raster</span>
+<span class="hljs-comment"># use bilinear interpolation with our numeric data</span>
+myRaster2 &lt;- resample(myRaster1, myRaster2, method=<span class="hljs-string">'bilinear'</span>)
+
+<span class="hljs-comment"># notice new dimensions, resolution, &amp; min/max </span>
+myRaster2
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 8, 8, 64  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 45, 22.5  (x, y)</span>
+<span class="hljs-comment">## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : -0.25, 17.25  (min, max)</span>
+
+<span class="hljs-comment"># plot </span>
+plot(myRaster2, main=<span class="hljs-string">"Raster with 32 pixels"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/resample-raster-1.png" alt=" "></p><pre><code class="hljs r"><span class="hljs-comment">## LOWER RESOLUTION</span>
+myRaster3 &lt;- raster(nrow=<span class="hljs-number">2</span>, ncol=<span class="hljs-number">2</span>)
+myRaster3 &lt;- resample(myRaster1, myRaster3, method=<span class="hljs-string">'bilinear'</span>)
+myRaster3
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 2, 2, 4  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 180, 90  (x, y)</span>
+<span class="hljs-comment">## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 3.5, 13.5  (min, max)</span>
+
+plot(myRaster3, main=<span class="hljs-string">"Raster with 4 pixels"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/resample-raster-2.png" alt=" "></p><pre><code class="hljs r"><span class="hljs-comment">## SINGLE PIXEL RASTER</span>
+myRaster4 &lt;- raster(nrow=<span class="hljs-number">1</span>, ncol=<span class="hljs-number">1</span>)
+myRaster4 &lt;- resample(myRaster1, myRaster4, method=<span class="hljs-string">'bilinear'</span>)
+myRaster4
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 1, 1, 1  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 360, 180  (x, y)</span>
+<span class="hljs-comment">## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 7.666667, 7.666667  (min, max)</span>
+
+plot(myRaster4, main=<span class="hljs-string">"Raster with 1 pixel"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/resample-raster-3.png" alt=" "></p><p>To more easily compare them, let's create a graphic layout with 4 rasters in it. 
+Notice that each raster has the same extent but each a different resolution 
+because it has a different number of pixels spread out over the same extent.</p><pre><code class="hljs r"><span class="hljs-comment"># change graphical parameter to 2x2 grid</span>
+par(mfrow=c(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>))
+
+<span class="hljs-comment"># arrange plots in order you wish to see them</span>
+plot(myRaster2, main=<span class="hljs-string">"Raster with 32 pixels"</span>)
+plot(myRaster1, main=<span class="hljs-string">"Raster with 16 pixels"</span>)
+plot(myRaster3, main=<span class="hljs-string">"Raster with 4 pixels"</span>)
+plot(myRaster4, main=<span class="hljs-string">"Raster with 2 pixels"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/quad-layout-1.png" alt=" "></p><pre><code class="hljs r"><span class="hljs-comment"># change graphical parameter back to 1x1 </span>
+par(mfrow=c(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>))
+</code></pre><h4>Extent &amp; Coordinate Reference Systems</h4><figure>
+  <a href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/sat_image_lat_lon.png">
+  <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/sat_image_lat_lon.png"></a>
+    <figcaption>The X and Y min and max values relate to the coordinate system 
+    that the file is in, see below. </figcaption>
+</figure></div><div id="scrollNav-1-4" class="scroll-nav-series__sub-section"><h2>Coordinate Reference System &amp; Projection Information</h2><blockquote>
+  <p>A spatial reference system (SRS) or coordinate reference system (CRS) is a 
+  coordinate-based local, regional or global system used to locate geographical 
+  entities. -- Wikipedia</p>
+</blockquote><p>The earth is round. This is not an new concept by any means, however we need to 
+remember this when we talk about coordinate reference systems associated with 
+spatial data. When we make maps on paper or on a computer screen, we are moving 
+from a 3 dimensional space (the globe) to 2 dimensions (our computer screens or 
+a piece of paper). To keep this short, the projection of a dataset relates to 
+how the data are "flattened" in geographic space so our human eyes and brains 
+can make sense of the information in 2 dimensions.</p><p>The projection refers to the mathematical calculations performed to "flatten the 
+data" in into 2D space. The coordinate system references to the x and y coordinate 
+space that is associated with the projection used to flatten the data. If you 
+have the same dataset saved in two different projections, these two files won't 
+line up correctly when rendered together.</p><figure>
+    <a href="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/USMapDifferentProjections_MCorey_Opennews-org.jpg">
+    <img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/USMapDifferentProjections_MCorey_Opennews-org.jpg"></a>
+    <figcaption>Maps of the United States in different projections. Notice the 
+    differences in shape associated with each different projection. These 
+    differences are a direct result of the calculations used to "flatten" the 
+    data onto a 2 dimensional map. Source: M. Corey, opennews.org</figcaption>
+</figure><p><a href="https://source.opennews.org/en-US/learning/choosing-right-map-projection/" target="_blank">Read more about projections.</a></p><h4>How Map Projections Can Fool the Eye</h4><p>Check out this short video,
+<a href="https://www.youtube.com/channel/UCBUVGPsJzc1U8SECMgBaMFw" target="_blank"> by Buzzfeed</a>, highlighting how map projections can make continents 
+seems proportionally larger or smaller than they actually are!</p><iframe width="640" height="360" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/KUF_Ckv8HbE.html" frameborder="0" allowfullscreen=""></iframe></div><div id="scrollNav-1-5" class="scroll-nav-series__sub-section"><h2>What Makes Spatial Data Line Up On A Map?</h2><p>There are lots of great resources that describe coordinate reference systems and 
+projections in greater detail. However, for the purposes of this activity, what 
+is important to understand is that data from the same location but saved in 
+different projections <strong>will not line up in any GIS or other program</strong>. Thus 
+it's important when working with spatial data in a program like R or <code>Python</code> 
+to identify the coordinate reference system applied to the data, and to grab 
+that information and retain it when you process / analyze the data.</p><p>For a library of CRS information: 
+<a href="http://spatialreference.org/ref/epsg/" target="_blank">A great online 
+library of CRS information.</a></p></div><div id="scrollNav-1-6" class="scroll-nav-series__sub-section"><h2>CRS proj4 Strings</h2><p>The rgdal package has all the common ESPG codes with proj4string built in. We 
+can see them by creating an object of the function <code>make_ESPG()</code>.</p><pre><code class="hljs r"><span class="hljs-comment"># make sure you loaded rgdal package at the top of your script</span>
+
+<span class="hljs-comment"># create an object with all ESPG codes</span>
+epsg = make_EPSG()
+
+<span class="hljs-comment"># use View(espg) to see the full table - doesn't render on website well</span>
+<span class="hljs-comment">#View(epsg)</span>
+
+<span class="hljs-comment"># View top 5 entries</span>
+head(epsg, <span class="hljs-number">5</span>)
+
+<span class="hljs-comment">##   code       note</span>
+<span class="hljs-comment">## 1 3819   # HD1909</span>
+<span class="hljs-comment">## 2 3821    # TWD67</span>
+<span class="hljs-comment">## 3 3824    # TWD97</span>
+<span class="hljs-comment">## 4 3889     # IGRS</span>
+<span class="hljs-comment">## 5 3906 # MGI 1901</span>
+<span class="hljs-comment">##                                                                                            prj4</span>
+<span class="hljs-comment">## 1 +proj=longlat +ellps=bessel +towgs84=595.48,121.69,515.35,4.115,-2.9383,0.853,-3.408 +no_defs</span>
+<span class="hljs-comment">## 2                                                         +proj=longlat +ellps=aust_SA +no_defs</span>
+<span class="hljs-comment">## 3                                    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs</span>
+<span class="hljs-comment">## 4                                    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs</span>
+<span class="hljs-comment">## 5                            +proj=longlat +ellps=bessel +towgs84=682,-203,480,0,0,0,0 +no_defs</span>
+</code></pre><h3>Define the extent</h3><p>In the above raster example, we created several simple raster objects in R. 
+R defaulted to a global lat/long extent. We can define the exact extent that we 
+need to use too.</p><p>Let's create a new raster with the same projection as our original DEM. We know 
+that our data are in UTM zone 11N. For the sake of this exercise, let say we 
+want to create a raster with the left hand corner coordinate at:</p><ul>
+<li>xmin = 254570</li>
+<li>ymin = 4107302</li>
+</ul><p>The resolution of this new raster will be <code>1 meter</code> and we will be working
+in UTM (meters). First, let's set up the raster.</p><pre><code class="hljs r"><span class="hljs-comment"># create 10x20 matrix with values 1-8. </span>
+newMatrix  &lt;- (matrix(<span class="hljs-number">1</span>:<span class="hljs-number">8</span>, nrow = <span class="hljs-number">10</span>, ncol = <span class="hljs-number">20</span>))
+
+<span class="hljs-comment"># convert to raster</span>
+rasterNoProj &lt;- raster(newMatrix)
+rasterNoProj
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 10, 20, 200  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 0.05, 0.1  (x, y)</span>
+<span class="hljs-comment">## extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : NA </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 1, 8  (min, max)</span>
+</code></pre><p>Now we can define the new raster's extent by defining the lower left corner of
+the raster.</p><pre><code class="hljs r"><span class="hljs-comment">## Define the xmin and ymin (the lower left hand corner of the raster)</span>
+
+<span class="hljs-comment"># 1. define xMin &amp; yMin objects.</span>
+xMin = <span class="hljs-number">254570</span>
+yMin = <span class="hljs-number">4107302</span>
+
+<span class="hljs-comment"># 2. grab the cols and rows for the raster using @ncols and @nrows</span>
+rasterNoProj@ncols
+
+<span class="hljs-comment">## [1] 20</span>
+
+rasterNoProj@nrows
+
+<span class="hljs-comment">## [1] 10</span>
+
+<span class="hljs-comment"># 3. raster resolution</span>
+res &lt;- <span class="hljs-number">1.0</span>
+
+<span class="hljs-comment"># 4. add the numbers of cols and rows to the x,y corner location, </span>
+<span class="hljs-comment"># result = we get the bounds of our raster extent. </span>
+xMax &lt;- xMin + (rasterNoProj@ncols * res)
+yMax &lt;- yMin + (rasterNoProj@nrows * res)
+
+<span class="hljs-comment"># 5.create a raster extent class</span>
+rasExt &lt;- extent(xMin,xMax,yMin,yMax)
+rasExt
+
+<span class="hljs-comment">## class       : Extent </span>
+<span class="hljs-comment">## xmin        : 254570 </span>
+<span class="hljs-comment">## xmax        : 254590 </span>
+<span class="hljs-comment">## ymin        : 4107302 </span>
+<span class="hljs-comment">## ymax        : 4107312</span>
+
+<span class="hljs-comment"># 6. apply the extent to our raster</span>
+rasterNoProj@extent &lt;- rasExt
+
+<span class="hljs-comment"># Did it work? </span>
+rasterNoProj
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 10, 20, 200  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 1, 1  (x, y)</span>
+<span class="hljs-comment">## extent      : 254570, 254590, 4107302, 4107312  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : NA </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 1, 8  (min, max)</span>
+
+<span class="hljs-comment"># or view extent only</span>
+rasterNoProj@extent
+
+<span class="hljs-comment">## class       : Extent </span>
+<span class="hljs-comment">## xmin        : 254570 </span>
+<span class="hljs-comment">## xmax        : 254590 </span>
+<span class="hljs-comment">## ymin        : 4107302 </span>
+<span class="hljs-comment">## ymax        : 4107312</span>
+</code></pre><p>Now we have an extent associated with our raster which places it in space!</p><pre><code class="hljs r"><span class="hljs-comment"># plot new raster</span>
+plot(rasterNoProj, main=<span class="hljs-string">"Raster in UTM coordinates, 1 m resolution"</span>)
+</code></pre><p><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/plot-raster-our-extent-1.png" alt=" "></p><p>Notice that the coordinates show up on our plot now.</p><div id="ds-challenge">
+
+<h2>Challenges: Resample Rasters</h2>
+
+<p>Now apply your skills in a new way!</p>
+
+<ul>
+<li>Resample <code>rasterNoProj</code> from 1 meter to 10 meter resolution. Plot it next to the 1 m 
+resolution raster. Use: <code>par(mfrow=c(1,2))</code> to create side by side plots.</li>
+<li>What happens to the extent if you change the resolution to 1.5 when calculating 
+the raster's extent properties??</li>
+</ul>
+
+</div></div><div id="scrollNav-1-7" class="scroll-nav-series__sub-section"><h2>Define Projection of a Raster</h2><p>We can define the projection of a raster that has a known CRS already. Sometimes
+we download data that have projection information associated with them but the CRS
+is not defined either in the GeoTIFF tags or in the raster itself. If this is the 
+case, we can simply assign the raster the correct projection.</p><p><strong>Be careful doing this</strong> - it is <strong>not</strong> the same thing as reprojecting your data.</p><p>Let's define the projection for our newest raster using the DEM raster that 
+already has defined CRS. NOTE: in this case we have to know that our raster is 
+in this projection already so we don't run the risk of assigning the wrong projection
+to the data.</p><pre><code class="hljs r"><span class="hljs-comment"># view CRS from raster of interest</span>
+rasterNoProj@crs
+
+<span class="hljs-comment">## CRS arguments: NA</span>
+
+<span class="hljs-comment"># view the CRS of our DEM object.</span>
+DEM@crs
+
+<span class="hljs-comment">## CRS arguments:</span>
+<span class="hljs-comment">##  +proj=utm +zone=11 +datum=WGS84 +units=m +no_defs +ellps=WGS84</span>
+<span class="hljs-comment">## +towgs84=0,0,0</span>
+
+<span class="hljs-comment"># define the CRS using a CRS of another raster</span>
+rasterNoProj@crs &lt;- DEM@crs
+
+<span class="hljs-comment"># look at the attributes</span>
+rasterNoProj
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 10, 20, 200  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 1, 1  (x, y)</span>
+<span class="hljs-comment">## extent      : 254570, 254590, 4107302, 4107312  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=utm +zone=11 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 1, 8  (min, max)</span>
+
+<span class="hljs-comment"># view just the crs</span>
+rasterNoProj@crs
+
+<span class="hljs-comment">## CRS arguments:</span>
+<span class="hljs-comment">##  +proj=utm +zone=11 +datum=WGS84 +units=m +no_defs +ellps=WGS84</span>
+<span class="hljs-comment">## +towgs84=0,0,0</span>
+</code></pre><p>IMPORTANT: the above code <strong>does not reproject</strong> the raster. It simply defines the
+Coordinate Reference System based upon the CRS of another raster. If you want to
+actually change the CRS of a raster, you need to use the <code>projectRaster</code> function.</p><div id="ds-challenge">
+
+<h3>Challenge: Assign CRS</h3>
+
+<p>You can set the CRS and extent of a raster using the syntax 
+<code>rasterWithoutReference@crs &lt;- rasterWithReference@crs</code> and 
+<code>rasterWithoutReference@extent &lt;- rasterWithReference@extent</code>. Using this information:</p>
+
+<ul>
+<li>open <code>band90.tif</code> in the <code>rasterLayers_tif</code> folder and plot it. (You could consider looking
+at it in <a href="http://www.qgis.org/en/site/" target="_blank">QGIS</a> first 
+to compare it to the other rasters.)</li>
+<li>Does it line up with our DEM? Look closely at the extent and pixel size. Does anything look off?</li>
+<li>Fix what is missing.</li>
+<li>(Advanced step) Export a new GeoTIFF Do things line up in 
+<a href="http://www.qgis.org/en/site/" target="_blank">QGIS?</a></li>
+</ul>
+
+<p>The code below creates a raster and seeds it with some data. Experiment with the 
+code.</p>
+
+<ul>
+<li>What happens to the resulting raster's resolution when you change the range 
+of lat and long values to 5 instead of 10? Try 20, 50 and 100?</li>
+<li>What is the relationship between the extent and the raster resolution?</li>
+</ul>
+
+</div><pre><code class="hljs r"><span class="hljs-comment">## Challenge Example Code </span>
+
+<span class="hljs-comment"># set latLong</span>
+latLong &lt;- data.frame(longitude=seq( <span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1</span>), latitude=seq( <span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1</span>))
+
+<span class="hljs-comment"># make spatial points dataframe, which will have a spatial extent</span>
+sp &lt;- SpatialPoints( latLong[ c(<span class="hljs-string">"longitude"</span> , <span class="hljs-string">"latitude"</span>) ], proj4string = CRS(<span class="hljs-string">"+proj=longlat +datum=WGS84"</span>) )
+
+<span class="hljs-comment"># make raster based on the extent of your data</span>
+r &lt;- raster(nrow=<span class="hljs-number">5</span>, ncol=<span class="hljs-number">5</span>, extent( sp ) )
+
+r[]  &lt;- <span class="hljs-number">1</span>
+r[]  &lt;- sample(<span class="hljs-number">0</span>:<span class="hljs-number">50</span>,<span class="hljs-number">25</span>)
+r
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 5, 5, 25  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 2, 2  (x, y)</span>
+<span class="hljs-comment">## extent      : 0, 10, 0, 10  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : NA </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 0, 50  (min, max)</span>
+</code></pre></div><div id="scrollNav-1-8" class="scroll-nav-series__sub-section"><h2>Reprojecting Data</h2><p>If you run into multiple spatial datasets with varying projections, you can 
+always <strong>reproject</strong> the data so that they are all in the same projection. Python 
+and R both have reprojection tools that perform this task.</p><pre><code class="hljs r"><span class="hljs-comment"># reproject raster data from UTM to CRS of Lat/Long WGS84</span>
+reprojectedData1 &lt;- projectRaster(rasterNoProj, 
+                                 crs=<span class="hljs-string">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "</span>)
+
+<span class="hljs-comment"># note that the extent has been adjusted to account for the NEW crs</span>
+reprojectedData1@crs
+
+<span class="hljs-comment">## CRS arguments:</span>
+<span class="hljs-comment">##  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0</span>
+
+reprojectedData1@extent
+
+<span class="hljs-comment">## class       : Extent </span>
+<span class="hljs-comment">## xmin        : -119.761 </span>
+<span class="hljs-comment">## xmax        : -119.7607 </span>
+<span class="hljs-comment">## ymin        : 37.07988 </span>
+<span class="hljs-comment">## ymax        : 37.08</span>
+
+<span class="hljs-comment"># note the range of values in the output data</span>
+reprojectedData1
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 13, 22, 286  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 1.12e-05, 9e-06  (x, y)</span>
+<span class="hljs-comment">## extent      : -119.761, -119.7607, 37.07988, 37.08  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 0.64765, 8.641957  (min, max)</span>
+
+<span class="hljs-comment"># use nearest neighbor interpolation method to ensure that the values stay the same</span>
+reprojectedData2 &lt;- projectRaster(rasterNoProj, 
+                                 crs=<span class="hljs-string">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "</span>, 
+                                 method = <span class="hljs-string">"ngb"</span>)
+
+
+<span class="hljs-comment"># note that the min and max values have now been forced to stay within the same range.</span>
+reprojectedData2
+
+<span class="hljs-comment">## class       : RasterLayer </span>
+<span class="hljs-comment">## dimensions  : 13, 22, 286  (nrow, ncol, ncell)</span>
+<span class="hljs-comment">## resolution  : 1.12e-05, 9e-06  (x, y)</span>
+<span class="hljs-comment">## extent      : -119.761, -119.7607, 37.07988, 37.08  (xmin, xmax, ymin, ymax)</span>
+<span class="hljs-comment">## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 </span>
+<span class="hljs-comment">## data source : in memory</span>
+<span class="hljs-comment">## names       : layer </span>
+<span class="hljs-comment">## values      : 1, 8  (min, max)</span>
+</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><h3><div class="label-above">Get Lesson Code:&nbsp;</div></h3><a download="/sites/default/files/code/R/primer-raster-data/Raster-Res-Extent-Pixels.R" class="link--button link--arrow" href="https://www.neonscience.org/sites/default/files/code/R/primer-raster-data/Raster-Res-Extent-Pixels.R">Raster-Res-Extent-Pixels.R</a><div id="comments" class="comment-wrapper">
+          <h2 class="title">Comments</h2>
+      
+  <a id="comment-1"></a>
+<div class="comment comment-by-anonymous clearfix">
+  
+  
+    <h3><a href="https://www.neonscience.org/comment/1#comment-1" class="permalink" rel="bookmark">DEM &lt;- raster("NEON-DS-Field</a></h3>
+  
+  <div class="submitted">
+        Submitted by <span class="username">pinky (not verified)</span> on January, 2018  </div>
+
+  <div class="content">
+    <p>DEM &lt;- raster("NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel/SJER2013_DTM.tif")<br>
+when i used this im getting error as<br>
+Error in .local(.Object, ...) : </p>
+<p>Error in .rasterObjectFromFile(x, band = band, objecttype = "RasterLayer",  :<br>
+  Cannot create a RasterLayer object from this file. (file does not exist)<br>
+but in the session i have said the path as:<br>
+getwd()<br>
+[1] "C:/Users/USER/Documents/data/neon/NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel"<br>
+then whats wrong here</p>
+      </div>
+
+  <ul class="links inline"><li class="comment-reply nav-item first last"><a href="https://www.neonscience.org/comment/reply/6376/1" class="nav-link">reply</a></li>
+</ul></div>
+
+<div class="indented"><a id="comment-2"></a>
+<div class="comment clearfix">
+  
+  
+    <h3><a href="https://www.neonscience.org/comment/2#comment-2" class="permalink" rel="bookmark">Hi.  The problem here is with</a></h3>
+  
+  <div class="submitted">
+        Submitted by <span class="username">mjones01</span> on January, 2018  </div>
+
+  <div class="content">
+    <p>Hi.  The problem here is with the file path.  When you are using <code>DEM &lt;-raster("file-path/here")</code> the file path should be from whatever you have set as your working directory.  Since your working directory is <code>C:/Users/USER/Documents/data/neon/NEON-DS-Field-Site-Spatial-Data/SJER/DigitalTerrainModel</code> then all you need to use is <code>DEM &lt;-raster("SJER2013_DTM.tif")</code>.  In the example code the working directory would be set to (based on the file path you provided): <code>C:/Users/USER/Documents/data/neon</code>.<br>
+Does that make sense?  This tutorial has more information on setting the working directory and file paths if you are interested: <a href="http://www.neonscience.org/set-working-directory-r">http://www.neonscience.org/set-working-directory-r</a> .</p>
+
+<p>Feel free to write back if you have additional questions.</p>
+      </div>
+
+  <ul class="links inline"><li class="comment-reply nav-item first last"><a href="https://www.neonscience.org/comment/reply/6376/2" class="nav-link">reply</a></li>
+</ul></div>
+</div>
+      <h2 class="title comment-form">Leave a comment</h2>
+    <form class="comment-form" action="https://www.neonscience.org/comment/reply/6376" method="post" id="comment-form" accept-charset="UTF-8"><div><div class="form-item form-type-textfield form-item-name">
+  <label class="form-item-label" for="edit-name">Your name </label>
+ <input type="text" id="edit-name" name="name" value="" size="30" maxlength="60" class="form-text">
+</div>
+<div class="field-type-text-long field-name-comment-body field-widget-text-textarea form-wrapper" id="edit-comment-body"><div id="comment-body-add-more-wrapper"><div class="text-format-wrapper"><div class="form-item form-type-textarea form-item-comment-body-und-0-value">
+  <label class="form-item-label" for="edit-comment-body-und-0-value">Comment <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea"><textarea class="text-full form-textarea required" id="edit-comment-body-und-0-value" name="comment_body[und][0][value]" cols="60" rows="5"></textarea><div class="grippie"></div></div>
+</div>
+</div>
+</div></div><input type="hidden" name="form_build_id" value="form-xasnb3gPDsOyvmrF-3qw0pqsNFGxMVJ8IkvZ2cwYas8">
+<input type="hidden" name="form_id" value="comment_node_ds_tutorial_form">
+<fieldset class="captcha form-wrapper"><legend><span class="fieldset-legend">CAPTCHA</span></legend><div class="fieldset-wrapper"><div class="fieldset-description">This question is for testing whether or not you are a human visitor and to prevent automated spam submissions.</div><input type="hidden" name="captcha_sid" value="913494">
+<input type="hidden" name="captcha_token" value="7c108c3d4882b7abbbe5c79abb8f4e11">
+<input type="hidden" name="captcha_response" value="Google no captcha">
+<div class="g-recaptcha" data-sitekey="6LclMzYUAAAAAKvCQpL_CZAzZU6smnDXuJLMfrJr" data-theme="light" data-type="image"><div style="width: 304px; height: 78px;"><div><iframe src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/anchor.html" width="304" height="78" role="presentation" name="a-ru2k22v868gq" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></div></fieldset>
+<div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Save" class="form-submit"></div></div></form>  </div>
+  </div>
+
+  <div class="group-right ds-right-container">
+    <div class="field field--custom-text-field"><a href="https://www.neonscience.org/resources/related-content/6376" class="materials-link">This tutorial is part of other materials</a></div><div class="field field--upcoming-events-block-node"><div class="ds-events-link-container">
+<i class="fa fa-calendar" aria-hidden="true"></i>
+<h2>View Upcoming Events</h2>
+<br><a href="https://www.neonscience.org/opportunities/upcoming-events?category=All" class="btn">Full list of events</a>
+</div></div><a href="https://www.neonscience.org/resources/data-tutorials" class="listing-link">Find more tutorials</a><div id="node-ds-tutorial-full-group-scrollnav-container" class="group-scrollnav-container fixed" style="width: 335px;"><div id="node-ds-tutorial-full-group-scroll-navigation" class="group-scroll-navigation scroll-nav"><div class="field field--author">taoti</div><nav class="scroll-nav-series" role="navigation"><div class="scroll-nav-series__wrapper"><ol class="scroll-nav-series__list"><li id="list-scrollNav-1" class="scroll-nav-series__item  is-parent-item active-wrapper"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1" class="scroll-nav-series__link">Table of Contents<i class="fa fa fa-angle-up"></i></a><ol class="scroll-nav-series__sub-list"><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-1" class="scroll-nav-series__sub-link">Spatial Resolution</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-2" class="scroll-nav-series__sub-link">Load the Data</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-3" class="scroll-nav-series__sub-link">Spatial Extent</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-4" class="scroll-nav-series__sub-link">Coordinate Reference System &amp; Projection Information</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-5" class="scroll-nav-series__sub-link">What Makes Spatial Data Line Up On A Map?</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-6" class="scroll-nav-series__sub-link">CRS proj4 Strings</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-7" class="scroll-nav-series__sub-link">Define Projection of a Raster</a></li><li class="scroll-nav-series__sub-item"><a href="https://www.neonscience.org/raster-res-extent-pixels-r#scrollNav-1-8" class="scroll-nav-series__sub-link">Reprojecting Data</a></li></ol></li></ol></div></nav></div></div>  </div>
+
+  <div class="group-footer">
+      </div>
+
+</div>
+
+
+          
+                  </div>
+
+        
+              </div>
+
+      
+    </div>
+
+  <div id="footer">
+  <div class="l--full-width footer-top footer-top-gray  clearfix">
+      <div class="footer-top-left"><div class="ctct-custom-form">
+  <h2>Sign up for enews</h2>
+  <a href="https://visitor.r20.constantcontact.com/d.jsp?llr=tw5vm6cab&amp;p=oi&amp;m=1102645492435&amp;sit=7kdg5mkeb&amp;f=2853f132-c303-4887-9883-6e12d4f299a7" target="_blank" class="button Button ctct-button button--block button-secondary">SUBSCRIBE</a>
+</div></div>
+      <div class="footer-top-right"><div id="block-social-links-social-links" class="block block-social-links">
+  <div class="content">
+    <div class="item-list"><ul class="nav nav--social"><li class="nav-item first"><a href="https://www.facebook.com/NEONScienceData" target="" class="nav-link nav-link--social nav-link--facebook" title="Facebook">Facebook</a></li>
+<li class="nav-item"><a href="https://twitter.com/NEON_Sci" target="" class="nav-link nav-link--social nav-link--twitter" title="Twitter">Twitter</a></li>
+<li class="nav-item"><a href="https://www.linkedin.com/company/neon-science" target="" class="nav-link nav-link--social nav-link--linkedin" title="LinkedIn">LinkedIn</a></li>
+<li class="nav-item last"><a href="http://www.youtube.com/neonscience" target="" class="nav-link nav-link--social nav-link--youtube" title="YouTube">YouTube</a></li>
+</ul></div>  </div>
+
+          <div class="solial-links-title-container desktop-only"><h2 class="block-title block-title">Follow Us</h2></div>
+    </div>
+</div>
+  </div>
+  <div class="l--full-width footer-bottom clearfix">
+      <div class="footer-bottom-left">
+          <a href="https://www.nsf.gov/" title="" class="nsf-link"><img src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/nsf-footer.png" alt="NSF NEON | Open Data to Understand our Ecosystems"></a>          <span><i>
+              The National Ecological Observatory Network is a major
+              facility fully funded by the National Science Foundation.
+              Any opinions, findings and conclusions or recommendations
+              expressed in this material do not necessarily reflect
+              the views of the National Science Foundation.
+          </i></span>
+      </div>
+      <div class="footer-bottom-right">
+          <div class="footer-menu-container">
+            <ul id="footer-menu" class="nav nav--footer"><li class="menu-551 nav-item first"><a href="https://www.neonscience.org/about/contact-us" title="" class="nav-link">Contact us</a></li>
+<li class="menu-553 nav-item"><a href="https://www.neonscience.org/about/contact-us/media-inquiries" title="" class="nav-link">Media</a></li>
+<li class="menu-1401 nav-item"><a href="https://www.battelle.org/doing-business-with-us/suppliers" title="" target="_blank" class="nav-link">Supplier Info</a></li>
+<li class="menu-554 nav-item"><a href="https://www.neonscience.org/about/faq" title="" class="nav-link">FAQs</a></li>
+<li class="menu-556 nav-item last"><a href="https://www.neonscience.org/terms-use" title="" class="nav-link">Terms of Use</a></li>
+</ul>          <div class="copyright">
+            Copyright © Battelle, 2019.          </div>
+          </div>
+      </div>
+  </div>
+<!--  <div class="l--constrained clearfix">
+  </div>-->
+</div>
+
+
+</div>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery.min.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.jQuery || document.write("<script src='/sites/all/modules/contrib/jquery_update/replace/jquery/1.8/jquery.min.js'>\x3C/script>")
+//--><!]]>
+</script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery.once.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/drupal.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery-ui.min.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.jQuery.ui || document.write("<script src='/sites/all/modules/contrib/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")
+//--><!]]>
+</script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/captcha.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/googleanalytics.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-10666744-1", {"cookieDomain":"auto"});ga("require", "displayfeatures");ga("set", "dimension1", "DS Tutorial");ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/better_exposed_filters.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/highlight.pack.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/field_group.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/textarea.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/filter.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/modernizr.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/fastclick.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/js.cookie.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/responsive-tables.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery.stickem.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery.scrollNav.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/jquery.matchHeight.js"></script>
+<script type="text/javascript" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/main.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"neon","theme_token":"VcN8QcZ8x7ChzHZ0ZHI_IkKUDNflmqS5Zj56e4eMcq4","js":{"\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1.8.3\/jquery.min.js":1,"0":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"\/\/ajax.googleapis.com\/ajax\/libs\/jqueryui\/1.10.2\/jquery-ui.min.js":1,"1":1,"sites\/all\/modules\/contrib\/captcha\/captcha.js":1,"sites\/all\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"2":1,"sites\/all\/modules\/patched\/better_exposed_filters\/better_exposed_filters.js":1,"sites\/all\/libraries\/highlight\/highlight.pack.js":1,"sites\/all\/modules\/contrib\/field_group\/field_group.js":1,"misc\/textarea.js":1,"modules\/filter\/filter.js":1,"sites\/all\/themes\/neon\/js\/libs\/modernizr.js":1,"sites\/all\/themes\/neon\/js\/plugins\/fastclick.js":1,"sites\/all\/themes\/neon\/js\/plugins\/js.cookie.js":1,"sites\/all\/themes\/neon\/js\/plugins\/responsive-tables.js":1,"sites\/all\/themes\/neon\/js\/plugins\/jquery.stickem.js":1,"sites\/all\/themes\/neon\/js\/plugins\/jquery.scrollNav.js":1,"sites\/all\/themes\/neon\/js\/plugins\/jquery.matchHeight.js":1,"sites\/all\/themes\/neon\/js\/main.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.button.css":1,"misc\/ui\/jquery.ui.resizable.css":1,"misc\/ui\/jquery.ui.dialog.css":1,"sites\/all\/modules\/contrib\/calendar\/css\/calendar_multiday.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"sites\/all\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/patched\/node_embed\/plugins\/node_embed\/node_embed.css":1,"sites\/all\/modules\/patched\/biblio\/biblio.css":1,"sites\/all\/libraries\/highlight\/styles\/tomorrow-night.css":1,"modules\/filter\/filter.css":1,"sites\/all\/modules\/contrib\/ds\/layouts\/ds_2col_stacked\/ds_2col_stacked.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/ctools.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/field.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/node.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/system.messages.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/system.menus.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/user.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/views.css":1,"sites\/all\/themes\/center\/css\/override\/kill\/field_collection.theme.css":1,"sites\/all\/themes\/center\/css\/override\/keep\/system.base.css":1,"sites\/all\/themes\/center\/css\/override\/keep\/system.theme.css":1,"sites\/all\/themes\/center\/css\/override\/keep\/search.css":1,"sites\/all\/themes\/center\/css\/override\/keep\/vertical-tabs.css":1,"sites\/all\/themes\/neon\/css\/screen.css":1,"sites\/all\/themes\/neon\/css\/print.css":1}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"urlIsAjaxTrusted":{"\/search\/node":true,"\/search":true,"\/comment\/reply\/6376":true},"better_exposed_filters":{"datepicker":false,"slider":false,"settings":[],"autosubmit":false},"field_group":{"div":"full"}});
+//--><!]]>
+</script>
+  <a href="https://www.neonscience.org/raster-res-extent-pixels-r#" id="back-to-top" style="display: inline;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+  
+
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog" aria-labelledby="ui-id-1" style="display: none; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title">Dialog title</span><button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></div><div id="dialog" class="ui-dialog-content ui-widget-content">Dialog content.</div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div></div><div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge" src="./The Relationship Between Raster Resolution, Spatial Extent &amp; Number of Pixels _ NSF NEON _ Open Data to Understand our Ecosystems_files/bframe.html" name="c-ru2k22v868gq" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div></body></html>

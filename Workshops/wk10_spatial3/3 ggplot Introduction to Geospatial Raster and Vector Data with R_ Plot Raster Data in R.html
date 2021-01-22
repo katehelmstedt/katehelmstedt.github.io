@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://datacarpentry.org/r-raster-vector-geospatial/02-raster-plot/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2019-05-13 20:45:14 +0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="http://datacarpentry.org/r-raster-vector-geospatial">
+    <link rel="stylesheet" type="text/css" href="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/lesson.css">
+    <link rel="stylesheet" type="text/css" href="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/syntax.css">
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://datacarpentry.org/r-raster-vector-geospatial/assets/favicons/dc/favicon-128.png" sizes="128x128">
+    <meta name="application-name" content="Data Carpentry - Introduction to Geospatial Raster and Vector Data with R">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="../assets/favicons/dc/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/dc/mstile-70x70.png">
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/dc/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/dc/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/dc/mstile-310x310.png">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <title>Introduction to Geospatial Raster and Vector Data with R: Plot Raster Data in R</title>
+  </head>
+  <body>
+
+    
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta" style="padding: 5px;">
+    This lesson is being piloted (Beta version)
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="https://datacarpentry.org/" class="pull-left">
+        <img class="navbar-logo" src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/dc-icon-black.svg" alt="Data Carpentry logo">
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="https://datacarpentry.org/r-raster-vector-geospatial/">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/setup.html">Setup</a></li>
+
+        
+        <li class="dropdown">
+          <a href="https://datacarpentry.org/r-raster-vector-geospatial/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure/index.html">Intro to Raster Data in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/02-raster-plot/index.html">Plot Raster Data in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/03-raster-reproject-in-r/index.html">Reproject Raster Data in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/04-raster-calculations-in-r/index.html">Raster Calculations in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/05-raster-multi-band-in-r/index.html">Work With Multi-Band Rasters in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/06-vector-open-shapefile-in-r/index.html">Open and Plot Shapefiles in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/07-vector-shapefile-attributes-in-r/index.html">Explore and Plot by Shapefile Attributes</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/08-vector-plot-shapefiles-custom-legend/index.html">Plot Multiple Shapefiles in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/09-vector-when-data-dont-line-up-crs/index.html">Handling Spatial Projection &amp; CRS in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/10-vector-csv-to-shapefile-in-r/index.html">Convert from .csv to a Shapefile in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/11-vector-raster-integration/index.html">Manipulate Raster Data in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/12-time-series-raster/index.html">Raster Time Series Data in R</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/13-plot-time-series-rasters-in-r/index.html">Create Publication-quality Graphics</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/14-extract-ndvi-from-rasters-in-r/index.html">Derive Values from Raster Time Series</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/aio.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="https://datacarpentry.org/r-raster-vector-geospatial/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/reference/">Reference</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/about/index.html">About</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/discuss/index.html">Discussion</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/figures/index.html">Figures</a></li>
+            
+            <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/guide/index.html">Instructor Notes</a></li>
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="https://datacarpentry.org/r-raster-vector-geospatial/LICENSE.html">License</a></li>
+	
+	
+	<li><a href="https://github.com/datacarpentry/r-raster-vector-geospatial/edit/master/_episodes_rmd/02-raster-plot.Rmd">Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="https://datacarpentry.org/r-raster-vector-geospatial/">Introduction to Geospatial Raster and Vector Data with R</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="https://datacarpentry.org/r-raster-vector-geospatial/03-raster-reproject-in-r/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Plot Raster Data in R</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br>
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I create categorized or customized maps of raster data?</p>
+</li>
+	
+	<li><p>How can I customize the color scheme of a raster image?</p>
+</li>
+	
+	<li><p>How can I layer raster data in a single image?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Build customized plots for a single band raster using the <code class="highlighter-rouge">ggplot2</code> package.</p>
+</li>
+	
+	<li><p>Layer a raster dataset on top of a hillshade to create an elegant basemap.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<blockquote class="prereq">
+  <h2 id="things-youll-need-to-complete-this-episode">Things You’ll Need To Complete This Episode</h2>
+  <p>See the <a href="https://datacarpentry.org/r-raster-vector-geospatial">lesson homepage</a> for detailed information about the software,
+data, and other prerequisites you will need to work through the examples in this episode.</p>
+</blockquote>
+
+<h2 id="plot-raster-data-in-r">Plot Raster Data in R</h2>
+<p>This episode covers how to plot a raster in R using the <code class="highlighter-rouge">ggplot2</code>
+package with customized coloring schemes. 
+It also covers how to layer a raster on top of a hillshade to produce
+an eloquent map. We will continue working with the Digital Surface Model (DSM) raster
+for the NEON Harvard Forest Field Site.</p>
+
+<h2 id="plotting-data-using-breaks">Plotting Data Using Breaks</h2>
+<p>In the previous episode, we viewed our data using a continuous color ramp. For 
+clarity and visibility of the plot, we may prefer to view the data “symbolized” or colored according to ranges of values. This is comparable to a “classified”
+map. To do this, we need to tell <code class="highlighter-rouge">ggplot</code> how many groups to break our data into, and
+where those breaks should be. To make these decisions, it is useful to first explore the distribution of the data using a bar plot. To begin with, we will use <code class="highlighter-rouge">dplyr</code>’s <code class="highlighter-rouge">mutate()</code> function combined with <code class="highlighter-rouge">cut()</code> to split the data into 3 bins.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                </span><span class="n">mutate</span><span class="p">(</span><span class="n">fct_elevation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">(</span><span class="n">HARV_dsmCrop</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fct_elevation</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-histogram-breaks-ggplot-1.png" title="plot of chunk histogram-breaks-ggplot" alt="plot of chunk histogram-breaks-ggplot" width="612" style="display: block; margin: auto;"></p>
+
+<p>If we want to know the cutoff values for the groups, we can ask for the unique values 
+of <code class="highlighter-rouge">fct_elevation</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">unique</span><span class="p">(</span><span class="n">DSM_HARV_df</span><span class="o">$</span><span class="n">fct_elevation</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] (379,416] (342,379] (305,342]
+Levels: (305,342] (342,379] (379,416]
+</code></pre></div></div>
+
+<p>And we can get the count of values in each group using <code class="highlighter-rouge">dplyr</code>’s 
+<code class="highlighter-rouge">group_by()</code> and <code class="highlighter-rouge">summarize()</code> functions:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">group_by</span><span class="p">(</span><span class="n">fct_elevation</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">summarize</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code># A tibble: 3 x 2
+  fct_elevation  counts
+  &lt;fct&gt;           &lt;int&gt;
+1 (305,342]      418891
+2 (342,379]     1530073
+3 (379,416]      370835
+</code></pre></div></div>
+
+<p>We might prefer to customize the cutoff values for these groups.
+Lets round the cutoff values so that we have groups for the ranges of 
+301–350 m, 351–400 m, and 401–450 m.
+To implement this we will give <code class="highlighter-rouge">mutate()</code> a numeric vector of break points instead 
+of the number of breaks we want.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">custom_bins</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">350</span><span class="p">,</span><span class="w"> </span><span class="m">400</span><span class="p">,</span><span class="w"> </span><span class="m">450</span><span class="p">)</span><span class="w">
+
+</span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">fct_elevation_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">(</span><span class="n">HARV_dsmCrop</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">custom_bins</span><span class="p">))</span><span class="w">
+
+</span><span class="n">unique</span><span class="p">(</span><span class="n">DSM_HARV_df</span><span class="o">$</span><span class="n">fct_elevation_2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] (400,450] (350,400] (300,350]
+Levels: (300,350] (350,400] (400,450]
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="data-tips">Data Tips</h2>
+  <p>Note that when we assign break values a set of 4 values will result in 3 bins of data.</p>
+
+  <p>The bin intervals are shown using <code class="highlighter-rouge">(</code> to mean exclusive and <code class="highlighter-rouge">]</code> to mean inclusive. For example: <code class="highlighter-rouge">(305, 342]</code> means “from 306 through 342”.</p>
+</blockquote>
+
+<p>And now we can plot our bar plot again, using the new groups:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fct_elevation_2</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-histogram-custom-breaks-1.png" title="plot of chunk histogram-custom-breaks" alt="plot of chunk histogram-custom-breaks" width="612" style="display: block; margin: auto;"></p>
+
+<p>And we can get the count of values in each group in the same way we did before:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">fct_elevation_2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarize</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code># A tibble: 3 x 2
+  fct_elevation_2  counts
+  &lt;fct&gt;             &lt;int&gt;
+1 (300,350]        741815
+2 (350,400]       1567316
+3 (400,450]         10668
+</code></pre></div></div>
+
+<p>We can use those groups to plot our raster data, with each group being a different color:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fct_elevation_2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-raster-with-breaks-1.png" title="plot of chunk raster-with-breaks" alt="plot of chunk raster-with-breaks" width="612" style="display: block; margin: auto;"></p>
+
+<p>The plot above uses the default colors inside <code class="highlighter-rouge">ggplot</code> for raster objects. 
+We can specify our own colors to make the plot look a little nicer.
+R has a built in set of colors for plotting terrain, which are built in
+to the <code class="highlighter-rouge">terrain.colors()</code> function.
+Since we have three bins, we want to create a 3-color palette:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">terrain.colors</span><span class="p">(</span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] "#00A600FF" "#ECB176FF" "#F2F2F2FF"
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">terrain.colors()</code> function returns <em>hex colors</em> - 
+ each of these character strings represents a color.
+To use these in our map, we pass them across using the 
+ <code class="highlighter-rouge">scale_fill_manual()</code> function.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fct_elevation_2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">3</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-ggplot-breaks-customcolors-1.png" title="plot of chunk ggplot-breaks-customcolors" alt="plot of chunk ggplot-breaks-customcolors" width="612" style="display: block; margin: auto;"></p>
+
+<h3 id="more-plot-formatting">More Plot Formatting</h3>
+
+<p>If we need to create multiple plots using the same color palette, we can create
+an R object (<code class="highlighter-rouge">my_col</code>) for the set of colors that we want to use. We can then
+quickly change the palette across all plots by modifying the <code class="highlighter-rouge">my_col</code>
+object, rather than each individual plot.</p>
+
+<p>We can label the x- and y-axes of our plot too using <code class="highlighter-rouge">xlab</code> and <code class="highlighter-rouge">ylab</code>.
+We can also give the legend a more meaningful title by passing a value 
+to the <code class="highlighter-rouge">name</code> argument of the <code class="highlighter-rouge">scale_fill_manual()</code> function.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">3</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fct_elevation_2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_col</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Elevation"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-add-ggplot-labels-1.png" title="plot of chunk add-ggplot-labels" alt="plot of chunk add-ggplot-labels" width="612" style="display: block; margin: auto;"></p>
+
+<p>Or we can also turn off the labels of both axes by passing <code class="highlighter-rouge">element_blank()</code> to
+the relevant part of the <code class="highlighter-rouge">theme()</code> function.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fct_elevation_2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_col</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Elevation"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-turn-off-axes-1.png" title="plot of chunk turn-off-axes" alt="plot of chunk turn-off-axes" width="612" style="display: block; margin: auto;"></p>
+
+<blockquote class="challenge">
+  <h2 id="challenge-plot-using-custom-breaks">Challenge: Plot Using Custom Breaks</h2>
+
+  <p>Create a plot of the Harvard Forest Digital Surface Model (DSM) that has:</p>
+
+  <ol>
+    <li>Six classified ranges of values (break points) that are evenly divided among the range of pixel values.</li>
+    <li>Axis labels.</li>
+    <li>A plot title.</li>
+  </ol>
+
+  <blockquote class="solution">
+    <h2 id="answers">Answers<span class="fold-unfold glyphicon glyphicon-collapse-down"></span></h2>
+
+    <div class="language-r highlighter-rouge" style="display: none;"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w">  </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">mutate</span><span class="p">(</span><span class="n">fct_elevation_6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">(</span><span class="n">HARV_dsmCrop</span><span class="p">,</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">))</span><span class="w"> 
+
+ </span><span class="n">my_col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">6</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fct_elevation_6</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_col</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Elevation"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Classified Elevation Map - NEON Harvard Forest Field Site"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"UTM Westing Coordinate (m)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"UTM Northing Coordinate (m)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p style="display: none;"><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-challenge-code-plotting-1.png" title="plot of chunk challenge-code-plotting" alt="plot of chunk challenge-code-plotting" width="612" style="display: block; margin: auto;"></p>
+  </blockquote>
+</blockquote>
+
+<h2 id="layering-rasters">Layering Rasters</h2>
+
+<p>We can layer a raster on top of a hillshade raster for the same area, and use a
+transparency factor to create a 3-dimensional shaded effect. A
+hillshade is a raster that maps the shadows and texture that you would see from
+above when viewing terrain.
+We will add a custom color, making the plot grey.</p>
+
+<p>First we need to read in our DSM hillshade data and view the structure:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_hill_HARV</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+  </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_DSMhill.tif"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">DSM_hill_HARV</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class       : RasterLayer 
+dimensions  : 1367, 1697, 2319799  (nrow, ncol, ncell)
+resolution  : 1, 1  (x, y)
+extent      : 731453, 733150, 4712471, 4713838  (xmin, xmax, ymin, ymax)
+coord. ref. : +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 
+data source : /home/travis/build/datacarpentry/r-raster-vector-geospatial/_episodes_rmd/data/NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_DSMhill.tif 
+names       : HARV_DSMhill 
+values      : -0.7136298, 0.9999997  (min, max)
+</code></pre></div></div>
+
+<p>Next we convert it to a dataframe, so that we can plot it using <code class="highlighter-rouge">ggplot2</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DSM_hill_HARV_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">DSM_hill_HARV</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> 
+
+</span><span class="n">str</span><span class="p">(</span><span class="n">DSM_hill_HARV_df</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'data.frame':	2319799 obs. of  3 variables:
+ $ x           : num  731454 731454 731456 731456 731458 ...
+ $ y           : num  4713838 4713838 4713838 4713838 4713838 ...
+ $ HARV_DSMhill: num  NA NA NA NA NA NA NA NA NA NA ...
+</code></pre></div></div>
+
+<p>Now we can plot the hillshade data:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_hill_HARV_df</span><span class="p">,</span><span class="w">
+              </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HARV_DSMhill</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_alpha</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.65</span><span class="p">),</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-raster-hillshade-1.png" title="plot of chunk raster-hillshade" alt="plot of chunk raster-hillshade" width="612" style="display: block; margin: auto;"></p>
+
+<blockquote class="callout">
+  <h2 id="data-tips-1">Data Tips</h2>
+  <p>Turn off, or hide, the legend on a plot by adding <code class="highlighter-rouge">guide = "none"</code> 
+to a <code class="highlighter-rouge">scale_something()</code> function or by setting
+<code class="highlighter-rouge">theme(legend.position = "none")</code>.</p>
+
+  <p>The alpha value determines how transparent the colors will be (0 being
+transparent, 1 being opaque).</p>
+</blockquote>
+
+<p>We can layer another raster on top of our hillshade by adding another call to 
+the <code class="highlighter-rouge">geom_raster()</code> function. Let’s overlay <code class="highlighter-rouge">DSM_HARV</code> on top of the <code class="highlighter-rouge">hill_HARV</code>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_HARV_df</span><span class="w"> </span><span class="p">,</span><span class="w"> 
+              </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HARV_dsmCrop</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_hill_HARV_df</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HARV_DSMhill</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">  
+  </span><span class="n">scale_fill_viridis_c</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">  
+  </span><span class="n">scale_alpha</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.65</span><span class="p">),</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Elevation with hillshade"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-overlay-hillshade-1.png" title="plot of chunk overlay-hillshade" alt="plot of chunk overlay-hillshade" width="612" style="display: block; margin: auto;"></p>
+
+<blockquote class="challenge">
+  <h2 id="challenge-create-dtm--dsm-for-sjer">Challenge: Create DTM &amp; DSM for SJER</h2>
+
+  <p>Use the files in the <code class="highlighter-rouge">NEON_RemoteSensing/SJER/</code> directory to create a Digital
+Terrain Model map and Digital Surface Model map of the San Joaquin Experimental
+Range field site.</p>
+
+  <p>Make sure to:</p>
+
+  <ul>
+    <li>include hillshade in the maps,</li>
+    <li>label axes on the DSM map and exclude them from the DTM map,</li>
+    <li>include a title for each map,</li>
+    <li>experiment with various alpha values and color palettes to represent the
+ data.</li>
+  </ul>
+
+  <blockquote class="solution">
+    <h2 id="answers-1">Answers<span class="fold-unfold glyphicon glyphicon-collapse-down"></span></h2>
+
+    <div class="language-r highlighter-rouge" style="display: none;"><div class="highlight"><pre class="highlight"><code><span class="c1"># CREATE DSM MAPS</span><span class="w">
+
+</span><span class="c1"># import DSM data</span><span class="w">
+</span><span class="n">DSM_SJER</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmCrop.tif"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># convert to a df for plotting</span><span class="w">
+</span><span class="n">DSM_SJER_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">DSM_SJER</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># import DSM hillshade</span><span class="w">
+</span><span class="n">DSM_hill_SJER</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmHill.tif"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># convert to a df for plotting</span><span class="w">
+</span><span class="n">DSM_hill_SJER_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">DSM_hill_SJER</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Build Plot</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_SJER_df</span><span class="w"> </span><span class="p">,</span><span class="w"> 
+                </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SJER_dsmCrop</span><span class="p">,</span><span class="w">
+                     </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w">
+                </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM_hill_SJER_df</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SJER_dsmHill</span><span class="p">)</span><span class="w">
+                </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_viridis_c</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guide_colorbar</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_alpha</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">),</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="c1"># remove grey background and grid lines</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w"> 
+          </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"UTM Westing Coordinate (m)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"UTM Northing Coordinate (m)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"DSM with Hillshade"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p style="display: none;"><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-challenge-hillshade-layering-1.png" title="plot of chunk challenge-hillshade-layering" alt="plot of chunk challenge-hillshade-layering" width="612" style="display: block; margin: auto;"></p>
+
+    <div class="language-r highlighter-rouge" style="display: none;"><div class="highlight"><pre class="highlight"><code><span class="c1"># CREATE DTM MAP</span><span class="w">
+</span><span class="c1"># import DTM</span><span class="w">
+</span><span class="n">DTM_SJER</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/NEON-DS-Airborne-Remote-Sensing/SJER/DTM/SJER_dtmCrop.tif"</span><span class="p">)</span><span class="w">
+</span><span class="n">DTM_SJER_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">DTM_SJER</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># DTM Hillshade</span><span class="w">
+</span><span class="n">DTM_hill_SJER</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/NEON-DS-Airborne-Remote-Sensing/SJER/DTM/SJER_dtmHill.tif"</span><span class="p">)</span><span class="w">
+</span><span class="n">DTM_hill_SJER_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">DTM_hill_SJER</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DTM_SJER_df</span><span class="w"> </span><span class="p">,</span><span class="w">
+                </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                     </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SJER_dtmCrop</span><span class="p">,</span><span class="w">
+                     </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.0</span><span class="p">)</span><span class="w">
+                </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_raster</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DTM_hill_SJER_df</span><span class="p">,</span><span class="w">
+                </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+                  </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SJER_dtmHill</span><span class="p">)</span><span class="w">
+                </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_viridis_c</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guide_colorbar</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_alpha</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">),</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w"> 
+          </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"DTM with Hillshade"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_quickmap</span><span class="p">()</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p style="display: none;"><img src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/rmd-02-challenge-hillshade-layering-2.png" title="plot of chunk challenge-hillshade-layering" alt="plot of chunk challenge-hillshade-layering" width="612" style="display: block; margin: auto;"></p>
+  </blockquote>
+</blockquote>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Continuous data ranges can be grouped into categories using <code class="highlighter-rouge">mutate()</code> and <code class="highlighter-rouge">cut()</code>.</p>
+</li>
+    
+    <li><p>Use built-in <code class="highlighter-rouge">terrain.colors()</code> or set your preferred color scheme manually.</p>
+</li>
+    
+    <li><p>Layer rasters on top of one another by using the <code class="highlighter-rouge">alpha</code> aesthetic.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="https://datacarpentry.org/r-raster-vector-geospatial/03-raster-reproject-in-r/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 copyright" align="left">
+	
+	Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2018–2019
+	by <a href="https://carpentries.org/">The Carpentries</a>
+        <br>
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2016–2018
+	by <a href="https://datacarpentry.org/">Data Carpentry</a>
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	
+	<a href="https://github.com/datacarpentry/r-raster-vector-geospatial/edit/master/_episodes_rmd/02-raster-plot.Rmd">Edit on GitHub</a>
+	
+	
+	/
+	<a href="https://github.com/datacarpentry/r-raster-vector-geospatial/blob/gh-pages/CONTRIBUTING.md">Contributing</a>
+	/
+	<a href="https://github.com/datacarpentry/r-raster-vector-geospatial/">Source</a>
+	/
+	<a href="https://github.com/datacarpentry/r-raster-vector-geospatial/blob/gh-pages/CITATION">Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script async="" src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/analytics.js"></script><script src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/jquery.min.js"></script>
+<script src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/bootstrap.min.js"></script>
+<script src="./3 ggplot Introduction to Geospatial Raster and Vector Data with R_ Plot Raster Data in R_files/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  
+
+</body></html>

@@ -1,0 +1,82 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+Let's do some light manipulation of the mtcars dataset, by summarising the variables.
+This gives us an opportunity to explore the data and learn about pipes. 
+
+First, let's take another look at the dataset using the `head()` function. Notice that there are only a few options for what the `carb` variable can be (1-8, although you can only see 1, 2, and 4 in these first 6 entries). It'd be useful to see
+what the mean `mpg` is for each value of `carb`, so we can test whether these variables
+are related. The `summarise()` command can be used here, which is part of the `dplyr`
+package you loaded.  Type`?summarise` into the console to see the options for
+how you can summarise the variables (e.g. mean, median, sd, IQR, min, max, etc).
+
+For a simple count of how many cars there are, run
+
+```{r summarise, exercise=TRUE}
+summarise(mtcars, n())
+```
+
+The first argument in the function is the dataset, and the second is the summary function you'd like to use.
+We can do more interesting things by grouping the data though. Let's count how many
+cars are in each carb category by using the group_by() function:
+
+```{r summarisegroup, exercise=TRUE}
+summarise(group_by(mtcars,carb), carcount=n())
+```
+
+In this syntax, I have named the column we are creating with the number of cars `carcount`.
+So there are 7 cars with `carb`=1, and 1 car with `carb`=8. Instead of just counting
+the number of cars, we can explore the relationship between `carb` and `mpg` by calculating
+the mean `mpg` of each of those groups of cars, and store this as the varible name `carstest`:
+
+```{r carprogress, exercise=TRUE}
+summarise(group_by(mtcars, carb), meanmpg=mean(mpg))
+```
+
+Alternatively, this same line of code can be written using the pipe operator, `%>%`.
+You've seen this a few times, and can basically be thought of as the word 'goes into'.
+So the code below is saying '`mtcars` goes into the function `group_by(XX, carb)` as the first
+argument in the function'. That whole function then goes into the function
+`summarise(XX, meanmpg=mean(mpg))` as the first argument.
+This is exactly the same as the previous line of code, but some people find it easier
+and neater to use the pipe operator, because you can then build the nested functions
+more clearly. For now, use either form (but you will need to know how to read both).
+
+```{r carprogresspipe, exercise=TRUE}
+mtcars %>% # create a new object containing a summary of mtcars
+  group_by(carb) %>% # group by the carbs variable (no. carburetors), and manufacturer
+  summarise(meanmpg=mean(mpg)) # calculate mean mpg for each carb category
+```
+
+You can verify that carstest and cars are the same by typing each name into the console
+to print them in their entirety.
+
+
+```{r carprogressboth, exercise=TRUE}
+cars_classic <- summarise(group_by(mtcars, carb), meanmpg=mean(mpg))
+
+cars_tidy <- mtcars %>% # create a new object containing a summary of mtcars
+  group_by(carb) %>% # group by the carbs variable (no. carburetors), and manufacturer
+  summarise(meanmpg=mean(mpg)) # calculate mean mpg for each carb category
+
+cars_classic
+cars_tidy
+```
+
+You've stored these two datasets now as data frames with labelled columns, so you can
+view each column separately using the `$`. In the embedded code chunk above, view the outputs from `cars_tidy$mpg` and `cars_tidy$carb`
+
+
+
+

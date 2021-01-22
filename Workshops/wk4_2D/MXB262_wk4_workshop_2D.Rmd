@@ -1,0 +1,434 @@
+---
+title: 'MXB262 Workshop week 3: 2D viz'
+author: "Dr Kate Helmstedt"
+date: 'Semester 1, 2021'
+#output: learnr::tutorial
+#runtime: shiny_prerendered
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+#library(learnr)
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(rwalkr)
+library(ggmosaic)
+library(dplyr)
+library(grattan)
+library(magrittr)
+library(palmerpenguins)
+library(tidyverse)
+library(rwalkr)
+  library(covdata)
+
+```
+
+
+## Today's packages
+
+Since we are working from an R markdown file, you won't need to load the libraries into this window. However, if you decide to move into the console of R studio and play around any more with these plots, you'll need the libraries to be loaded. For your information, the libraries we are using today in this code are 
+
+```{r libraries, eval=FALSE}
+
+library(ggplot2)
+library(rwalkr)
+library(ggmosaic)
+library(dplyr)
+library(grattan)
+library(magrittr)
+library(palmerpenguins)
+library(tidyverse)
+library(rwalkr)
+
+```
+
+I suggest keeping a .R file with the installation and loading of the packages you use most often. This section of code can be your starter pack -- consider saving it somewhere accessible and adding to it as we go. That way, when you change computers you can install all your precious packages at once, and at the start of each session you can load them back up. I suggest running each `library()` line one by one (put cursor in the line and press command + enter) so you can see whether there was an error. This is my standard
+practice, even years into my relationship with R.
+
+If any of the packages below don't load using the libary() command, you'll need to install them first on your current computer.
+
+*Some common issues with installing packages*
+> 'Do you want to restart R after installing?' dialogue box pops up. Click 'no'. If you accidentally click 'yes', it's not the end of the world, but R acts as if you have closed the R studio window and opened it back up -- which means you need to reload (using the `library()` function) all your other packages. It's annoying, but not a distaster
+> 'Do you want to install from sources the packages which need compilation? (Yes/no/cancel)' question. Type 'yes' or just 'y'.
+> The install takes a long time, or throws a lot of warnings -- in general this is fine. Don't panic until it is done. You know it is done when the `>` pops back up at the bottom of the console. The easiest test for whether it worked or not is to try straight away to load it using the `library()` function. If that works, your installation worked.
+> Forgetting that the `install.packages()` function needs quotation marks around the package name, but the `library()` function doesn't. I have no excuse for that -- computers, programs, and the people who make them (including me, and now you) can be strange.
+
+
+## Datasets
+
+Today we are using in built datasets for the most part, although towards
+the end of the activity there are some more that you'll need to load in.
+These datasets are already installed when R is installed, so you don't need to do anything extra to get them.
+They tend to be nice and clean, and designed well to illustrate specific aspects people need
+to learn and practice in data analysis, data wrangling, and data visualisation.
+
+You can see the names of all the datasets you have currently loaded (both
+in built in R and those that come along with the packages you've already loaded) by  typing or copying this command into your R console:
+
+```{r data, eval=FALSE}
+data()
+```
+
+You can take a quick peek at the datasets using the incredibly useful `head()`
+command, which shows the first 6 entries of any data (regardless of what  class of data
+it is). In this next exercise, take a look at the `head()` of a couple of the datasets you now know are pre-loaded by putting the name of the dataset in the brackets below (replace the underscore when you type it into the console in R studio). You can run this embedded code box as many times as you like, exploring different datasets.
+
+```{r head, eval=FALSE}
+head(_)
+```
+
+One of the data packages we will use here and in other workshops is the `palmerpenguins` package. It's worth noting here why we will use this package, as it is a really good example of ethics in data science -- an issue which is increasing in importance, and will touch all of our careers. A classic dataset pre-loaded in R and commonly used for teaching, learning, and examples is the `iris` dataset. This dataset was originally collected and published by Ronald Fisher, a statistician and noted eugenicist during World War II and the Holocaust. The dataset was published in in a peer-reviewed journal called 'Annals of Eugenics' with the aim of illustrating concepts behind the 'science' of eugenics. Eugenics has long beern a tool of racism and white supremacy. Academics have been making a shift away from using this `iris` dataset because its use results in citations of the dataset and Fisher's paper, and citations are an important currency and reward system in academia. A few years ago, some fantastic scientists instead released a beautiful dataset about different species of penguins. This dataset replicates many of the things that were useful about the `iris` dataset, with the added benefits that penguins are cool and it does not reward any unethical science! And so, the `palmerpenguins` package was born into the world, and academics the world over breathed a grateful sigh of relief. 
+
+![The famous Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/man/figures/lter_penguins.png)'The famous Palmer Penguins, image by Allison Horst'
+
+One great thing about the `palmerpenguins` dataset is that, much like data in the real world, it contains some missing data (called `NA`). For today, we want to ignore those `NA` values, much like you will in your projects. Before we move on to using the data in that package which is stored as an object called `penguins`, we will remove all the `NA` observations and save the new, clean dataset.
+
+```{r penguins}
+penguins_nona <- drop_na(penguins)
+```
+
+## Section 1: 1D Categorical Data
+
+## Barplots
+
+*Dataset: `mtcars`, and penguins_nona which we created from `palmerpenguins`*
+
+For each of these types of visualisations, we'll give you the ggplot command and then
+some questions that require you to explore the visualiation. Run the ggplot command,
+and then edit that line of code to do the questions. You don't need to submit these
+questions, but it'd be useful for you to store the commands here for your own future
+reference (and don't forget to save this R script).
+
+
+```{r barplot, eval=FALSE}
+ggplot(data = mtcars, mapping = aes(x = as.factor(cyl))) + 
+  geom_bar()
+```
+
+> Q1: Use your arrows to move over each bracket in R studio, and notice that
+           the corresponding bracket is highlighted. This lets you see how expressions are grouped.
+           Where does the `ggplot()` command finish? Why does R know to expect more code? 
+ 
+> Q2: Try placing line breaks (i.e. press enter) at a few extra spots in the line
+           of code. Does it always work? Can you find a spot that you can put a line break
+           that stops the command from working? Can you find a spot where the command still works?
+           
+> Q3: Why has the function `as.factor()` been applied to the `cyl` 
+           variable in the example above? Hint: think about what kinds of data go into
+           bar charts, and you can type '?as.factor' into the console to pull up the 
+           help menu for that command.
+
+> TASK: Use `head(mtcars)` to see what other variables are in the dataset. Create 
+          a new barchart using a different variable in `mtcars`. 
+
+
+
+### Ordering barplots
+
+Barplots are in default order that alphabetises or numerically sorts the names of the factors. Often, however, we want them to be sorted by length. We can use the `reorder()` function to achieve this (see the help menu for this function by typing `?reorder` for more information):
+
+```{r orderedbarplot, eval=FALSE}
+ggplot(data = mtcars, mapping = aes(x = reorder(as.factor(cyl), as.factor(cyl), function(z) -length(z)))) + 
+  geom_bar()
+```
+
+> TASK: What do you need to change in the above code to order the bars in ascending order instead?
+
+
+
+## Section 2: 2D Categorical Data
+
+## Mosaic plots
+
+We didn't explicitly cover mosaic plots in the lecture, but this is a plot people
+really like, so take a second to explore it here. Mosaic plots require the `ggmosaic`
+package, so make sure you've loaded it for this section. Note that a lot of
+additional packages start with 'gg', indicating that they have been made explicitly
+to fit together and play nicely with the `ggplot2` methods, features, and whole ecosystem.
+
+Mosaic plots split the whole dataset into sections based on multiple categories. The
+titanic data used below uses two categories: did they survive, and what class were they in?
+
+*DATASET: titanic*
+
+### Prepare the dataset
+
+The inbuilt Titanic dataset is stored as a table. Explore this dataset by running each of these lines one by one:
+
+```{r titanicexplore, eval=FALSE}
+ class(Titanic) # to see the kind of data it is
+ head(Titanic) # to see the first few entries
+ Titanic # to print the whole thing
+```
+
+This is a table, but `ggplot2` needs a data class called tibbles or dataframes to plot. It's easy to just convert a well-labelled
+table into a data frame using `as.data.frame()`:
+
+```{r titanicconvert}
+titanic <- as.data.frame(Titanic)
+```
+
+
+ In that new data frame, the variable indicating whether each person survived or not
+ is now stored as a factor, which we need for categorical plots (recall from lecture). To see the new class, add to the embedded code chunk above:
+ 
+```{r eval=FALSE}
+class(titanic$Survived) # to print just the type of data it is
+titanic$Survived # to print the whole thing
+```
+
+And to generate a mosaic plot, add the ggplot command 
+
+```{r eval=FALSE}
+ggplot(data=titanic) +
+  geom_mosaic(aes(weight=Freq, x=product(Class), fill=Survived))
+```
+
+
+> TASK: Switch the variables indicating whether the passenger survived or not, and the
+          varibale indicating their class. Does this plot give different information?
+          
+> TASK: Use `head(titanic)` to see what other variables are in the dataset. Instead of
+          colouring based on whether the passenger survived or not, colour based
+          on whether the passenger was an adult or child. Has this given any additional
+          information?
+
+## 2D - Discrete/Categorical X, Continuous Y
+
+## Barplots
+
+
+*DATASET: penguins_nona, which we created from the `palmerpenguins` package*
+
+As always, take a quick look at the dataset you're exploring using the `head()` function. We want to use two of these variables -- `species` and `sex` in order to count how many of each sex there is in each gender. Notice that we don't need to tell the `ggplot` function where to get the numbers from, because the `geom_bar()` always natively just counts up how many observations there are.
+
+### Grouped barplot
+
+The `position` argument in `geom_bar()` tells the plot you'd like to see a grouped barplot:
+
+```{r, groupedbp, eval=FALSE}
+ggplot(penguins_nona, aes(fill=species, x=sex)) + 
+   geom_bar(position="dodge") 
+```
+
+
+### Stacked barplot
+
+Remove the `position` argument altogether to give a stacked barplot
+
+```{r}
+ggplot(penguins_nona, aes(fill=species, x=sex)) + 
+   geom_bar() 
+```
+
+### Stacked Percent  (or proportional) barplot
+
+And set `position = "fill"` to give a stacked percent barplot
+
+> TASK: edit the above code to produce a stacked percent barplot of the same data
+
+
+## Scatter plots for categorical data
+
+*DATASET: ToothGrowth*
+
+First, familiarse yourself with the dataset using the `head()` function.
+
+You can further explore any dataset by opening the help file for the dataset, with the command `?nameofdataset` 
+
+> TASK: figure out what `len`, `supp`, and `dose` mean by pulling up the help file for `ToothGrowth`
+
+Recall that we are only looking at data that is categorical in one dimension (e.g. supp), and continuous in another dimension (e.g. len). Plot relationship between supplement category and tooth length, but first ask yourself what you think this plot will look like.
+
+```{r, eval=FALSE}
+ggplot(ToothGrowth, aes(x = supp, y = len)) + 
+    geom_point() 
+```
+
+In some cases, it might be hard to see where many points in the same place on this line. How would we know, for example, if what looks like one point is actually a few points on top of eachother at one very common len value? We can add some jitter to reveal all the data points, which avoids overplotting. Add another geom function, `geom_jitter()`:
+
+```{r, eval=FALSE}
+ggplot(ToothGrowth, aes(x = supp, y = len)) + 
+  geom_point() + 
+  geom_jitter()
+
+```
+
+> Q: an optional argument in the `geom_jitter()` function is `width = x`, where `x` is some number you choose. Add this optional argument to test a few different width values. What does it look like the default is? What do you think is the most useful width, and why? Will that be different for different data?
+
+> TASK: Use a scatterplot to explore the relatinship between length and a different categorical variable. Use `head(ToothGrowth)` to see what other variables are in the dataset. Hint: one of the variables might look like it is continuous, but is actually categorical. Why? How did we deal with that issue when we were using `mtcars` earlier? Can a similar approach work here?
+
+> Q: Which categorical variable seems to have the biggest effect on tooth length?
+
+
+## Box Plots
+
+*DATASET: ToothGrowth*
+
+First, a basic box plot (hiding the data we saw before - which we know from the lecture is not usually a great idea)
+
+```{r, eval=FALSE}
+ggplot(ToothGrowth, aes(x = supp, y = len)) + 
+  geom_boxplot() 
+```
+
+Now let's stop hiding that data by building a box + data plot. We now know that we can add multiple geoms to the same plot, so we can combine the things we already know to generate this plot: 
+
+```{r, echo=FALSE, eval=TRUE}
+ggplot(ToothGrowth, aes(x = supp, y = len)) + 
+   geom_boxplot() + geom_point() + geom_jitter(width=0.1)
+```
+
+> TASK: combine geoms you've already seen to make the above plot.
+
+
+### Violin Plots 
+
+Violin plots are very similar to box plots, but use `geom_violin()`.
+
+> TASK: create a violin plot showing the relationship between `supp` and `len`.
+
+> TASK: Add the boxplot to the center of the violin plots (i.e. show both). Note that
+         you can change the width of the boxplots by half by setting 'width=0.5' into the 
+         geom function. Choose a width that works to not obscure any information.
+
+> TASK: Create a Dot + Violin plot.
+
+
+
+## 2. CONTINUOUS DATA 
+
+## 1D continuous data 
+
+## Histogram      
+*DATASETs: mpg, PlantGrowth*
+
+
+```{r, eval=FALSE}
+ggplot(mpg, aes(cty)) + 
+  geom_histogram()
+```
+
+
+```{r, eval=FALSE}
+ggplot(PlantGrowth, aes(weight)) + 
+  geom_histogram(binwidth = 0.2)
+```
+
+The number of bins in a ggplot histogram is automatically set to 30. You often need to adjust this by adding `binwidth = `, or `bins = `.
+> TASK: Remove `binwidth = 0.2` from the PlantGrowth histogram above and see what the default plot looks like.
+
+> TASK: Add bins command to the `mpg` histogram, try a few different numbers.
+
+
+## Density Plot  
+
+
+*DATASET: mpg*
+```{r, eval=FALSE}
+ggplot(mpg, aes(cty)) + 
+  geom_density()
+```
+
+> TASK: Create a density plot for a different variable within `mpg`. 
+
+
+## 2D - both Continuous
+
+## Scatter Plot
+
+*DATASET: USArrests*
+
+First, familiarise yourself with the dataset using the `head()` function. Then, use what we learned about `geom_point()` above to create the following plot:
+
+```{r, eval=TRUE, echo=FALSE}
+ggplot(USArrests, aes(x = UrbanPop, y = Assault)) + 
+  geom_point()
+```
+> TASK: connect each of the dots by adding in `geom_line()`. In this case, does it make sense to join the points together using a line? Has this added clarity? Based on what we learned in the lectures this week, is this a best practice plot?
+
+## Adding a statistical estimate using Smooth (`lm`)
+
+*DATASET: midwest*
+
+First, familiarise yourself with the dataset using the `head()` function. 
+> TASK: create the below plot using `geom_point()`
+
+```{r, eval=TRUE, echo=FALSE}
+ggplot(midwest, aes(x=area, y=poptotal)) + 
+  geom_point() #+ 
+  #geom_smooth() #+ 
+  #ylim(0, 50000)
+```
+
+> TASK: add a `geom_smooth()` to add a linear model trend line
+
+> TASK: explore adding a new element: `ylim(ymin, ymax)` to limit the populations to 50,000, which will remove the outlier. This `ylim()` function is added on to the end of the plotting command, in a similar way to adding a new geom. What does this do to the linear model trend line?
+
+> TASK: Reduce the x axis using a similar method to explore cities with areas only up to 0.1. What does this do to the linear model trend line?
+
+
+## 3. TIMESERIES 
+
+*DATASET: `apple_mobility` in the `covdata` package*
+
+We will be branching out beyond the pre-loaded datasets for this one, to get a first experience in extracting useful information from larger datasets. We will be using a data package written by Kieran Healy (@kjhealy on Twitter), a professor at Duke University in the US who does really interesting work on data visualisation. This is a fairly new package, so it is not on the official database of approved R packages (a database called CRAN). Instead, we will download and install the package directly from Healy's github using the `remotes` package. Install and load that package first. Then, we can install the `covdata` package:
+
+```{r, echo-TRUE, eval=FALSE}
+  remotes::install_github("kjhealy/covdata@main")
+  library(covdata)
+```
+
+Recall that we can view all of our currently loaded datasets by typing `data()` into the console. Take a look at that list after loading `covdata`, and you can see the data that you've now loaded. Today we will focus on the dataset `apple_mobility`, which gives data from Apple Maps on relative changes in various forms of movement in various cities and countries over the lifetime of the Covid-19 pandemic. View the help file for this dataset using the commands we practiced earlier, and as always take a quick look at the dataset.
+
+This is a huge dataset, so we will want to cut it down using the skills you practiced in the online textbook in previous workshops. We will limit the data based on `region` and `transportation_type`. You can explore those two variables in two ways:
+```{r, eval=FALSE}
+ apple_mobility$region
+```
+
+will give a full list of this variable's observations. There are a lot, and basically all we can view are the first couple alphabetically repeated over and over, because there are many different observations with the same region. For any list or vector in R, we can summarise it to only show each entry once using the `unique()` function. Try that now to get a sense of the regions this dataset covers. We will explore Australia's driving mobility.
+
+```{r}
+    apple_subset <- apple_mobility %>% 
+      filter(region == c('Australia'), transportation_type == 'driving')
+```
+
+Using your knowledge of ggplot's structure and the `geom_line()`, construct the following timeseries plot:
+
+```{r, eval=TRUE, echo=FALSE}
+ggplot(data = apple_subset,
+           mapping = aes(x = date, y = score)) + 
+  geom_line()
+```
+
+> TASK: explore different countries or cities, and different transportation types
+
+> TASK: change the chosen geom to `geom_area()` to create an area plot instead of a line plot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

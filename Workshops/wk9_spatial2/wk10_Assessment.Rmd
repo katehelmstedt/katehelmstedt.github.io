@@ -1,0 +1,267 @@
+---
+title: "Wk10 Assessment "
+output: pdf_document
+---
+
+## TASK 
+
+### Question 1.
+
+Create two maps using the data contained in `rnaturalearth`. One must have a map extent that is smaller than the entire world (e.g. only shows one continent, or is bounded in some other way). Both must have polygons that are colours according to some aspect of the data. In the workshop you created the entire world coloured by the square root of the total population, so you cannot use population data for this question.
+
+For each of your plots, represent that same data using at least one other plot type that we learned earlier in the unit, identify a target audience and an intended message for your visualisation.
+
+### Question 2.
+
+Reproduce the following map using the locations and transport datasets provided to you in the workshop files on Blackboard.
+
+
+```{r dependencies, echo=FALSE, message = FALSE}
+library(tidyverse)
+library(sp)
+library(sf)
+library(rnaturalearth)
+library(ggrepel)
+```
+
+```{r echo=FALSE, message=FALSE}
+letters <- read_csv("data/whiskey_sales_tasmania.csv")
+locations <- read_csv("data/tas_locations.csv")
+
+#letters <- read_)
+########################
+## Preparing the data ##
+########################
+
+# we need to step them through this process without actually telling them what to do. 
+# I want this assessment to be hard. 
+# But, some of this is new, particularly the idea of labelling some things as 'source'
+# and some as 'destination. 
+# Do you think it is enough for us to give thme the letter data, give them this cleaning code
+# (with explanations) and then suggest they do soemthing similar for the new data we
+# are giving them?
+# If that is too simple, maybe an aspatial example of this using mtcars? The CRAN help file for
+# `tally()` looks like it might have soem examples, but we'll need to make sure it matches
+# all the steps below
+```
+
+```{r echo=FALSE}
+# Letters per source
+producers <- letters %>% 
+  group_by(producer) %>% 
+  count() %>% 
+  rename(place = producer) %>% 
+  add_column(type = "producer") %>% 
+  ungroup() 
+
+# Letters per destination
+consumers <- letters %>% 
+  group_by(consumer) %>% 
+  count() %>% 
+  rename(place = consumer) %>% 
+  add_column(type = "consumer") %>% 
+  ungroup()
+
+# Bind the rows of the two data frames
+# and change type column to factor
+letters_data <- rbind(producers, consumers) %>% 
+  mutate(type = as_factor(type))
+
+# Join letters_data to locations
+geo_data <- left_join(letters_data, locations, by = "place")
+
+##################################
+## Spatial data with sf package ##
+##################################
+
+points_sf <- st_as_sf(geo_data, coords = c("lon", "lat"), crs = 4326)
+
+coast_sf <- ne_coastline(scale = "medium", returnclass = "sf")
+countries_sf <- ne_countries(scale = "medium", returnclass = "sf")
+
+#################################
+## Mapping with sf and ggplot2 ##
+#################################
+
+### Basic ggplot2 plot with geom_sf()
+```
+
+```{r eval=FALSE, echo=FALSE}
+ggplot() + 
+  geom_sf(data = coast_sf) + 
+  geom_sf(data = points_sf,
+          aes(color = type, size = n),
+          alpha = 0.7,
+          show.legend = "point") +
+  coord_sf(xlim = c(144, 149), ylim = c(-44, -40))
+
+### Plot map with coastlines (lines) data ###
+# Load ggrepel package
+library(ggrepel)
+
+ggplot() + 
+  geom_sf(data = coast_sf) + 
+  geom_sf(data = points_sf, 
+          aes(color = type, size = n), 
+          alpha = 0.7, 
+          show.legend = "point") +
+  coord_sf(xlim = c(144, 149), ylim = c(-44, -40),
+           datum = NA) + # removes graticules
+  geom_text_repel(data = locations, 
+                  aes(x = lon, y = lat, label = place)) +
+  labs(title = "Correspondence of Daniel van der Meulen, 1585",
+       size = "Letters",
+       color = "Type",
+       x = NULL,
+       y = NULL) +
+  guides(color = guide_legend(override.aes = list(size = 6))) +
+  theme_minimal()
+
+```
+
+```{r echo = FALSE, message = FALSE, fig.align='center'}
+
+### Plot map with countries (polygons) data ###
+ggplot() + 
+  geom_sf(data = countries_sf,
+          fill = gray(0.8), color = gray(0.7)) + 
+  geom_sf(data = points_sf, 
+          aes(color = type, size = n), 
+          alpha = 0.7, 
+          show.legend = "point") +
+  coord_sf(xlim = c(144, 149), ylim = c(-44, -40),
+           datum = NA) + # removes graticules
+  geom_text_repel(data = locations, 
+                  aes(x = lon, y = lat, label = place)) +
+  labs(title = "Whiskey sales in Tasmania \nin the 1890s",
+       size = "Barrels",
+       color = " ",
+       x = NULL,
+       y = NULL) +
+  guides(color = guide_legend(override.aes = list(size = 6))) +
+  theme_bw()
+
+ 
+
+```
+
+This is a difficult question, for which you'll need to draw from your past experiences in this unit wrangling data and changing elements of the `ggplot` outputs. If you cannot get all the way to the final figure, for partial marks you can submit the closest figure you can get to and briefly explain: (1) the roadblock you could not pass and (2) how you tried to get around it.
+
+
+## TIPS
+
+You will need to load the following packages for this assessment:
+```{r eval=FALSE}
+library(tidyverse)
+library(sp)
+library(sf)
+library(rnaturalearth)
+library(ggrepel)
+```
+
+
+## Some Essential Data Wrangling
+
+In the dataset provided for this assessment, each line represents the sale of 1 barrel of whiskey. In order to map the volumn of whiskey barrel sales and purchases for each city, you will need to calculate a count of sale and purchase of whiskey barrels per city. For this map, this results in a new data set that looks like this: 
+
+```{r echo=FALSE}
+(knitr::kable(geo_data))
+```
+
+
+The following code demonstrates how to re-arrange the data in this way but using a dummy dataset. 
+
+
+```{r eval=FALSE}
+# create data of flights of 3 staff members of a large organisation
+
+flights <- tibble::tribble(
+   ~departure, ~staff_ID, ~destination,
+     "London",      1734,      "Paris",
+      "Paris",      1734,  "Barcelona",
+      "Paris",      1734,  "Barcelona",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,  "Barcelona",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1735,  "Barcelona",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1738,     "Havana",
+      "Paris",      1734,     "Havana",
+      "Paris",      1734,     "Havana",
+  "Barcelona",      1735,     "Madrid",
+      "Paris",      1734,     "London",
+  "Barcelona",      1735,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1738,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1734,     "London",
+  "Barcelona",      1734,     "London",
+      "Paris",      1734,     "London",
+  "Barcelona",      1735,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1735,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+  "Barcelona",      1738,     "London",
+   "Kingston",      1738,  "Barcelona",
+      "Paris",      1734,     "London",
+      "Paris",      1738,  "Barcelona",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+  "Barcelona",      1738,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1738,     "London",
+      "Paris",      1734,     "London",
+      "Paris",      1734,     "London"
+  )
+
+
+# number of departure flights per city
+departures <- flights %>% 
+  group_by(departure) %>% 
+  count() %>% 
+  rename(city = departure) %>%
+  add_column(direction = "departure") %>% 
+  ungroup() 
+
+# number of arrival flights per city
+destinations <- flights %>% 
+  group_by(destination) %>% 
+  count() %>% 
+  rename(city = destination) %>%
+  add_column(direction = "arrivals") %>% 
+  ungroup()
+
+# Bind the rows of the two data frames
+# and change direction column to factor
+travel_counts <- rbind(departures, destinations) %>% 
+  mutate(direction = as_factor(direction))
+
+#load the lat and long of the cities in the tibble. 
+coordinate <- read.csv(" insert file path here ")
+
+# Join departures and destinations
+travel_data <- left_join(travel_counts, coordinates, by = "city")
+```
+
+
+```{r}
+#Should I remove the date column from the dataset?
+```
+

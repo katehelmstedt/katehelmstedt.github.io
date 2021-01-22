@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+author: "MXB262"
+date: "2021"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+# This is the setup chunk. Here, you load settings that will be true for the whole document
+
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE) # echo controls whether the code will be shown in the knitted version or not, and eval controls whether the code will be run or not
+library(ggplot2) # Here is where you'll load all the libraries you need for the session
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this, and it will be evaluated:
+
+
+```{r cars}
+plot(cars)
+```
+
+Note: the `echo = FALSE` parameter can be added to the code chunk to prevent the R code that generated the plot from being printed, so you will just see the output. Like this: 
+
+
+```{r pressure, echo=FALSE}
+# note that I have set 'echo=FALSE' here. This overrides the setting in the setup chunk, and so the code will not be shown in the knitted version for this chunk only.
+# Likewise, you can set 'eval=FALSE' for any chunk, and then it will not run that code regardless of the what is set in the setup chunk
+plot(pressure)
+
+```
+
+When you pressed knit, you only saw the figure -- not the code that generated it (look back up in the html file to the cars plot -- you can see the code was printed for that one).
+
+
+
+#### Add a new code chunk here:
