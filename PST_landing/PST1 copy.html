@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MXB262</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/4145f6a1ca.js"></script>
+
+
+<!--for toc-->
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css"
+    />
+  <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+
+<!--end of for toc-->
+
+<!-- function for adding html within html-->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
+    $(function () {
+    $(".load-html").each(function () {
+    $(this).load(this.dataset.source);
+    });
+    });
+  </script>
+
+</head>
+
+<!-- Beginning of page -->
+
+
+  <body data-spy="scroll" data-target="#toc">
+    <div class="load-html"  data-source="navbar.html"></div>
+    <div class = "main-text">
+    
+      
+    <h2>Files for Problem Solving Task (yet to be uploaded) - - - - </h2>
+
+      <table class="table table-condensed table-striped text-left">
+
+		  
+        <tr>
+          <td><a href=                                                      "PST1/MXB262_PST1_wk3.html" 
+          target="_blank">PST </a> </td>
+          <td>Problem Solving Task 1 description and questions.</td>
+        </tr>
+
+        <tr>
+          <td><a href=                                                      "https://!!"  
+          target="_blank">PST data</a></td>
+          <td>The additional data you'll need for this PST.</td>
+        </tr>
+
+        <tr>
+          <td><a href=                                                      "PST1/MXB262_PST1_Your_Name_Your_Student_Number.Rmd" 
+          target="_blank"> Blank Rmd</a></td>
+          <td>A blank R Markdown file for you to use for your submission (or you can just make your own).</td>
+        </tr>
+
+        
+    </table>
+	<br>
+		
+      
+    </div> <!--end of main-text-->
+
+
+    <div class="load-html"  data-source="footer.html"></div>
+
+
+  </body>
+</html>
