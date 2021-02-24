@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/ -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Cédric Scherer">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://cedricscherer.com/img/banner/mountainsnstars_crystal_RichardStrozynski.jpg">
+
+    
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="https://www.cedricscherer.com/img/banner/banner.png">
+    
+
+    
+
+    
+      <meta name="title" content="The Evolution of a ggplot (Ep. 1)">
+      <meta property="og:title" content="The Evolution of a ggplot (Ep. 1) - Cédric Scherer">
+      <meta property="twitter:title" content="The Evolution of a ggplot (Ep. 1) - Cédric Scherer">
+      <meta property="twitter:text:title" content="The Evolution of a ggplot (Ep. 1) - Cédric Scherer">
+    
+
+    
+      <meta name="description" content="In this series of blog posts, I provide step-by-step tutorials explaining how my visualizations have evolved from a typical basic ggplot. In the first episode, I transform a basic boxplot into a colorful and self-explanatory combination of a jittered dot stripplot and a lollipop plot.">
+      <meta property="og:description" content="In this series of blog posts, I provide step-by-step tutorials explaining how my visualizations have evolved from a typical basic ggplot. In the first episode, I transform a basic boxplot into a colorful and self-explanatory combination of a jittered dot stripplot and a lollipop plot.">
+      <meta property="twitter:description" content="In this series of blog posts, I provide step-by-step tutorials explaining how my visualizations have evolved from a typical basic ggplot. In the first episode, I transform a basic boxplot into a colorful and self-explanatory combination of a jittered dot stripplot and a lollipop plot.">
+    
+
+    
+
+    <meta name="keyword" content="Data Visualization, Data Science, Computational Ecology, Infographics, ggplot2">
+    <link rel="shortcut icon" href="https://www.cedricscherer.com/img/favicon.ico">
+
+    <title>The Evolution of a ggplot (Ep. 1) - Cédric Scherer</title>
+
+    <link rel="canonical" href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/">
+
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/iDisqus.min.css">
+
+    
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/syntax.css">
+
+    
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/zanshang.css">
+
+    
+    <link href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/fastclick.js"></script><script src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/2997b5a3582af4495ba9e0d7cf1fa0de87ac5726.js"></script>
+
+    
+    <link rel="stylesheet" href="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/docco.min.css">
+    <script src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+
+<body><nav class="navbar navbar-default navbar-custom navbar-fixed-top is-fixed">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.cedricscherer.com/">Cédric Scherer</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://www.cedricscherer.com/">Blog</a>
+                    </li>
+                    
+
+		    
+                        <li><a href="https://www.cedricscherer.com/top/about/">About Me</a></li>
+                    
+                        <li><a href="https://www.cedricscherer.com/top/pubs/">Publications</a></li>
+                    
+                        <li><a href="https://www.cedricscherer.com/top/dataviz/">Visualizations</a></li>
+                    
+                        <li><a href="https://www.cedricscherer.com/top/links/">Links</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url("https://d33wubrfki0l68.cloudfront.net/36ae4794fea5a3619e8610c589dc8e99f0f99769/81d4a/img/banner/dark_richardstrozynski.jpg")
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/dataviz" title="DataViz">
+                            DataViz
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/tutorial" title="tutorial">
+                            tutorial
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/animations" title="animations">
+                            animations
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/ggplot-evolution" title="ggplot Evolution">
+                            ggplot Evolution
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/r" title="R">
+                            R
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/ggplot2" title="ggplot2">
+                            ggplot2
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/tidyverse" title="tidyverse">
+                            tidyverse
+                        </a>
+                        
+                        <a class="tag" href="https://www.cedricscherer.com/tags/tidytuesday" title="TidyTuesday">
+                            TidyTuesday
+                        </a>
+                        
+                    </div>
+                    <h1>The Evolution of a ggplot (Ep. 1)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+			Posted by
+			
+			    Cédric
+			
+			on
+			Friday, May 17, 2019
+                        
+                            <span id="/2019/05/17/the-evolution-of-a-ggplot-ep.-1/" class="leancloud_visitors meta_data_item" data-flag-title="">
+    <span class="post-meta-item-icon">
+      <span class="octicon octicon-eye"></span> 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span class="old-visitors-count" style="display: none;"></span>
+    <span class="leancloud-visitors-count"></span>
+</span>
+
+
+
+<script src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/av-core-mini-0.6.1.js"></script>
+
+<script>
+	AV.initialize("", "");
+</script>
+
+<script type="text/javascript">
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function() {
+        entries.push($(this).attr("id").trim());
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+        .done(function(results) {
+            var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+            var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+
+            
+            
+            
+            
+
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                var url = item.get('url');
+                var time = item.get('time');
+                var element = document.getElementById(url);
+
+                $(element).find(COUNT_CONTAINER_REF).text(time);
+            }
+            for (var i = 0; i < entries.length; i++) {
+                var url = entries[i];
+                var element = document.getElementById(url);
+                var countSpan = $(element).find(COUNT_CONTAINER_REF);
+                if (countSpan.text() == '') {
+                    var oldCountSpan = $(element).find(OLD_COUNT_CONTAINER_REF).text();
+                    if(oldCountSpan!=''){
+                        countSpan.text(0+parseInt(oldCountSpan));
+                    }else{
+                        countSpan.text(0);          
+                    }
+                }
+            }
+        })
+        .fail(function(object, error) {
+            console.log("Error: " + error.code + " " + error.message);
+        });
+}
+
+function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                 
+                var acl = new AV.ACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(true);
+                newcounter.setACL(acl);
+                 
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+                var $element = $(document.getElementById(url));
+                var oldCountSpan = $element.find(OLD_COUNT_CONTAINER_REF).text();
+                if(oldCountSpan!=''){
+                    newcounter.set("time", parseInt(oldCountSpan)+1);
+                }else{
+ 	                    newcounter.set("time",  1);
+                }
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    
+    
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else {
+        showTime(Counter);
+    }
+});
+</script>
+
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/evol-ggplot-1.gif"></p>
+<ul>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#aim">🏁 Aim of this Tutorial</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#data">🗃️ Data Preparation</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#default">🌱 The Default Boxplot</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#sort">🔀 ️Sort Your Data!</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#polish">💎 Let Your Plot Shine—Get Rid of the Default Settings</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#geoms">📊 The Choice of the Chart Type</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#more">💯 More Geoms, More Fun, More Info!</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#text">💬 Add Text Boxes to Let The Plot Speak for Itself</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/%7B#legend">🗺️ Bonus: Add a Tile Map as Legend</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#final">🎄 The Final Evolved Visualization</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#code">💻 Complete Code for Final Plot</a></li>
+<li><a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#ps">📝 Post Scriptum: Mean versus Median</a></li>
+</ul>
+<div id="aim" class="section level3">
+<h3>🏁 Aim of this Tutorial</h3>
+<p>In this series of blog posts, I aim to show you how to turn a default ggplot into a plot that visualizes information in an appealing and easily understandable way. The goal of each blog post is to provide a step-by-step tutorial explaining how my visualization have evolved from a typical basic ggplot. All plots are going to be created with 100% <code>{ggplot2}</code> and 0% Inkscape.</p>
+<p>In the first episode, I transform a basic boxplot into a colorful and self-explanatory combination of a jittered dot strip plot and a lollipop plot. I am going to use <a href="http://data.uis.unesco.org/index.aspx?queryid=180">data provided by the UNESCO on global student to teacher ratios</a> that was selected as data <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-07">for the #TidyTuesday challenge 19 of 2019</a>.</p>
+</div>
+<div id="data" class="section level3">
+<h3>🗃️ Data Preparation</h3>
+<p>I have prepared the data in the first way to map each countrys most recently reported student-teacher ratio in primary education as a tile map. I used the <a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/%22https://gist.githubusercontent.com/maartenzam/787498bbc07ae06b637447dbd430ea0a/raw/9a9dafafb44d8990f85243a9c7ca349acd3a0d07/worldtilegrid.csv%22">tile-based world data provided by Maarten Lambrechts</a> to create this map as the first visualization for my weekly contribution:</p>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/map-students-1.png" width="768"></p>
+<p>For the second chart next to the tile map, I wanted to highlight the difference of the mean student ratio per continent but without discarding the raw data on the country-level. Therefore, I transformed the information on the region to represent the six continents excluding Antarctica (hm, do penguins not go to school?! Seems so… 🐧) and merged both datasets. If you would like to run the code yourself, you find the data preparation steps <a href="https://gist.github.com/Z3tt/301bb0c7e3565111770121af2bd60c11">here</a>. This is how the relevant columns of the merged and cleaned dataset looks like, showing two examples per continent:</p>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># # A tibble: 12 x 5</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#    indicator     country              region    student_ratio student_ratio_reg~</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#    &lt;chr&gt;         &lt;chr&gt;                &lt;chr&gt;             &lt;dbl&gt;              &lt;dbl&gt;</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  1 Primary Educ~ Lesotho              Africa             32.9               37.3</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  2 Primary Educ~ South Africa         Africa             30.3               37.3</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  3 Primary Educ~ Bangladesh           Asia               30.1               20.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  4 Primary Educ~ Viet Nam             Asia               19.6               20.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  5 Primary Educ~ Ireland              Europe             16.1               13.6</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  6 Primary Educ~ France               Europe             18.2               13.6</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  7 Primary Educ~ Saint Vincent and t~ North Am~          14.4               17.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  8 Primary Educ~ Dominican Republic   North Am~          18.9               17.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#  9 Primary Educ~ Vanuatu              Oceania            26.6               24.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 10 Primary Educ~ Solomon Islands      Oceania            25.8               24.7</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 11 Primary Educ~ Argentina            South Am~          NA                 19.4</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># 12 Primary Educ~ Paraguay             South Am~          24.2               19.4</span></span></code></pre>
+</div>
+<div id="default" class="section level3">
+<h3>🌱 The Default Boxplot</h3>
+<p>I was particularly interested to visualize the most-recent student-teacher ratio in primary education as a tile chloropleth map per country. A usual way reresenting several data points per group is to use a boxplot:</p>
+<pre class="r"><code class="hljs">library(tidyverse)
+
+ggplot(df_ratios, aes(x = region, y = student_ratio)) +
+  geom_boxplot()</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/boxplot-basic-1.png" width="768"></p>
+</div>
+<div id="sort" class="section level3">
+<h3>🔀 ️Sort Your Data!</h3>
+<p>A good routine with such kind of data (qualitative and unsorted) is to arrange the boxplots or any other type such as bars or violins in an in- or decreasing order to simplify readability. Since the category “continent” does not have an intrinsic order, I rearrange the boxplots by their mean student-teacher ratio instead of sorting them alphabetically which is the default:</p>
+<pre class="r"><code class="hljs properties"><span class="hljs-attr">df_sorted</span> <span class="hljs-string">&lt;-</span>
+  <span class="hljs-attr">df_ratios</span> <span class="hljs-string">%&gt;%</span>
+  <span class="hljs-meta">mutate(region</span> = <span class="hljs-string">fct_reorder(region, -student_ratio_region))</span>
+
+<span class="hljs-meta">ggplot(df_sorted,</span> <span class="hljs-string">aes(x = region, y = student_ratio)) +</span>
+  <span class="hljs-attr">geom_boxplot()</span></code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/boxplot-sorted-1.png" width="768"></p>
+<p>💡 <strong>Sort your data according to the best or worst, highest or lowest value to make your graph easily readable—do not sort them if the categories have an internal logical orderinsic, as age groupings!</strong></p>
+<p>To increase the readability we are going to flip the coordinates (note that we could also switch x and y arguments in the <code>ggplot</code> call—but this does not work for boxplots so we use <code>coord_flip()</code>). It is also a good practice to include the 0 in plots which we can force by adding <code>scale_y_continuous(limits = c(0, 90))</code>.</p>
+<pre class="r"><code class="hljs">ggplot(df_sorted, aes(x = region, y = student_ratio)) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 90))</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/boxplot-flipped-1.png" width="768"></p>
+<p>💡 <strong>Flip the chart in case of long labels to increase readability and to avoid overlapping or rotated labels!</strong></p>
+<p>💡 <strong>Since the latest version 3.x.x of <code>{ggplot2}</code> you can also flip the orientation by using the orientation argument <code>geom_*(orientation = "y")</code></strong></p>
+<p>The order of the categories is perfect as it is after flipping the coordinates—the lower the student-teacher ratio, the better.</p>
+</div>
+<div id="let-your-plot-shineget-rid-of-the-default-settings" class="section level3">
+<h3>💎 Let Your Plot Shine—Get Rid of the Default Settings</h3>
+<p>Let’s spice this plot up! One great thing about <code>{ggplot2}</code> is that it is structured in an <em>adaptive way</em>, allowing to add further levels to an existing ggplot object. We are going to</p>
+<ul>
+<li>use a different theme that comes with the <code>{ggplot2}</code> package by calling <code>theme_set(theme_light())</code> (several themes come along with the <code>{ggplot2}</code> package but if you need more check for example the packages <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/"><code>ggthemes</code></a> or <a href="https://hrbrmstr.github.io/hrbrthemes/"><code>hrbrthemes</code></a>),</li>
+<li>change the font and the overall font size by adding the arguments <code>base_size</code> and <code>base_family</code> to <code>theme_light()</code>,</li>
+<li>flip the axes by adding <code>coord_flip()</code> (as seen before),</li>
+<li>let the axis start at 0 and reduce the spacing to the plot margin by adding <code>expand = c(0.005, 0.005)</code> as argument to the <code>scale_y_continious()</code>,</li>
+<li>add some color encoding the continent by adding <code>color = region</code> to the <code>aes</code> argument and picking a palette from the <a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/"><code>ggsci</code> package</a>,</li>
+<li>add meaningful labels/removing useless labels by adding <code>labs(x = NULL, y = "title y")</code></li>
+<li>adjust the new theme (e.g.&nbsp;changing some font settings and removing the legend and grid) by adding <code>theme()</code>.</li>
+</ul>
+<p>💡 <strong>You can easily adjust all sizes of the theme by calling <code>theme_xyz(base_size = )</code>—this is very handy if you need the same viz for a different purpose!</strong></p>
+<p>💡 <strong>Do not use <code>c(0, 0)</code> since the zero tick is in most cases too close to the axis—use something close to zero instead!</strong></p>
+<p>I am going to save the ggplot call and all these visual adjustments in a <code>gg</code> object that I name <code>g</code> so we can use it for the next plots.</p>
+<pre class="r"><code class="hljs xml">library(showtext)
+font_add_google("Poppins", "Poppins")
+font_add_google("Roboto Mono", "Roboto Mono")
+showtext_auto()
+
+theme_set(theme_light(base_size = 18, base_family = "Poppins"))
+
+g <span class="hljs-tag">&lt;<span class="hljs-name">-</span>
+  <span class="hljs-attr">ggplot</span>(<span class="hljs-attr">df_sorted</span>, <span class="hljs-attr">aes</span>(<span class="hljs-attr">x</span> = <span class="hljs-string">region,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">student_ratio,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">region))</span> +
+    <span class="hljs-attr">coord_flip</span>() +
+    <span class="hljs-attr">scale_y_continuous</span>(<span class="hljs-attr">limits</span> = <span class="hljs-string">c(0,</span> <span class="hljs-attr">90</span>), <span class="hljs-attr">expand</span> = <span class="hljs-string">c(0.005,</span> <span class="hljs-attr">0.005</span>)) +
+    <span class="hljs-attr">scale_color_uchicago</span>() +
+    <span class="hljs-attr">labs</span>(<span class="hljs-attr">x</span> = <span class="hljs-string">NULL,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">"Student to teacher ratio"</span>) +
+    <span class="hljs-attr">theme</span>(
+      <span class="hljs-attr">legend.position</span> = <span class="hljs-string">"none"</span>,
+      <span class="hljs-attr">axis.title</span> = <span class="hljs-string">element_text(size</span> = <span class="hljs-string">16),</span>
+      <span class="hljs-attr">axis.text.x</span> = <span class="hljs-string">element_text(family</span> = <span class="hljs-string">"Roboto Mono"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">12),</span>
+      <span class="hljs-attr">panel.grid</span> = <span class="hljs-string">element_blank()</span>
+    )</span></code></pre>
+<p>(Note that to include these fonts we make use of the <strike><a href="https://github.com/wch/extrafont"><code>extrafont</code> package</a></strike> <a href="https://github.com/yixuan/showtext"><code>showtext</code> package</a>. This package allows for the use of system fonts and is especially simple to use in combination with <a href="https://fonts.google.com/">Google fonts</a>. You need to have (a) the fonts installed on your system, (b) the package <code>showtext</code> installed, (c) import the fonts by running <code>font_add_google()</code> and (d) preferably turn on the automatic use of its functionality with <code>showtext_auto()</code>.)</p>
+</div>
+<div id="geoms" class="section level3">
+<h3>📊 The Choice of the Chart Type</h3>
+<p>We can add any <code>geom_</code> to our ggplot-preset <code>g</code> that fits the data (note that until now it is just an empty plot with pretty axes):</p>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/geoms-1.png" width="960"></p>
+<p>All of the four chart types let readers explore the range of values but with different detail and focus. The boxplot and the violin plot both summarize the data, they contain a lot of information by visualizing the distribution of the data points in two different ways. By contrast, the line (see below for an explanation <a href="https://cedricscherer.netlify.app/2019/05/17/the-evolution-of-a-ggplot-ep.-1/#ps">how to read a boxplot</a>)plot shows only the range (mimimum and maximum of the data) and the dot strip plot the raw data with each single observation. However, a line chart is not a good choice here since it does not allow for the identification of single countries. By adding an <code>alpha</code> argument to <code>geom_point()</code>, the dot strip plot is able to highlight the range of student-teacher ratios while providing the raw data:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g</span> + geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">15</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/dot-plot-alpha-1.png" width="768"></p>
+<p>Of course, different geoms can also be combined to provide even more information in one plot:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g</span> +
+  geom_boxplot(color = <span class="hljs-string">"gray60"</span>, outlier.alpha = <span class="hljs-number">0</span>) +
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">15</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/box-dot-plot-1.png" width="768"></p>
+<p>⚡ <strong>Remove the outliers to avoid overlapping points! You can achieve this via <code>outlier.shape = NA</code> or <code>outlier.alpha = 0</code>.</strong></p>
+<p>We are going to stick to points to visualize the countries explicitly instead of aggregating the data into box- or violin plots.
+To achieve a higher readability, we use another geom, <code>geom_jitter()</code> which scatters the points in a given direction (x and/or y via <code>width</code> and <code>height</code>) to prevent overplotting:</p>
+<pre class="r"><code class="hljs cpp"><span class="hljs-built_in">set</span>.seed(<span class="hljs-number">2019</span>)
+
+g + geom_jitter(size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0.25</span>, width = <span class="hljs-number">0.2</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/plot-jitter-countries-1.png" width="768"></p>
+<p>💡 <strong>Set a seed to keep the jittering of the points fixed every time you call <code>geom_jitter()</code> by calling <code>set.seed()</code>—this becomes especially important when we later label some of the points.</strong></p>
+<p>💡 <strong>You can also set the seed within the <code>geom_jitter()</code> call by setting <code>position = position_jitter(seed)</code>. Note that in this case the <code>width</code> and/or <code>height</code> argument needs to be placed inside the position_jitter() as well:</strong></p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g</span> + geom_jitter(position = position_jitter(seed = <span class="hljs-number">2019</span>, width = <span class="hljs-number">0</span>.<span class="hljs-number">2</span>), size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">25</span>)</code></pre>
+<p>(In the next code chunks, I am going to use the redundant call of <code>set.seed(2019)</code> before creating the plot but do not show it each time.)</p>
+</div>
+<div id="more" class="section level3">
+<h3>💯 More Geoms, More Fun, More Info!</h3>
+<p>As mentioned in the beginning, my intention was to visualize both, the country- and continental-level ratios, in addition to the tile map. Until now, we focussed on countries only. We can indicate the continental average by adding a summary statistic via <code>stat_summary()</code>with a different point size as the points of <code>geom_jitter()</code>. Since the average is more important here, I am going to highlight it with a bigger size and zero transparency:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g</span> +
+  geom_jitter(size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">25</span>, width = <span class="hljs-number">0</span>.<span class="hljs-number">2</span>) +
+  stat_summary(fun = mean, geom = <span class="hljs-string">"point"</span>, size = <span class="hljs-number">5</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/plot-jitter-regions-1.png" width="768"></p>
+<p>Note that we could also use <code>geom_point(aes(x = region, y = student_ratio_region), size = 5)</code> to achieve the same since we already have a regional meanaverage in our data.</p>
+<p>To relate all these points to a baseline, we add a line indicating the worldwide average:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">world_avg</span> &lt;-
+  df_ratios %&gt;%
+  summarize(avg = mean(student_ratio, na.rm = T)) %&gt;%
+  pull(avg)
+
+g +
+  geom_hline(aes(yintercept = world_avg), color = <span class="hljs-string">"gray70"</span>, size = <span class="hljs-number">0</span>.<span class="hljs-number">6</span>) +
+  stat_summary(fun = mean, geom = <span class="hljs-string">"point"</span>, size = <span class="hljs-number">5</span>) +
+  geom_jitter(size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">25</span>, width = <span class="hljs-number">0</span>.<span class="hljs-number">2</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/worldwide-avg-1.png" width="768"></p>
+<p>💡 <strong>One could derive the worldwide average also within the <code>geom_hline()</code> call, but I prefer to keep both steps separated.</strong></p>
+<p>We can further highlight that the baseline is the worldwide average ratio rather than a ratio of 0 (or 1?) by adding a line from each continental average to the worldwide average. The result is a combination of a jitter and a lollipop plot:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g</span> +
+  geom_segment(
+    aes(x = region, xend = region,
+        y = world_avg, yend = student_ratio_region),
+    size = <span class="hljs-number">0</span>.<span class="hljs-number">8</span>
+  ) +
+  geom_hline(aes(yintercept = world_avg), color = <span class="hljs-string">"gray70"</span>, size = <span class="hljs-number">0</span>.<span class="hljs-number">6</span>) +
+  geom_jitter(size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">25</span>, width = <span class="hljs-number">0</span>.<span class="hljs-number">2</span>) +
+  stat_summary(fun = mean, geom = <span class="hljs-string">"point"</span>, size = <span class="hljs-number">5</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/plot-jitter-regions-world-1.png" width="768"></p>
+<p>⚡ <strong>Check the order of the geoms to prevent any overlapping—here, for example, draw the line after calling <code>geom_segment()</code> to avoid overlapping!</strong></p>
+</div>
+<div id="text" class="section level3">
+<h3>💬 Add Text Boxes to Let The Plot Speak for Itself</h3>
+<p>Since I don’t want to include legends, I add some text boxes that explain the different point sizes and the baseline level via <code>annotate("text")</code>:</p>
+<pre class="r"><code class="hljs xml">(g_text <span class="hljs-tag">&lt;<span class="hljs-name">-</span>
+  <span class="hljs-attr">g</span> +
+  <span class="hljs-attr">geom_segment</span>(
+    <span class="hljs-attr">aes</span>(<span class="hljs-attr">x</span> = <span class="hljs-string">region,</span> <span class="hljs-attr">xend</span> = <span class="hljs-string">region,</span>
+        <span class="hljs-attr">y</span> = <span class="hljs-string">world_avg,</span> <span class="hljs-attr">yend</span> = <span class="hljs-string">student_ratio_region),</span>
+    <span class="hljs-attr">size</span> = <span class="hljs-string">0.8</span>
+  ) +
+  <span class="hljs-attr">geom_hline</span>(<span class="hljs-attr">aes</span>(<span class="hljs-attr">yintercept</span> = <span class="hljs-string">world_avg),</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray70"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">0.6)</span> +
+  <span class="hljs-attr">stat_summary</span>(<span class="hljs-attr">fun</span> = <span class="hljs-string">mean,</span> <span class="hljs-attr">geom</span> = <span class="hljs-string">"point"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">5)</span> +
+  <span class="hljs-attr">geom_jitter</span>(<span class="hljs-attr">size</span> = <span class="hljs-string">2,</span> <span class="hljs-attr">alpha</span> = <span class="hljs-string">0.25,</span> <span class="hljs-attr">width</span> = <span class="hljs-string">0.2)</span> +
+  <span class="hljs-attr">annotate</span>(
+    "<span class="hljs-attr">text</span>", <span class="hljs-attr">x</span> = <span class="hljs-string">6.3,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">35,</span> <span class="hljs-attr">family</span> = <span class="hljs-string">"Poppins"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">2.8,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20"</span>, <span class="hljs-attr">lineheight</span> = <span class="hljs-string">.9,</span>
+    <span class="hljs-attr">label</span> = <span class="hljs-string">glue::glue(</span>"<span class="hljs-attr">Worldwide</span> <span class="hljs-attr">average:</span>\<span class="hljs-attr">n</span>{<span class="hljs-attr">round</span>(<span class="hljs-attr">world_avg</span>, <span class="hljs-attr">1</span>)} <span class="hljs-attr">students</span> <span class="hljs-attr">per</span> <span class="hljs-attr">teacher</span>")
+  ) +
+  <span class="hljs-attr">annotate</span>(
+    "<span class="hljs-attr">text</span>", <span class="hljs-attr">x</span> = <span class="hljs-string">3.5,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">10,</span> <span class="hljs-attr">family</span> = <span class="hljs-string">"Poppins"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">2.8,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20"</span>,
+    <span class="hljs-attr">label</span> = <span class="hljs-string">"Continental average"</span>
+  ) +
+  <span class="hljs-attr">annotate</span>(
+    "<span class="hljs-attr">text</span>", <span class="hljs-attr">x</span> = <span class="hljs-string">1.7,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">11,</span> <span class="hljs-attr">family</span> = <span class="hljs-string">"Poppins"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">2.8,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20"</span>,
+    <span class="hljs-attr">label</span> = <span class="hljs-string">"Countries per continent"</span>
+  ) +
+  <span class="hljs-attr">annotate</span>(
+    "<span class="hljs-attr">text</span>", <span class="hljs-attr">x</span> = <span class="hljs-string">1.9,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">64,</span> <span class="hljs-attr">family</span> = <span class="hljs-string">"Poppins"</span>, <span class="hljs-attr">size</span> = <span class="hljs-string">2.8,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20"</span>, <span class="hljs-attr">lineheight</span> = <span class="hljs-string">.9,</span>
+    <span class="hljs-attr">label</span> = <span class="hljs-string">"The Central African Republic has by far\nthe most students per teacher"</span>)
+  )</span></code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/text-labels-1.png" width="768"></p>
+<p>💡 <strong>Use <a href="https://glue.tidyverse.org/"><code>glue::glue()</code></a> to combine strings with variables—this way, you can update your plots without copying and pasting values! (Of course, you can also use your good old friend <code>paste0()</code>.)</strong></p>
+<p>… and add some arrows to match the text to the visual elements by providing start- and endpoints of the arrows when calling <code>geom_curve()</code>. I am going to draw all arrows with one call—but you could also draw arrow by arrow. This is not that simple as the absolute position depends on the dimension of the plot. Good guess based on the coordinates of the text boxes…</p>
+<pre class="r"><code class="hljs xml">arrows <span class="hljs-tag">&lt;<span class="hljs-name">-</span>
+  <span class="hljs-attr">tibble</span>(
+    <span class="hljs-attr">x1</span> = <span class="hljs-string">c(6.2,</span> <span class="hljs-attr">3.5</span>, <span class="hljs-attr">1.7</span>, <span class="hljs-attr">1.7</span>, <span class="hljs-attr">1.9</span>),
+    <span class="hljs-attr">x2</span> = <span class="hljs-string">c(5.6,</span> <span class="hljs-attr">4</span>, <span class="hljs-attr">1.9</span>, <span class="hljs-attr">2.9</span>, <span class="hljs-attr">1.1</span>),
+    <span class="hljs-attr">y1</span> = <span class="hljs-string">c(35,</span> <span class="hljs-attr">10</span>, <span class="hljs-attr">11</span>, <span class="hljs-attr">11</span>, <span class="hljs-attr">73</span>),
+    <span class="hljs-attr">y2</span> = <span class="hljs-string">c(world_avg,</span> <span class="hljs-attr">19.4</span>, <span class="hljs-attr">14.16</span>, <span class="hljs-attr">12</span>, <span class="hljs-attr">83.4</span>)
+  )
+
+<span class="hljs-attr">g_text</span> +
+  <span class="hljs-attr">geom_curve</span>(
+    <span class="hljs-attr">data</span> = <span class="hljs-string">arrows,</span> <span class="hljs-attr">aes</span>(<span class="hljs-attr">x</span> = <span class="hljs-string">x1,</span> <span class="hljs-attr">y</span> = <span class="hljs-string">y1,</span> <span class="hljs-attr">xend</span> = <span class="hljs-string">x2,</span> <span class="hljs-attr">yend</span> = <span class="hljs-string">y2),</span>
+    <span class="hljs-attr">arrow</span> = <span class="hljs-string">arrow(length</span> = <span class="hljs-string">unit(0.07,</span> "<span class="hljs-attr">inch</span>")), <span class="hljs-attr">size</span> = <span class="hljs-string">0.4,</span>
+    <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20"</span>, <span class="hljs-attr">curvature</span> = <span class="hljs-string">-0.3</span>
+  )</span></code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/arrows-annotations-1.png" width="768"></p>
+<p>… and then adjust, adjust, adjust…</p>
+<pre class="r"><code class="hljs properties"><span class="hljs-attr">arrows</span> <span class="hljs-string">&lt;-</span>
+  <span class="hljs-attr">tibble(</span>
+    <span class="hljs-attr">x1</span> = <span class="hljs-string">c(6.1, 3.62, 1.8, 1.8, 1.8),</span>
+    <span class="hljs-attr">x2</span> = <span class="hljs-string">c(5.6, 4, 2.18, 2.76, 0.9),</span>
+    <span class="hljs-attr">y1</span> = <span class="hljs-string">c(world_avg + 6, 10.5, 9, 9, 77),</span>
+    <span class="hljs-attr">y2</span> = <span class="hljs-string">c(world_avg + 0.1, 18.4, 14.16, 12, 83.45)</span>
+  <span class="hljs-attr">)</span>
+
+<span class="hljs-meta">(g_arrows</span> <span class="hljs-string">&lt;-</span>
+  <span class="hljs-attr">g_text</span> <span class="hljs-string">+</span>
+  <span class="hljs-attr">geom_curve(</span>
+    <span class="hljs-attr">data</span> = <span class="hljs-string">arrows, aes(x = x1, y = y1, xend = x2, yend = y2),</span>
+    <span class="hljs-attr">arrow</span> = <span class="hljs-string">arrow(length = unit(0.08, "inch")), size = 0.5,</span>
+    <span class="hljs-attr">color</span> = <span class="hljs-string">"gray20", curvature = -0.3</span>
+  <span class="hljs-attr">)</span>
+<span class="hljs-attr">)</span></code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/text-arrows-1.png" width="768"></p>
+<p>💡 <strong>Since the curvature is the same for all arrows, one can use different x and y distances and directions between the start end and points to vary their shape!</strong></p>
+<p>One last thing that bothers me: A student-teacher ratio of 0 does not make much sense—I definitely prefer to start at a ratio of 1!<br>
+And—oh my!—we almost forgot to mention and acknowledge the data source 😨 Let’s quickly also add a plot caption:</p>
+<pre class="r"><code class="hljs xml">(g_final <span class="hljs-tag">&lt;<span class="hljs-name">-</span>
+  <span class="hljs-attr">g_arrows</span> +
+  <span class="hljs-attr">scale_y_continuous</span>(
+    <span class="hljs-attr">limits</span> = <span class="hljs-string">c(0,</span> <span class="hljs-attr">90</span>), <span class="hljs-attr">expand</span> = <span class="hljs-string">c(0.005,</span> <span class="hljs-attr">0.005</span>),
+    <span class="hljs-attr">breaks</span> = <span class="hljs-string">c(1,</span> <span class="hljs-attr">seq</span>(<span class="hljs-attr">20</span>, <span class="hljs-attr">80</span>, <span class="hljs-attr">by</span> = <span class="hljs-string">20))</span>
+  ) +
+  <span class="hljs-attr">labs</span>(<span class="hljs-attr">caption</span> = <span class="hljs-string">"Data: UNESCO Institute for Statistics"</span>) +
+  <span class="hljs-attr">theme</span>(<span class="hljs-attr">plot.caption</span> = <span class="hljs-string">element_text(size</span> = <span class="hljs-string">9,</span> <span class="hljs-attr">color</span> = <span class="hljs-string">"gray50"</span>))
+)</span></code></pre>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># Scale for 'y' is already present. Adding another scale for 'y', which will</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># replace the existing scale.</span></span></code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/final-caption-1.png" width="768"></p>
+</div>
+<div id="legend" class="section level3">
+<h3>🗺️ Bonus: Add a Tile Map as Legend</h3>
+<p>To make it easier to match the countries of the second plot, the country-level tile map, to each continent we have visualized with our jitter plot, we can add a geographical “legend”. For this, I encode the region by color instead by the country-level ratios:</p>
+<pre class="r"><code class="hljs cpp">(map_regions &lt;-
+  df_sorted %&gt;%
+  ggplot(aes(x = x, y = y, fill = region, color = region)) +
+    geom_tile(color = <span class="hljs-string">"white"</span>) +
+    scale_y_reverse() +
+    ggsci::scale_fill_uchicago(guide = F) +
+    coord_equal() +
+    theme(line = element_blank(),
+          panel.background = element_rect(fill = <span class="hljs-string">"transparent"</span>),
+          plot.background = element_rect(fill = <span class="hljs-string">"transparent"</span>, color = <span class="hljs-string">"transparent"</span>),
+          panel.border = element_rect(color = <span class="hljs-string">"transparent"</span>),
+          strip.background = element_rect(color = <span class="hljs-string">"gray20"</span>),
+          axis.text = element_blank(),
+          plot.margin = margin(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)) +
+    <span class="hljs-built_in">labs</span>(x = <span class="hljs-literal">NULL</span>, y = <span class="hljs-literal">NULL</span>)
+)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/map-regions-1.png" width="624"></p>
+<p>… and add this map to the existing plot via <code>annotation_custom(ggplotGrob())</code>:</p>
+<pre class="r"><code class="hljs nginx"><span class="hljs-attribute">g_final</span> +
+  annotation_custom(ggplotGrob(map_regions), xmin = <span class="hljs-number">2</span>.<span class="hljs-number">5</span>, xmax = <span class="hljs-number">7</span>.<span class="hljs-number">5</span>, ymin = <span class="hljs-number">55</span>, ymax = <span class="hljs-number">85</span>)</code></pre>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/plot-with.map-1.png" width="768"></p>
+</div>
+<div id="final" class="section level3">
+<h3>🎄 The Final Evolved Visualization</h3>
+<p>And here it is, our final plot—evolved from a dreary gray boxplot to a self-explanatory, colorful visualization including the raw data and a tile map legend! 🎉</p>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/plot-before-after-1.png" width="1536"></p>
+<p>Thanks for reading, I hope you’ve enjoyed it! Here you find <a href="https://www.cedricscherer.netlify.com/top/dataviz/">more visualizations I’ve contributed to the #TidyTuesday challenges</a> including my full contribution to week 19 of 2019 we have dissected here:</p>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/2019_19_StudentTeacher.png"></p>
+</div>
+<div id="code" class="section level3">
+<h3>💻 Complete Code for Final Plot</h3>
+<p>If you want to create the plot on your own or play around with the code, copy and paste these ~60 lines:</p>
+<pre class="r"><code class="hljs perl"><span class="hljs-comment">## packages</span>
+library(tidyverse)
+library(ggsci)
+library(showtext)
+
+<span class="hljs-comment">## load fonts</span>
+font_add_google(<span class="hljs-string">"Poppins"</span>, <span class="hljs-string">"Poppins"</span>)
+font_add_google(<span class="hljs-string">"Roboto Mono"</span>, <span class="hljs-string">"Roboto Mono"</span>)
+showtext_auto()
+
+<span class="hljs-comment">## get data</span>
+devtools::source_gist(<span class="hljs-string">"https://gist.github.com/Z3tt/301bb0c7e3565111770121af2bd60c11"</span>)
+
+<span class="hljs-comment">## tile map as legend</span>
+map_regions &lt;-
+  df_ratios %&gt;%
+  mutate(region = fct_reorder(region, -student_ratio_region)) %&gt;%
+  ggplot(aes(<span class="hljs-keyword">x</span> = <span class="hljs-keyword">x</span>, <span class="hljs-keyword">y</span> = <span class="hljs-keyword">y</span>, fill = region, color = region)) +
+    geom_tile(color = <span class="hljs-string">"white"</span>) +
+    scale_y_reverse() +
+    scale_fill_uchicago(guide = F) +
+    coord_equal() +
+    theme_light() +
+    theme(
+      line = element_blank(),
+      panel.background = element_rect(fill = <span class="hljs-string">"transparent"</span>),
+      plot.background = element_rect(fill = <span class="hljs-string">"transparent"</span>,
+                                     color = <span class="hljs-string">"transparent"</span>),
+      panel.border = element_rect(color = <span class="hljs-string">"transparent"</span>),
+      strip.background = element_rect(color = <span class="hljs-string">"gray20"</span>),
+      axis.text = element_blank(),
+      plot.margin = margin(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+    ) +
+    labs(<span class="hljs-keyword">x</span> = NULL, <span class="hljs-keyword">y</span> = NULL)
+
+<span class="hljs-comment">## calculate worldwide average</span>
+world_avg &lt;-
+  df_ratios %&gt;%
+  summarize(avg = mean(student_ratio, na.rm = T)) %&gt;%
+  pull(avg)
+
+<span class="hljs-comment">## coordinates for arrows</span>
+arrows &lt;-
+  tibble(
+    x1 = c(<span class="hljs-number">6</span>, <span class="hljs-number">3.65</span>, <span class="hljs-number">1.8</span>, <span class="hljs-number">1.8</span>, <span class="hljs-number">1.8</span>),
+    x2 = c(<span class="hljs-number">5.6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2.18</span>, <span class="hljs-number">2.76</span>, <span class="hljs-number">0</span>.<span class="hljs-number">9</span>),
+    y1 = c(world_avg + <span class="hljs-number">6</span>, <span class="hljs-number">10.5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">77</span>),
+    y2 = c(world_avg + <span class="hljs-number">0</span>.<span class="hljs-number">1</span>, <span class="hljs-number">18.4</span>, <span class="hljs-number">14.16</span>, <span class="hljs-number">12</span>, <span class="hljs-number">83.42</span>)
+  )
+
+<span class="hljs-comment">## final plot</span>
+<span class="hljs-comment">## set seed to fix position of jittered points</span>
+set.seed(<span class="hljs-number">2019</span>)
+
+<span class="hljs-comment">## final plot</span>
+df_ratios %&gt;%
+  mutate(region = fct_reorder(region, -student_ratio_region)) %&gt;%
+  ggplot(aes(<span class="hljs-keyword">x</span> = region, <span class="hljs-keyword">y</span> = student_ratio, color = region)) +
+    geom_segment(
+      aes(<span class="hljs-keyword">x</span> = region, xend = region,
+          <span class="hljs-keyword">y</span> = world_avg, yend = student_ratio_region),
+      size = <span class="hljs-number">0</span>.<span class="hljs-number">8</span>
+    ) +
+    geom_hline(aes(yintercept = world_avg), color = <span class="hljs-string">"gray70"</span>, size = <span class="hljs-number">0</span>.<span class="hljs-number">6</span>) +
+    stat_summary(fun = mean, geom = <span class="hljs-string">"point"</span>, size = <span class="hljs-number">5</span>) +
+    geom_jitter(size = <span class="hljs-number">2</span>, alpha = <span class="hljs-number">0</span>.<span class="hljs-number">25</span>, width = <span class="hljs-number">0</span>.<span class="hljs-number">2</span>) +
+    coord_flip() +
+    annotate(
+      <span class="hljs-string">"text"</span>, <span class="hljs-keyword">x</span> = <span class="hljs-number">6.3</span>, <span class="hljs-keyword">y</span> = <span class="hljs-number">35</span>, family = <span class="hljs-string">"Poppins"</span>,
+      size = <span class="hljs-number">2.7</span>, color = <span class="hljs-string">"gray20"</span>,
+      label = glue::glue(<span class="hljs-string">"Worldwide average:\n{round(world_avg, 1)} students per teacher"</span>)
+    ) +
+    annotate(
+      <span class="hljs-string">"text"</span>, <span class="hljs-keyword">x</span> = <span class="hljs-number">3.5</span>, <span class="hljs-keyword">y</span> = <span class="hljs-number">10</span>, family = <span class="hljs-string">"Poppins"</span>,
+      size = <span class="hljs-number">2.7</span>, color = <span class="hljs-string">"gray20"</span>,
+      label = <span class="hljs-string">"Continental average"</span>
+    ) +
+    annotate(
+      <span class="hljs-string">"text"</span>, <span class="hljs-keyword">x</span> = <span class="hljs-number">1.7</span>, <span class="hljs-keyword">y</span> = <span class="hljs-number">11</span>, family = <span class="hljs-string">"Poppins"</span>,
+      size = <span class="hljs-number">2.7</span>, color = <span class="hljs-string">"gray20"</span>,
+      label = <span class="hljs-string">"Countries per continent"</span>
+    ) +
+    annotate(
+      <span class="hljs-string">"text"</span>, <span class="hljs-keyword">x</span> = <span class="hljs-number">1.9</span>, <span class="hljs-keyword">y</span> = <span class="hljs-number">64</span>, family = <span class="hljs-string">"Poppins"</span>,
+      size = <span class="hljs-number">2.7</span>, color = <span class="hljs-string">"gray20"</span>,
+      label = <span class="hljs-string">"The Central African Republic has by far\nthe most students per teacher"</span>
+    ) +
+    geom_curve(
+      data = arrows, aes(<span class="hljs-keyword">x</span> = x1, xend = x2,
+                         <span class="hljs-keyword">y</span> = y1, yend = y2),
+      arrow = arrow(<span class="hljs-keyword">length</span> = unit(<span class="hljs-number">0</span>.08, <span class="hljs-string">"inch"</span>)), size = <span class="hljs-number">0</span>.<span class="hljs-number">5</span>,
+      color = <span class="hljs-string">"gray20"</span>, curvature = -<span class="hljs-number">0</span>.<span class="hljs-number">3</span><span class="hljs-comment">#</span>
+    ) +
+    annotation_custom(
+      ggplotGrob(map_regions),
+      xmin = <span class="hljs-number">2.5</span>, xmax = <span class="hljs-number">7.5</span>, ymin = <span class="hljs-number">55</span>, ymax = <span class="hljs-number">85</span>
+    ) +
+    scale_y_continuous(
+      limits = c(<span class="hljs-number">0</span>, <span class="hljs-number">90</span>), expand = c(<span class="hljs-number">0</span>.<span class="hljs-number">005</span>, <span class="hljs-number">0</span>.<span class="hljs-number">005</span>),
+      breaks = c(<span class="hljs-number">1</span>, se<span class="hljs-string">q(20, 80, by = 20)</span>)
+    ) +
+    scale_color_uchicago() +
+    labs(
+      <span class="hljs-keyword">x</span> = NULL, <span class="hljs-keyword">y</span> = <span class="hljs-string">"Student to teacher ratio"</span>,
+      caption = <span class="hljs-string">'Data: UNESCO Institute for Statistics'</span>
+    ) +
+    theme_light(base_size = <span class="hljs-number">18</span>, base_family = <span class="hljs-string">"Poppins"</span>) +
+    theme(
+      legend.position = <span class="hljs-string">"none"</span>,
+      axis.title = element_text(size = <span class="hljs-number">12</span>),
+      axis.text.x = element_text(family = <span class="hljs-string">"Roboto Mono"</span>, size = <span class="hljs-number">10</span>),
+      plot.caption = element_text(size = <span class="hljs-number">9</span>, color = <span class="hljs-string">"gray50"</span>),
+      panel.grid = element_blank()
+    )</code></pre>
+</div>
+<div id="ps" class="section level3">
+<h3>📝 Post Scriptum: Mean versus Median</h3>
+<p>One thing I want to highlight is that the final plot does not contain the same information as the original boxplot. While I have visualized the mean values of each country and across the globe, the box of a Box-and-Whisker plot represents the 25th, 50th, 75th percentile of the data (also known as first, second and third quartile):</p>
+<div class="figure">
+<img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/boxplot.png" alt="">
+<p class="caption">In a Box-and-Whisker plot the box visualizes the upper and lower quartiles, so the box spans the interquartile range (IQR) containing 50 percent of the data, and the median is marked by a vertical line inside the box.</p>
+</div>
+<p>The 2nd quartile is known as the <strong>median</strong>, i.e.&nbsp;50% of the data points fall below this value and the other 50% are higher than this value. My decision to estimate the mean value was based on the fact that my aim was a visualization that is easily understandable to a large (non-scientific) audience that are used to mean (“average”) values but not to median estimates. However, in case of skewed data, the mean value of a dataset is also biased towards higher or lower values. Let’s compare both a plot based on the mean and the median:</p>
+<p><img src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/mean-vs-mean-1.png" width="816"></p>
+<p>As one can see, the differences between continents stay roughly the same but the worldwide median is lower than the worldwide average (19.6 students per teacher versus 23.5). The plot with medians highlights that the median student-teacher ratio of Asia and Oceania are similar to the worldwide median. This plot now resembles much more the basic boxplot we used in the beginning but may be harder to interpret for some compared to the one visualzing average ratios.</p>
+</div>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://www.cedricscherer.com/2019/05/06/tidytuesday_intro/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hello, TidyTuesday!">←
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/" data-toggle="tooltip" data-placement="top" title="" data-original-title="A ggplot2 Tutorial for Beautiful Plotting in R">Next
+                            Post →</a>
+                    </li>
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="https://www.cedricscherer.com/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/berlin" title="Berlin">
+                            Berlin
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/dataviz" title="DataViz">
+                            DataViz
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/r" title="R">
+                            R
+                        </a>
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/rstudio-table-contest" title="RStudio Table Contest">
+                            RStudio Table Contest
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/tidytuesday" title="TidyTuesday">
+                            TidyTuesday
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/animations" title="animations">
+                            animations
+                        </a>
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/announcement" title="announcement">
+                            announcement
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/ggplot2" title="ggplot2">
+                            ggplot2
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/maps" title="maps">
+                            maps
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/tidyverse" title="tidyverse">
+                            tidyverse
+                        </a>
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/tutorial" title="tutorial">
+                            tutorial
+                        </a>
+                        
+                        
+                        
+                        <a href="https://www.cedricscherer.com/tags/weather" title="weather">
+                            weather
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://www.datavisualizationsociety.com/">DataVizSociety</a></li>
+                        
+                        <li><a target="_blank" href="https://www.rfordatasci.com/">R4DS Community</a></li>
+                        
+                        <li><a target="_blank" href="https://correlaid.org/en/">CorrelAid</a></li>
+                        
+                        <li><a target="_blank" href="https://www.williamrchase.com/tags/dataviz/">Will Chase</a></li>
+                        
+                        <li><a target="_blank" href="https://karaman.is/">Georgios Karamanis</a></li>
+                        
+                        <li><a target="_blank" href="https://marcosci.github.io/">Marco Sciaini</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    <li>
+                        <a href="mailto:cedricphilippscherer@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+                    
+                    <li>
+                        <a href="https://twitter.com/CedScherer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Z3tt">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/cedricpscherer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    A <a href="https://gohugo.io/">HUGO</a> <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite</a> page build with ♥ and powered by <a href="https://www.netlify.com/">Netlify</a>&nbsp;&nbsp;•&nbsp;&nbsp;Header images by <a href="https://www.instagram.com/richard.strozynski/?hl=en">Richard Strozynski</a>
+    </p>
+    <p class="copyright text-muted" style="font-size:8pt;">
+                    © Cédric Scherer 2019–2021. All rights reserved.&nbsp;&nbsp;•&nbsp;&nbsp;<a href="https://cedricscherer.netlify.com/top/impressum/">Impressum</a>&nbsp;&nbsp;•&nbsp;&nbsp;<a href="https://cedricscherer.netlify.com/top/conduct/">Code of Conduct</a>
+                    <br>
+                    Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.
+                    <br>
+                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./The Evolution of a ggplot (Ep. 1) - Cédric Scherer_files/80x15.png"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#28a87d'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+</body></html>

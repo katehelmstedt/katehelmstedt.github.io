@@ -9,11 +9,12 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 library(tidyverse)
-#library(ggthemes)
+library(ggthemes)
 library(viridis)
 library(ggplot2)
-#library(ggrepel)
+library(ggrepel)
 library(ozmaps)
+library(RColorBrewer)
 ```
 
 ## Setup
@@ -225,7 +226,7 @@ Here, we need to match the input (i.e. color) to the
  now use `labs(color = )` to change the title of the legend.
  
 ```{r}
-g + labs(color = "This is a different legend title") 
+g + labs(color = "This is a different legend title, \n in black text this time") 
 ```
  
 #### Everything together 
@@ -236,7 +237,42 @@ ggplot(mobility_states,
   geom_line()   + 
   theme(legend.title = element_text(colour="chocolate", size=16, face="bold")) + 
   labs(color = "Australian State")
+
 ```
+
+### Working with dates
+
+Dates are saved as a particular type of data, so that it can store multiple pieces of information like the year, month, day of the month, day of the week etc. To refer to these in R (not just in ggplot!), there are codes. I personally have to google these codes almost every time, so don't feel pressured to memorise them -- but do know you can find them here when you're looking for them. They are:
+
+ * Weekday name: `%a` and `%A` for abbreviated and full weekday name respectively
+ * Month name:  `%b` and `%B` for abbreviated and full month name respectively
+ * Day of the month: `%d`(as decimal number)
+ * Week of the year: `%U`(as decimal number, e.g. 00–53)
+ * Year: `%Y`
+See more options in the documentation of the function `?strptime`.
+
+We can take a vector of dates (like we have in `mobility_australia$date`) and pull out only the piece we want using the `format()` function. We can even use punctuation between the date components. Let's compare, by running each of these in your console to examine the outputs:
+
+```{r}
+ mobility_australia$date
+
+ mobility_australia$date %>%
+   format(format='%Y')
+ 
+ mobility_australia$date %>%
+   format(format='%B,%Y')
+ 
+ mobility_australia$date %>%
+   format(format='%d/%m/%y')
+ 
+  mobility_australia$date %>%
+   format(format='%d-%m-%y')
+```
+
+> Task: show the dates in the format 'Monday, June 01, 2020'
+> Task: explore two more date constructions from the options in `?strptime`, including different punctuation.
+
+We will use these options in the next two sections while plotting.
 
 ### Axes
 
@@ -284,52 +320,91 @@ axis_labels + theme(axis.text.x = element_text(angle = 50, size = 10, vjust = 0.
 
 ```{r}
  
-axis_labels + theme(
+p <- axis_labels + theme(
       axis.text.x = element_text(angle = 50, size = 10, vjust = 0.5, colour = 'forestgreen'), 
       axis.title.x = element_text(colour = "blue"))
 
+p
+
 ```
 
-### Maniulate axes
 
-#### Truncate axes 
-#######################################################
+##### Dates on axes
+
+We can describe the format of the dates on the x axis with the extra plotting function `scale_x_date()`:
+
+```{r}
+p + scale_x_date(date_labels = "%b/%d")
+
+```
+
+> Task: explore two more options for date formats on the x axis
+
+#### Maniulate axes
+
+##### Truncate axes 
 
 ```{r}
  
 ggplot(mobility_australia,
            aes(date, score)) + 
-  geom_line() + xlim(as.date("2020-01-13", "2020-06-08"))
+  geom_point() + ylim(50,100)
 
 ```
 
- Flip Axes
+> Q: instead of plotting the scatterplot with a truncated y axis, try plotting a line plot. Why does it look so strange? What has happened? Explore what happens with smaller and larger y axis ranges in order to work out what is happening here.
+
+When we have an axis that uses dates, we need to use the correct data format to truncate the axes. We can use the same function as before, `scale_x_date()`, plus the function `as.Date()` to truncate:
+
+```{r}
+ 
+ggplot(mobility_australia,
+           aes(date, score)) + 
+  geom_line() + scale_x_date(limits = as.Date(c("01-04-2020","01-01-2021"), format='%d-%m-%Y'))
+
+```
+
+> Task: plot the two months either side of your birthday in 2020, with a y axis that includes zero.
+
+
+##### Flip Axes
+
+First, generate a bar plot of the driving mobility scores of each state on the 18th of April, 2020:
 
 ```{r remedy007}
- 
-ggplot(top_global_counts, aes(y=confirm, x=name)) + 
-geom_bar(position="dodge", stat="identity") 
+state_date <- mobility_states %>% 
+  filter(transportation_type == 'driving') %>% 
+  filter(date == '2020-04-18')
 
+ggplot(state_date, aes(y=score, x=region)) + geom_bar(stat='identity')
 ```
 
- flipped
+Then, we can flip the axes:
 
 ```{r remedy008}
  
-ggplot(top_global_counts, aes(y=confirm, x=name)) + 
-  geom_bar(position="dodge", stat="identity") +
+ggplot(state_date, aes(y=score, x=region)) + 
+  geom_bar(stat='identity') +
   coord_flip()
 
 ```
 
- -- TASK: Use the method from last week to sort this bar plot 
+> Task: Use the method from last week to sort this bar plot
 
- Scatterplot options
- to avoid extra typing, create an object called dots and assign the ggplot() function 
- to it so that you just have to add the different geom layers. 
-dots <- ggplot(Australia, aes(time, cum_confirm)) 
 
- colour 
+
+### Scatterplot options
+
+To avoid extra typing, let's create an object called `dots` and assign the `ggplot()` function 
+ to it so that you just have to add the different `geom_` layers. 
+
+```{r}
+  dots <- ggplot(mobility_australia, aes(date, score)) 
+```
+
+
+
+#### colour 
 
 ```{r remedy009}
  
@@ -337,7 +412,7 @@ dots + geom_point(color="firebrick")
 
 ```
 
- transparency 
+#### transparency 
 
 ```{r remedy010}
  
@@ -345,7 +420,7 @@ dots + geom_point(alpha = 0.2)
 
 ```
 
- size 
+#### size 
 
 ```{r remedy011}
  
@@ -353,7 +428,7 @@ dots + geom_point(size = 5)
 
 ```
 
- shape 
+#### shape 
  
 ```{r remedy012}
 
@@ -361,9 +436,10 @@ dots + geom_point(shape = 4)  # add a shape name or a number for example 'cross'
 
 
 ```
- --TASK:how many different shapes can you find?
 
- All together 
+> Task: how many different shapes can you find?
+
+#### All together 
 
 ```{r remedy013}
  
@@ -371,81 +447,77 @@ dots + geom_point(colour = "firebrick", size = 3, alpha = 0.5, shape = 5)
 
 ```
 
- Background
+### Background
 
- Colour 
+#### Colour 
 
 ```{r remedy014}
  
-ggplot(Australia,aes(time, cum_confirm)) +
-  geom_line()   + theme(panel.background = element_rect(fill = 'grey75')) 
+ggplot(mobility_australia, aes(date, score)) + 
+  geom_line() + 
+  theme(panel.background = element_rect(fill = 'grey75')) 
 
 ```
 
- --TASK: Uncomment the previous plot to change the background colour to a darker grey.   
+> TASK: Uncomment the previous plot to change the background colour to a darker grey.   
 
- Grid lines 
+#### Grid lines 
 
 ```{r remedy015}
  
-ggplot(Australia,aes(time, cum_confirm)) +
+ggplot(mobility_australia, aes(date, score)) + 
   geom_line() + 
   theme(panel.grid.major = element_line(colour = "yellow", size=2),
         panel.grid.minor = element_line(colour = "blue"))
 
 ```
 
- Margins
+#### Margins
 
 ```{r remedy016}
  
-ggplot(Australia,aes(time, cum_confirm)) +
+ggplot(mobility_australia, aes(date, score)) + 
   geom_line() + 
   theme(plot.background=element_rect(fill="darkseagreen"))
 
 ```
 
- all together
+#### All together
 
 ```{r remedy017}
  
-ggplot(Australia,aes(time, cum_confirm)) +
+ggplot(mobility_australia, aes(date, score)) + 
   geom_line() + 
   theme(panel.grid.major = element_line(colour = "yellow", size=2),
         panel.grid.minor = element_line(colour = "purple"), 
         plot.background = element_rect(fill = "darkseagreen"))
-
-
 ```
 
 
-  Themes  
+### Themes  
 
 
  `theme()` is a useful layer that can be used to customise features of a plot. 
- You can customize the non-data aspects of the plot with themes. 
- Such as font type, font size, title position, subtitle colour, add a caption and many others
+ You can customize the non-data aspects of the plot with themes, 
+ such as font type, font size, title position, subtitle colour, add a caption and many others.
  This is a way to keep all plots within your
- document, website, thesis, or publication the same. This of it as a coded style guide -- plots will keep the
+ document, website, thesis, or publication the same. Think of it as a coded style guide -- plots will keep the
  theme and be recognisable as parts of a whole.
 
 ```{r remedy018}
 
-ggplot(Australia,aes(time, cum_confirm)) +
+ggplot(mobility_australia, aes(date, score)) + 
   geom_line() + 
   theme_bw()
 
 ```
 
- ggplot2 has 8 built in themes
- TASK: re-plot the graph with another built-in theme (type "theme_" and options will pop up)
-
  You can also control the individual components of the plot within a theme, like text size:
 
 ```{r remedy019}
 
-ggplot(Australia) +
-  geom_line(aes(time, cum_confirm)) + 
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) + 
   theme(text = element_text(size = 16))
 
 ```
@@ -456,8 +528,8 @@ ggplot(Australia) +
 
 ```{r remedy020}
  
-ggplot(Australia) +
-  geom_line(aes(time, cum_confirm)) + 
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) + 
   theme_fivethirtyeight()
 
 ```
@@ -466,122 +538,137 @@ ggplot(Australia) +
 
 ```{r remedy021}
  
-ggplot(Australia) +
-  geom_line(aes(time, cum_confirm)) + 
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) + 
   theme_economist()
 
 
 ```
- The theme from Excel (why?)
+ The theme from Excel (why tho?)
 
 ```{r remedy022}
  
-ggplot(Australia) +
-  geom_line(aes(time, cum_confirm)) + 
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) + 
   theme_excel()
 
 ```
 
- -- TASK: re-create the plot above using a different theme. Type `theme_` and select tab, a drop down list of themes will appear. 
+> Task: re-create the plot above using a different theme. Type `theme_` and select tab, a drop down list of themes will appear. 
 
 
- Colours 
-library(RColorBrewer)
- Colour must be mapped to a variable using aes(), this can be in ggplot() or in geom(). 
+## Colours
+
+
+
+ Colour must be mapped to a variable using `aes()`, this can be in `ggplot()` or in `geom_()`. 
  After you've identified which variable will be coloured you can then use one of the 
  `scale......()` functions to define the colours. 
 
- map colour using aes() within ggplot() - outline colour
+### Using `aes()` within `ggplot()`
 
 ```{r remedy023}
  
 colour_outline <- ggplot(iris, aes(Species, Sepal.Length, colour = Species)) +
   geom_boxplot()
 
+colour_outline
+
 ```
   
-colour_outline  note that I created `colour_outline` so we don't have to keep typing the ggplot() function over and over again. 
 
 
- add colour using aes() within geom() - fill colour
+### Using `aes()` within `geom_()`
 
 ```{r remedy024}
  
 colour_fill <- ggplot(iris, aes(Species, Sepal.Length)) + 
-  geom_boxplot(aes(fill = Species))  
+  geom_boxplot(aes(colour = Species))  
+
 colour_fill
 
 ```
 
- --NOTE: Colour has not been specified in the previous two plots. The colours in the plots are default settings. 
 
+### Specify colour values 
+
+Colour has not been specified in the previous two plots. The colours in the plots are default settings. We can specify by adding  ` + scale_colour_manual` (outline) or `+ scale_fill_manual` (fill). Make sure you've loaded the `RColorBrewer` library to be able to read the colour names. Colours available in R can be found at: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf, or there are many places online to find colour names and codes.
 
 ```{r remedy025}
- specify colour by adding  ` + scale_colour_manual` (outline) or `+ scale_fill_manual` (fill) 
-colour_outline + scale_colour_manual(values = c("00AFBB", "E7B800", "FC4E07"))
-colour_fill + scale_fill_manual(values = c("00AFBB", "E7B800", "FC4E07"))
+
+colour_outline + scale_colour_manual(values = c('darkslateblue', 'lightblue', "grey"))
 
 ```
 
- specify colour using a palette. Here we use an existing palette. But you can also create your own. 
+#### Colour palettes 
+
+You can also specify colour using a palette. Here we use an existing palette. See other palettes here - https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/  
 
 ```{r remedy026}
  
 colour_fill + scale_fill_brewer(palette = "Dark2")
-colour_outline + scale_colour_brewer(palette = "Dark2")  
 
 ```
 
-see other palettes here - https://www.r-graph-gallery.com/38-rcolorbrewers-palettes/ 
+Palettes can also be downloaded in packages, e.g. the very popular (for good reason!) viridis package `library(viridis)`, and colours from Wes Anderson movies `library(wesanderson)`. See the documentation for those packages to explore the palettes.
 
-```{r remedy027}
+## Annotations
 
-ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point() + geom_jitter(width = 0.2) + scale_colour_gradient()
- 
+### Vertical and Horizontal Lines 
 
+```{r}
+
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) +
+  geom_hline(yintercept = 100, color='darkred')
 ```
- Colours available in R - http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 
- Vertical and Horizontal Lines 
 
 ```{r remedy028}
 
-ggplot(Australia) +
-  geom_line(aes(time, cum_confirm))  +
-  geom_hline(yintercept = 1000)
-
+ggplot(mobility_australia) +
+  geom_line(aes(date, score)) +
+  geom_vline(xintercept = as.Date(c("30-03-2020"), format='%d-%m-%Y'), color='darkred')
 ```
 
- Annotations: It can be useful to label individual observations, and groups.
- Replace the legend with in-text
+### Annotations: It can be useful to label individual observations, and groups.
+ 
+#### Replace the legend with in-text
+
+Use the `geom_text()` geom -- look up its help file to understand the inputs here (e.g. placement, label, and other options).
 
 ```{r remedy029}
- 
-irislabels <- iris %>%
-  group_by(Species) %>%
-  summarize_all(mean)
 
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color = Species)) + 
-  geom_point() + geom_text(data  = irislabels, aes(x=Sepal.Length, y=Sepal.Width, label = Species)) + 
+# First, create the locations for the labels at the mean of each grouping
+penguinlabels <- penguins %>%
+  group_by(species) %>%
+  summarize_all(mean, na.rm=TRUE)
+
+# Q: what do the warnings mean here?
+
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color = species)) + 
+  geom_point() + 
+  geom_text(data=penguinlabels, aes(x=bill_length_mm, y=flipper_length_mm, label = species)) + 
   theme(legend.position = "none")
 
 
 ```
- Add a figure number
+
+> Task: use what you learn from the `?geom_text` help file to edit the `penguinlabels` object using the `mutate` function to move the labels to a more sensible position.
+
+#### Add a figure number
 
 ```{r remedy030}
  
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color = Species)) + 
-  geom_point() + annotate("text", x=4.2, y=4.4, label = "A")
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color = species)) + 
+  geom_point() +  
+  annotate("text", x=40, y=210, label = "Panel A")
 
 ```
 
- TASK: Make the annotated "A" larger
+> TASK: Make the annotated "A" larger, and move it to a more sensible position
 
-
-
- 
-    Overplotting       
+## Overplotting       
 
  We're going to create a dataset for this section of the workshop -- it 
  intentionally has overplotting problems, but you'll also see these kinds 
@@ -627,7 +714,7 @@ ggplot(synthetic_data, aes(x=x, y=y)) +
  colour scheme). Now that we have identified an overplotting issue, there are a 
  couple of options for viewing the data in a more representitive way:
 
- 1. Dot size
+### 1. Dot size
 
 ```{r remedy034}
  
@@ -636,7 +723,7 @@ ggplot(synthetic_data, aes(x=x, y=y)) +
 
 ```
 
- 2. Transparency
+### 2. Transparency
 
 ```{r remedy035}
  
@@ -645,11 +732,11 @@ ggplot(synthetic_data, aes(x=x, y=y)) +
 
 ```
 
- -- Q. what argument manipulated transparency? is it in ggplot() or in geom_point()?
- -- Q. increase the dot size, does this improve the plot?
- -- TASK: try a few different combinations of `alpha` and `size`.
+> Q. what argument manipulated transparency? is it in ggplot() or in geom_point()?
+> Q. increase the dot size, does this improve the plot?
+> TASK: try a few different combinations of `alpha` and `size`.
 
- 3. Sampling
+### 3. Sampling
  Sometimes less is more. Plotting a subset of the data (5% here) can help avoid overplotting, 
  and can also greatly reduce the computing time.   
 
@@ -664,9 +751,9 @@ ggplot(synthetic_data_subset, aes(x=x, y=y)) +
 
 ```
 
- -- Q. did this help you see the data? Did you lose much information? When might this not be a good idea?
+> Q. did this help you see the data? Did you lose much information? When might this not be a good idea?
 
- 4. Grouping with colour
+### 4. Grouping with colour
 
 ```{r remedy037}
  
@@ -676,11 +763,11 @@ ggplot(synthetic_data, aes(x=x, y=y, color=group)) +
 
 ```
 
- -- NOTE: the colour argument is within the ggplot( aes() ) function and not in geo_point(). 
+> NOTE: the colour argument is within the ggplot( aes() ) function and not in geo_point(). 
  Also that `group` is a variable in the data set (look back up at where we simulated it), 
  and not a specific colour. 
 
- 5. Highlighting just one group 
+### 5. Highlighting just one group 
  This assumes there is a grouping variable in the data set. 
 
 ```{r remedy038}
@@ -691,12 +778,12 @@ ggplot(synthetic_data, aes(x=x, y=y)) +
 
 ```
 
- -- Q. what argument in geom_point() changes the colour? Test what other common colour names work. 
- -- Q does the Australian/UK spelling of colour work as well?
- -- Q can you put the colour argument in the ggplot() function instead of geom_point()?
- -- Q. Can the colour argument in geom_point() be set to `group`, similarly to No. 4 above?
+> Q. what argument in geom_point() changes the colour? Test what other common colour names work. 
+> Q does the Australian/UK spelling of colour work as well?
+> Q can you put the colour argument in the ggplot() function instead of geom_point()?
+> Q. Can the colour argument in geom_point() be set to `group`, similarly to No. 4 above?
 
- 6. Jittering 
+### 6. Jittering 
  Here's the example of jittering that we saw last week. This is another way to deal with overplotting
 
 ```{r remedy039}
@@ -705,6 +792,29 @@ ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point()
 ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_point() + geom_jitter(width = 0.2)
 
 ```
+
+
+## Combining multiple figures
+
+The `patchwork` package makes it very easy to combine multiple figures into one image as separate panels. This is very valuable for scientific visual communication, as we often want to make multiple related points. 
+
+In previous sections of this workshop we have saved plots using names -- I am going to reuse those here, to show how easy it is to put plots together. 
+
+
+```{r}
+library(patchwork)
+axis_labels + colour_outline
+
+(colour_fill | colour_outline) / p
+
+
+```
+
+> Task: explore the options for combining plots on the official tutorial page for the `patchwork` package at https://patchwork.data-imaginist.com/
+
+
+
+
 
 
 

@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+<title>samia.rbind.io</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=1">
+  <link rel="manifest" href="/favicon/site.webmanifest?v=1">
+  
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg?v=1" color="#ffffff">
+    <link rel="shortcut icon" href="/favicon/favicon.ico?v=1">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml?v=1">
+  
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+
+  <meta name="generator" content="Hugo 0.57.2" />
+  <meta itemprop="name" content="samia.rbind.io">
+<meta itemprop="description" content="">
+
+
+  <meta property="og:title" content="samia.rbind.io" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" />
+
+<meta property="og:updated_time" content="2020-09-16T00:00:00+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="samia.rbind.io"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@samiasab90"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      
+      
+      <link rel="stylesheet" href="/css/main.min.0a64f3eede6e78edc2d8b2ca7051e4d9a6379f472dac76b1168733b88d27146a.css" integrity="sha256-CmTz7t5ueO3C2LLKcFHk2aY3n0ctrHaxFoczuI0nFGo=">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/">
+        
+     Home
+        
+      </a>
+      </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        
+          
+          
+            <a href="/" class="link"><i class='fa fa-home'></i> Home</a>
+          
+        
+      
+        
+          
+          
+            <a href="/about/" class="link"><i class='far fa-id-card'></i> About</a>
+          
+        
+      
+        
+          
+          
+            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> Blog</a>
+          
+        
+      
+        
+          
+          
+            <a href="/bookmarks/" class="link"><i class='fas fa-star'></i> Bookmarks</a>
+          
+        
+      
+        
+          
+          
+            <a href="/projects/" class="link"><i class='fas fa-folder-open'></i> Projects</a>
+          
+        
+      
+        
+          
+          
+            <a href="/contact/" class="link"><i class='fas fa-envelope'></i> Contact</a>
+          
+        
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+
+  
+    
+    <a href="//twitter.com/share?text=samia.rbind.io&amp;url=%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+        <a href="//www.linkedin.com/shareArticle?url=%2f&amp;title=samia.rbind.io" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="/cdn-cgi/l/email-protection#e8d79b9d8a828d8b9cd5ab808d8b83c8879d9cc89c80819bc898879b9cc88a91c8cddf8acddad8cddad8cddad8cddad8cddad8cddad8cddad8cddad8858998cddd8acddd8ccddf8cce898598d38a878c91d5cdda8e" target="_blank" class="share-btn email" data-proofer-ignore>
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+     <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round">
+        <span class="light">
+          <i class="fas fa-sun"></i>
+        </span>
+        <span class="dark">
+        <i class="fas fa-moon"></i>
+        </span>
+        </div>
+  </label>
+</div>
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/"><img src="/img/main/logo2.png" class="hexagon" width="170 px" alt="" /></a>
+  <header>
+    <h1><img id='name-image' src='/img/main/name-2.png'/></h1>
+  </header>
+  <main>
+    
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+        <li><a href="//github.com/samiaab1990" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/samiasab90" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        
+        
+          <article class="post">
+  <header id ="post-header">
+  <div class="title">
+    
+        <h2><a href="/post/syntax-highlighting-in-html/">Customizing HTML Codeblocks with Highlight.JS</a></h2>
+    
+    <time class="published">
+      <p><i class="far fa-calendar-alt"></i>&nbsp;<span class=date>September 16, 2020
+    </span></p>
+    </time>
+    
+      <p class="reading-time">3 minutes read</p>
+    
+<span class="author"></span>
+<span class="categories-tags"> <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/categories/html">html</a></li>
+          
+            
+            <li><a class="article-category-link" href="/categories/javascript">javascript</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/tags/highlight.js">highlight.js</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/rmarkdown">rmarkdown</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+</span>
+    
+</div>
+</header>
+
+  
+  <a href="/post/syntax-highlighting-in-html/" class="image-featured">
+    
+    <figure>
+      <img class="postimg" src="/" alt="">
+    
+  </a>
+  <figcaption class="imgcaption"></figcaption>
+  </figure>
+
+
+  <div class="summary">
+  
+  <p>Syntax highlighting is an intrinsic part of IDEs and text editors that makes code more readable as it uses color schemes to differentiate attributes of a given programming language, but it&rsquo;s tricky to manually recreate a console with HTML code blocks used in websites or markdown documents to the extent of built-in themes in IDEs and text editors. Although there is the option to keep the code block appearance pretty minimal, dynamic scripting languages, like JavaScript, have made it&hellip;</p>
+  </div>
+  <footer>
+    <a href="/post/syntax-highlighting-in-html/" class="button big">Read more</a>
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header id ="post-header">
+  <div class="title">
+    
+        <h2><a href="/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/">Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires</a></h2>
+    
+    <time class="published">
+      <p><i class="far fa-calendar-alt"></i>&nbsp;<span class=date>April 18, 2020
+    </span></p>
+    </time>
+    
+      <p class="reading-time">8 minutes read</p>
+    
+<span class="author"></span>
+<span class="categories-tags"> <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/categories/r">r</a></li>
+          
+            
+            <li><a class="article-category-link" href="/categories/data-viz">data viz</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/tags/tidytuesday">TidyTuesday</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/ggplot">ggplot</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/sp">sp</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/sf">sf</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/raster">raster</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+</span>
+    
+</div>
+</header>
+
+  
+  <a href="/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/" class="image-featured">
+    
+    <figure>
+      <img class="postimg" src="/" alt="">
+    
+  </a>
+  <figcaption class="imgcaption"></figcaption>
+  </figure>
+
+
+  <div class="summary">
+  
+  <p>It&rsquo;s been a while since I&rsquo;ve posted on this blog or have worked on a Tidy Tuesday project, so I thought I&rsquo;d revisit and post the project I did in January for <a href="https://github.com/rfordatascience">R4DataScience</a> to visualize climate data during the Australia wildfires earlier this year.</p>
+  </div>
+  <footer>
+    <a href="/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/" class="button big">Read more</a>
+  </footer>
+</article>
+
+        
+          <article class="post">
+  <header id ="post-header">
+  <div class="title">
+    
+        <h2><a href="/post/making-an-animated-measles-map-a-tidy-tuesday-project/">Visualizing 75 Years of Measles Incidence Using gganimate: A Tidy Tuesday Project</a></h2>
+    
+    <time class="published">
+      <p><i class="far fa-calendar-alt"></i>&nbsp;<span class=date>January 18, 2020
+    </span></p>
+    </time>
+    
+      <p class="reading-time">6 minutes read</p>
+    
+<span class="author"></span>
+<span class="categories-tags"> <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/categories/r">r</a></li>
+          
+            
+            <li><a class="article-category-link" href="/categories/data-viz">data viz</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="/tags/ggplot">ggplot</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/gganimate">gganimate</a></li>
+          
+            
+            <li><a class="article-category-link" href="/tags/tidytuesday">TidyTuesday</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+</span>
+    
+</div>
+</header>
+
+  
+  <a href="/post/making-an-animated-measles-map-a-tidy-tuesday-project/" class="image-featured">
+    
+    <figure>
+      <img class="postimg" src="/" alt="">
+    
+  </a>
+  <figcaption class="imgcaption"></figcaption>
+  </figure>
+
+
+  <div class="summary">
+  
+  <p>For Week 50 of the R4datascience project, I used the provided diseases data mentioned in this <a href="https://simplystatistics.org/2019/08/28/you-can-replicate-almost-any-plot-with-ggplot2/">SimplyStats</a> blog post. The dataset contains state level data of vaccine preventable infectious diseases over the span of ~70 years.</p>
+  </div>
+  <footer>
+    <a href="/post/making-an-animated-measles-map-a-tidy-tuesday-project/" class="button big">Read more</a>
+  </footer>
+</article>
+
+        
+        
+<div class="pagination">
+  
+    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
+  
+  
+    <a href="/page/2/" class="button big next"><i class="fas fa-angle-right"></i></a>
+  
+</div>
+
+      </main>
+      <section id="site-sidebar">
+  
+    
+      <section id="categories">
+        <header>
+          <h1><i class="far fa-folder"></i>&nbsp;<a href="/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/categories/r/">r<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/data-viz/">data-viz<span class="count">2</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/html/">html<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/javascript/">javascript<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/web-development/">web-development<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+</section>
+
+      <footer id="site-footer">
+  
+  
+  <p class="copyright">
+    
+      &copy; 2020
+      
+        samia.rbind.io
+      
+    . <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.57.2' target='_blank' rel='noopener'>Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/toml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+
+
+
+    </div>
+  </body>
+</html>

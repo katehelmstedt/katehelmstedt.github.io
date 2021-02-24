@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="apple-touch-icon" sizes="180x180" href="http://samia.rbind.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://samia.rbind.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://samia.rbind.io/favicon-16x16.png">
+<link rel="manifest" href="http://samia.rbind.io/site.webmanifest">
+<link rel="mask-icon" href="http://samia.rbind.io/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  
+<title>Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://samia.rbind.io/favicon/apple-touch-icon.png?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://samia.rbind.io/favicon/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://samia.rbind.io/favicon/favicon-16x16.png?v=1">
+  <link rel="manifest" href="http://samia.rbind.io/favicon/site.webmanifest?v=1">
+  
+    <link rel="mask-icon" href="http://samia.rbind.io/favicon/safari-pinned-tab.svg?v=1" color="#ffffff">
+    <link rel="shortcut icon" href="http://samia.rbind.io/favicon/favicon.ico?v=1">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml?v=1">
+  
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+
+  <meta name="generator" content="Hugo 0.57.2">
+  <meta itemprop="name" content="Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires">
+<meta itemprop="description" content="It’s been a while since I’ve posted on this blog or have worked on a Tidy Tuesday project, so I thought I’d revisit and post the project I did in January for R4DataScience to visualize climate data during the Australia wildfires earlier this year.
+ .center { display: block; margin-left: auto; margin-right: auto; }  These heatmap visualizations were inspired by Nick Tierny’s tutorial on Github transform Australia’s Bureau of Meteorology’s heatmap data into viridis themed maps and plots.">
+
+
+<meta itemprop="datePublished" content="2020-04-18T00:00:00+00:00">
+<meta itemprop="dateModified" content="2020-04-18T00:00:00+00:00">
+<meta itemprop="wordCount" content="1669">
+
+  <meta itemprop="image" content="/">
+
+
+
+<meta itemprop="keywords" content="TidyTuesday,ggplot,sp,sf,raster,">
+
+  <meta property="og:title" content="Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires">
+<meta property="og:description" content="It’s been a while since I’ve posted on this blog or have worked on a Tidy Tuesday project, so I thought I’d revisit and post the project I did in January for R4DataScience to visualize climate data during the Australia wildfires earlier this year.
+ .center { display: block; margin-left: auto; margin-right: auto; }  These heatmap visualizations were inspired by Nick Tierny’s tutorial on Github transform Australia’s Bureau of Meteorology’s heatmap data into viridis themed maps and plots.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/">
+
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2020-04-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-04-18T00:00:00+00:00">
+
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/">
+
+<meta name="twitter:title" content="Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires">
+<meta name="twitter:description" content="It’s been a while since I’ve posted on this blog or have worked on a Tidy Tuesday project, so I thought I’d revisit and post the project I did in January for R4DataScience to visualize climate data during the Australia wildfires earlier this year.
+ .center { display: block; margin-left: auto; margin-right: auto; }  These heatmap visualizations were inspired by Nick Tierny’s tutorial on Github transform Australia’s Bureau of Meteorology’s heatmap data into viridis themed maps and plots.">
+<meta name="twitter:site" content="@samiasab90">
+
+  
+
+  <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/dracula.min.css">
+  
+    
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/normalize.css">
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/css">
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/academicons.min.css">
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/jquery.fancybox.min.css">
+      
+      
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/main.min.0a64f3eede6e78edc2d8b2ca7051e4d9a6379f472dac76b1168733b88d27146a.css" integrity="sha256-CmTz7t5ueO3C2LLKcFHk2aY3n0ctrHaxFoczuI0nFGo=">
+      <link rel="stylesheet" href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/add-on.css">
+    
+  
+  
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/saved_resource">
+        
+          
+            post
+          
+        
+      </a>
+      </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        
+          
+          
+            <a href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/saved_resource" class="link"><i class="fa fa-home"></i> Home</a>
+          
+        
+      
+        
+          
+          
+            <a href="http://samia.rbind.io/about/" class="link"><i class="far fa-id-card"></i> About</a>
+          
+        
+      
+        
+          
+          
+            <a href="http://samia.rbind.io/blog/" class="link"><i class="far fa-newspaper"></i> Blog</a>
+          
+        
+      
+        
+          
+          
+            <a href="http://samia.rbind.io/bookmarks/" class="link"><i class="fas fa-star"></i> Bookmarks</a>
+          
+        
+      
+        
+          
+          
+            <a href="http://samia.rbind.io/projects/" class="link"><i class="fas fa-folder-open"></i> Projects</a>
+          
+        
+      
+        
+          
+          
+            <a href="http://samia.rbind.io/contact/" class="link"><i class="fas fa-envelope"></i> Contact</a>
+          
+        
+      
+      <a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    
+    <a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+
+  
+    
+    <a href="http://twitter.com/share?text=Visualizing%20Climate%20Data%3a%20A%20Tidy%20Tuesday%20Project%20from%20January%202020%20using%20data%20from%20the%20Australia%20Wildfires&amp;url=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+        <a href="http://www.linkedin.com/shareArticle?url=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f&amp;title=Visualizing%20Climate%20Data%3a%20A%20Tidy%20Tuesday%20Project%20from%20January%202020%20using%20data%20from%20the%20Australia%20Wildfires" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="mailto:?subject=Check%20out%20this%20post%20by%20%7b%20%20%20%20%20%20%20%20map%5b%5d%7d&amp;body=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f" target="_blank" class="share-btn email" data-proofer-ignore="">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+    <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox">
+        <div class="slider round">
+        <span class="light">
+          <i class="fas fa-sun"></i>
+        </span>
+        <span class="dark">
+        <i class="fas fa-moon"></i>
+        </span>
+        </div>
+  </label>
+</div>
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/saved_resource"><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/logo2.png" class="hexagon" width="170 px" alt=""></a>
+  <header>
+    <h1><img id="name-image" src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/name-2.png"></h1>
+  </header>
+  <main>
+    
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+        <li><a href="http://github.com/samiaab1990" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="http://twitter.com/samiasab90" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header id="post-header">
+  <div class="title">
+    
+        <h2><a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/">Visualizing Climate Data: A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires</a></h2>
+    
+    <time class="published">
+      <p><i class="far fa-calendar-alt"></i>&nbsp;<span class="date">April 18, 2020
+    </span></p>
+    </time>
+    
+      <p class="reading-time">8 minutes read</p>
+    
+<span class="author"></span>
+<span class="categories-tags"> <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/categories/r">r</a></li>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/categories/data-viz">data viz</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/tags/tidytuesday">TidyTuesday</a></li>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/tags/ggplot">ggplot</a></li>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/tags/sp">sp</a></li>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/tags/sf">sf</a></li>
+          
+            
+            <li><a class="article-category-link" href="http://samia.rbind.io/tags/raster">raster</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+</span>
+    
+</div>
+</header>
+
+  
+  <a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/" class="image-featured">
+    
+    </a><figure><a href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/" class="image-featured">
+      <img class="postimg" src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/saved_resource" alt="">
+    
+  </a>
+  <figcaption class="imgcaption"></figcaption>
+  </figure>
+
+
+  <section id="socnet-share">
+    
+
+
+
+
+  
+    
+    <a href="http://twitter.com/share?text=Visualizing%20Climate%20Data%3a%20A%20Tidy%20Tuesday%20Project%20from%20January%202020%20using%20data%20from%20the%20Australia%20Wildfires&amp;url=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+        <a href="http://www.linkedin.com/shareArticle?url=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f&amp;title=Visualizing%20Climate%20Data%3a%20A%20Tidy%20Tuesday%20Project%20from%20January%202020%20using%20data%20from%20the%20Australia%20Wildfires" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="mailto:?subject=Check%20out%20this%20post%20by%20%7b%20%20%20%20%20%20%20%20map%5b%5d%7d&amp;body=%2fpost%2faustralia-wildfires-a-tidy-tuesday-project-from-january-2020%2f" target="_blank" class="share-btn email" data-proofer-ignore="">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+  </section>
+  <div id="content">
+    
+
+<p>It’s been a while since I’ve posted on this blog or have worked on a Tidy Tuesday project, so I thought I’d revisit and post the project I did in January for <a href="https://github.com/rfordatascience">R4DataScience</a> to visualize climate data during the Australia wildfires earlier this year.</p>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/CopyOfDec2019avg.png" alt="December 2019 Temp Avg" width="80%" height="80%" class="center"></p>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/Rainfallavg2.png" alt="December 2019 Rainfall Avg" width="80%" height="80%" class="center"></p>
+
+<p>These heatmap visualizations were inspired by Nick Tierny’s <a href="https://github.com/njtierney/ozviridis">tutorial on Github</a> transform Australia’s Bureau of Meteorology’s heatmap data into <code>viridis</code> themed maps and plots.</p>
+
+<p>Additionally, the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-07/readme.md">Australia Wildfires TidyTuesday Github Repo</a> provided climate data for rainfall and temperature, which I used to make descriptive facet wrap plots for averages in six Australian cities. I will explain that analysis later in part 2.</p>
+
+<h1 id="using-ggplot-to-create-your-own-heatmaps">Using <code>ggplot</code> To Create Your Own Heatmaps</h1>
+
+<p>As mentioned previously, <a href="https://github.com/njtierney/ozviridis">Nick Tierny’s tutorial</a> did a great job of explaining how to recreate <a href="http://www.bom.gov.au/jsp/awap/temp/index.jsp?colour=colour&amp;time=latest&amp;step=0&amp;map=maxave&amp;period=month&amp;area=nat">Australia’s Bureau of Meteorology’s climate maps</a>. BOM provides files by climate attribute (ie: temperature, rainfall) for daily, weekly or monthly averages in a .grid format that can be converted to an object of <code>SpatialPixelsDataFrame</code> class using the <code>sp</code> package in R and subsequently plotted using <code>ggplot</code> (you can use the base R <code>plot</code> function as well as demonstrated in the tutorial). <em>PC users-the .grid file you need will actually download as a .gridZ, which is a UNIX compressed format that will need to be extracted using <a href="https://www.winzip.com/win/en/">Winzip</a> or <a href="https://www.peazip.org/">PeaZip</a></em></p>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/bom_map.gif" alt="BOM temperature map" class="center"></p>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/bom_rain.gif" alt="BOM temperature map" class="center"></p>
+
+<p>The first thing needed to recreate the map is a shapefile of Australia, preferably with territorial boundaries. I was able to download it from the <a href="http://data.daff.gov.au/anrdl/metadata_files/pa_nsaasr9nnd_02211a04.xml">Australian Government website</a> but <a href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Natural Earth</a> is also a popular resource for retrieving map data. The <code>readOGR()</code> function from the <code>rgdal</code> package reads in .shp files. I then used the <code>fortify()</code> function from <code>ggplot2</code> that converts the shapefile into a dataframe compatible with ggplot. <em>Note that <code>fortify</code> may be deprecated in the future and the <code>tidy()</code> function from the <code>broom</code> package is preferred. <code>Fortify()</code> works for me so I used it in this example-you can read <a href="https://ggplot2.tidyverse.org/reference/fortify.map.html">the documentation</a> to learn more about the function.</em></p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs r"><span class="hljs-keyword">library</span>(rgdal)
+<span class="hljs-keyword">library</span>(ggplot2)
+<span class="hljs-keyword">library</span>(tidyverse)
+
+<span class="hljs-comment"># Converting the shapefile saved in the working directory into an r object </span>
+
+australia&lt;-readOGR(<span class="hljs-string">"aust_cd66states.shp"</span>) 
+
+<span class="hljs-comment"># Specifying the states and territories `STE` in the shapefile which will define the boundaries </span>
+
+australia_fortified&lt;-australia %&gt;% fortify(australia, region=<span class="hljs-string">'STE'</span>)
+</code></pre>
+
+<p>Next, I used the <code>raster</code> package to read in the .grid files for the <a href="http://www.bom.gov.au/web03/ncc/www/awap/temperature/maxave/month/grid/0.05/history/nat/2019120120191231.grid.Z">temperature averages for December 2019</a>. The sequence is essentially as follows: 1. Save the data into raster objects 2. Convert into a <code>SpatialPixelsDataFrame</code> using the <code>sp</code> package 3. convert the <code>sp</code> object into a data frame using the <code>as.data.frame()</code> function in base. This object can then be used in <code>geom_polygon()</code> in <code>ggplot</code>.</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs coffeescript">library(raster)
+library(sp)
+<span class="hljs-comment"># Converting the .grid file saved in the working directory into an r object</span>
+
+<span class="hljs-comment"># Mean Maximum Temperature Averages for December 2019</span>
+aus_climate&lt;-raster(<span class="hljs-string">'2019120120191231 (1).grid'</span>) 
+
+climate_spdf &lt;- <span class="hljs-keyword">as</span>(aus_climate, <span class="hljs-string">"SpatialPixelsDataFrame"</span>)
+climate_df &lt;- <span class="hljs-keyword">as</span>.data.frame(climate_spdf)
+</code></pre>
+
+<p>By this point, the .grid files can be overlayed on the Australia shapefile to create <a href="https://github.com/njtierney/ozviridis#bob-rudiss-answer-on-so">this map in Nick’s example</a>. I was interested in having the grid data only restricted to the boundaries within the Australia shapefile. This is basically subsetting the grid data using the Australia shapefile as a reference.</p>
+
+<p>This <a href="https://gis.stackexchange.com/questions/63793/how-to-overlay-a-polygon-over-spatialpointsdataframe-and-preserving-the-spdf-dat">example here</a> and the <a href="https://cran.r-project.org/web/packages/sp/vignettes/over.pdf">sp package documentation</a>(<em>I found this vignette after doing this project-Stack Overflow gave me the original answer</em>) show how you can use the <code>over()</code> function in the <code>sp</code> package to subset points that only fall within the polygon. Essentially, placing the spatial data object and shapefile in the function returns either a number or NA-the latter which denotes points in the data do not fall into the polygon. Restricting to values that are not NA will keep only the points that fall inside the polygon</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs coffeescript"><span class="hljs-comment"># Here, I'm creating an object called australia_climate_interior, which will only select points from the grid data that fall in the australia shapefile</span>
+australia_climate_interior&lt;-climate_spdf[!<span class="hljs-keyword">is</span>.na(over(climate_spdf, <span class="hljs-keyword">as</span>(australia, <span class="hljs-string">"SpatialPolygons"</span>))), ]
+
+<span class="hljs-comment">#Converting this to data frame the way I did previously so that it can be read into geom_polygon later on </span>
+australia_climate_interior&lt;-<span class="hljs-keyword">as</span>.data.frame(australia_climate_interior)
+
+</code></pre>
+
+<p>The rainfall and temperature .csv files will be used later to create the facet wrap plots, but they have the lat/long points of the cities, which I thought would be nice to have on the map to compliment the graphs.</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs php">rainfall &lt;- readr::read_csv(<span class="hljs-string">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/rainfall.csv'</span>)
+
+temperature &lt;- readr::read_csv(<span class="hljs-string">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-07/temperature.csv'</span>)
+
+australia_cities&lt;-rainfall %&gt;% dplyr::select(city_name,long,lat)
+australia_cities&lt;-unique(australia_cities)
+
+<span class="hljs-comment"># Removing a duplicate name that some reason was included despite the unique() function</span>
+
+australia_cities&lt;-australia_cities[<span class="hljs-number">-4</span>,]
+
+</code></pre>
+
+<p>Lastly, I wanted to clean some things up and mutate the temperature variable to show both Celcius and Fahrenheit</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs perl"><span class="hljs-comment">#In this part, I am doing some renaming of the variable names (the temperature values in degrees Celcius are named under a lengthy variable reflecting the filename</span>
+
+australia_climate_interior&lt;-australia_climate_interior %&gt;% <span class="hljs-keyword">rename</span>(temp=X2019120120191231<span class="hljs-number">_</span>.<span class="hljs-number">1</span>.)
+
+<span class="hljs-comment">#Creating a Fahrenheit Variable</span>
+australia_climate_interior&lt;-australia_climate_interior %&gt;% mutate(temp.f=((temp*<span class="hljs-number">9</span>/<span class="hljs-number">5</span>)+<span class="hljs-number">32</span>))
+
+</code></pre>
+
+<p>Since I want to show both Celcius and Farhenheit on the map, I created the breaks and labels manually before plotting. I used Farhenheit as my “primary” measure (I’m based in the US <span style="font-size:20px;">😝</span> and admittedly am not well versed in reading Celcius) and put the corresponding Celcius value below. To do this, I found the minimum and maximum temperature values in Farhenheit and used 10 degrees as scale increments. Then I created the same object in Celcius using the Farhenheit to Celcius formula. I created a labels object based off these break values so the scale shows the Farhenheit values and corresponding Celcius values below.</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs perl">min(australia_climate_interior$temp.f)
+max(australia_climate_interior$temp.f)
+
+breaks&lt;-se<span class="hljs-string">q(50,120, by=10)</span>
+breaks.c&lt;-round(((breaks-<span class="hljs-number">32</span>)*<span class="hljs-number">5</span>/<span class="hljs-number">9</span>),<span class="hljs-number">0</span>)
+labels&lt;-paste<span class="hljs-number">0</span>(breaks,sep=<span class="hljs-string">"\n"</span>,breaks.c)
+</code></pre>
+
+<p><em>After revisiting my code months later, I realized I would have rather saved the min/max temperature values as objects so that the ggplot code is flexible and adaptable to different data file inputs</em></p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs perl">min&lt;-round(min(australia_climate_interior$temp.f),<span class="hljs-number">0</span>)
+max&lt;-round(max(australia_climate_interior$temp.f),<span class="hljs-number">0</span>)
+
+breaks&lt;-se<span class="hljs-string">q(min,max, by=10)</span>
+breaks.c&lt;-round(((breaks-<span class="hljs-number">32</span>)*<span class="hljs-number">5</span>/<span class="hljs-number">9</span>),<span class="hljs-number">0</span>)
+labels&lt;-paste<span class="hljs-number">0</span>(breaks,sep=<span class="hljs-string">"\n"</span>,breaks.c)
+</code></pre>
+
+<p>And now for the actual maps…</p>
+
+<h2 id="temperature-map">Temperature Map</h2>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="language-r hljs"><span class="hljs-keyword">library</span>(ggdark)
+<span class="hljs-keyword">library</span>(showtext)
+<span class="hljs-keyword">library</span>(ggrepel)
+
+<span class="hljs-comment">#Windows function to use a different font than ggplot default</span>
+
+showtext.auto()
+dec_avg&lt;-ggplot()+
+
+<span class="hljs-comment"># The data essentially exists as tiny pixels which can be thought of as a tiny squares suitable for geom_tile. Here, I'm plotting the x and y coordinates and filling it in with the temperature in Farhenheit</span>
+
+  geom_tile(data = australia_climate_interior, 
+            aes(x = x, 
+                y = y, 
+                fill = temp.f))+
+<span class="hljs-comment"># The Australia shapefile</span>
+  geom_polygon(data = australia_fortified, 
+               aes(x = long, 
+                   y = lat, 
+                   group = group), 
+               fill = <span class="hljs-literal">NA</span>, 
+               color = <span class="hljs-string">"#3E3E3E"</span>, 
+               size = <span class="hljs-number">0.3</span>) +
+  <span class="hljs-comment"># Add the city names as points on the map</span>
+  geom_point(data=australia_cities,aes(long,lat), color=<span class="hljs-string">"#D8D0D0"</span>)+
+  geom_text_repel(data=australia_cities,aes(long,lat,label=city_name), size=<span class="hljs-number">5</span>, color=<span class="hljs-string">"#D8D0D0"</span>)+
+  
+  <span class="hljs-comment"># Using "plasma" from the viridis package for the color scheme of the map</span>
+  scale_fill_viridis_c(option = <span class="hljs-string">"plasma"</span>, breaks=breaks, labels=labels) +
+  coord_equal() +
+  
+  <span class="hljs-comment"># Using dark theme from `ggdark`</span>
+  dark_theme_gray()+
+  
+  <span class="hljs-comment"># Labels</span>
+  labs(title=<span class="hljs-string">"Australia Climate Map"</span>,
+       subtitle=<span class="hljs-string">"Daily Mean Maximum Temperatures December 2019"</span>,
+       caption=<span class="hljs-string">"Source: Australian Government Bureau of Meteorology"</span>)+
+       
+  <span class="hljs-comment"># Theme Attributes</span>
+  theme(
+        plot.title = element_text(family=<span class="hljs-string">"Roboto"</span>, size=<span class="hljs-number">10</span>,color=<span class="hljs-string">"#D7D7D7"</span>, face=<span class="hljs-string">"bold"</span>),
+        plot.subtitle=element_text(family=<span class="hljs-string">"Roboto"</span>, size=<span class="hljs-number">5</span>, color=<span class="hljs-string">"#D7D7D7"</span>),
+        plot.background = element_rect(fill = <span class="hljs-string">"grey10"</span>),
+        legend.text=element_text(color=<span class="hljs-string">"#B3B3B3"</span>, size=<span class="hljs-number">4</span>, lineheight = <span class="hljs-number">.3</span>),
+        legend.title=element_text(color=<span class="hljs-string">"#B3B3B3"</span>, size=<span class="hljs-number">4</span>, vjust=<span class="hljs-number">.8</span>),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.background = element_blank(),
+        axis.ticks = element_blank(),
+        legend.key = element_blank(),
+        axis.text=element_blank(),
+        axis.title=element_blank(),
+        legend.position = <span class="hljs-string">"bottom"</span>,
+        legend.justification=<span class="hljs-string">"right"</span>,
+        plot.caption=element_text(hjust=<span class="hljs-number">0</span>,size=<span class="hljs-number">3</span>))+
+  
+  <span class="hljs-comment"># Legend Attributes/Appearance</span>
+
+guides(fill=guide_colorbar(title=<span class="hljs-string">"Temperature °F/°C"</span>,ticks=<span class="hljs-literal">FALSE</span>,       direction=<span class="hljs-string">"horizontal"</span>, barwidth = <span class="hljs-number">5</span>,  barheight=<span class="hljs-number">.8</span>,label.position=<span class="hljs-string">"bottom"</span>, title.position = <span class="hljs-string">"top"</span>, title.vjust = -<span class="hljs-number">5</span>, title.hjust=<span class="hljs-number">.5</span>, label.vjust=<span class="hljs-number">1</span>))
+
+</code></pre>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/CopyOfDec2019avg.png" alt="December 2019 Temp Avg" width="85%" height="85%" class="center"></p>
+
+<h2 id="rainfall-map">Rainfall map</h2>
+
+<p>For the rainfall map, I used a bit of a different process with the <code>raster</code> package to smooth the raster to a polygon so it doesn’t give a grainy/pixelated look (a problem more so with rainfall data than temperature). <em>I was considering but ended up not using the <code>smoothr</code> package, which offers additional <a href="https://cran.r-project.org/web/packages/smoothr/vignettes/smoothr.html">options to smooth rasters to polygons</a>.</em></p>
+
+<p>The workflow starts the same: 1. Call in the .grid file using the <code>raster()</code> function 2. Convert to a spatial pixels data frame 3. Subset to points that fall within the Australia shapefile. In the last part, however, I’m converting the spdf object back into a raster</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs coffeescript"><span class="hljs-comment"># Convert the rainfall.grid file saved in the working directory to a raster object</span>
+rainfall_grid&lt;-raster(<span class="hljs-string">'rainfall.grid'</span>)
+
+<span class="hljs-comment"># Convert into a SpatialPixelsDataFrame</span>
+rainfall_spdf&lt;-<span class="hljs-keyword">as</span>(rainfall_grid, <span class="hljs-string">"SpatialPixelsDataFrame"</span>)
+
+<span class="hljs-comment"># Subset to only points that fall within the Australia shapefile</span>
+rainfall_interior_spdf&lt;-rainfall_spdf[!<span class="hljs-keyword">is</span>.na(over(rainfall_spdf, <span class="hljs-keyword">as</span>(australia,<span class="hljs-string">"SpatialPolygons"</span>))),]
+
+<span class="hljs-comment"># Convert the subsetted object back to a raster</span>
+rainfall_interior_raster&lt;-raster(rainfall_interior_spdf)
+</code></pre>
+
+<p>Unlike the temperature map, which uses the continuous value of each grid cell, I’m converting the rainfall in mm to categorical levels that will be more suitable to visualize as polygons. This is essentially recreating the Bureau of Meteorology’s map, except with a different color scheme. I used their breakpoints as levels for this map as well.</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs bash"><span class="hljs-comment"># Create levels in the raster using the BOM's rainfall map breakpoints</span>
+rainfall_interior_raster<span class="hljs-variable">$level</span>&lt;-cut(rainfall_interior_raster<span class="hljs-variable">$rainfall</span>, c(-Inf,1,5,10,25,50,100,200,300,400,Inf))
+</code></pre>
+
+<p>At this point, I’m going to use the same raster to create two objects: one will be an <code>sf</code> object to fill the colors within the data frame object outlined using <code>geom_polygon()</code></p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs coffeescript">library(sf)
+
+<span class="hljs-comment"># Convert the polygon as an sf object</span>
+rainfall_interior_raster_poly&lt;-rasterToPolygons(rainfall_interior_raster) %&gt;% st_as_sf()
+
+<span class="hljs-comment"># Convert the polygon to a data frame to be used in geom_polygon()</span>
+
+rainfall_interior_raster_df&lt;-rasterToPolygons(rainfall_interior_raster) 
+
+rainfall_interior_raster_df&lt;-SpatialPolygonsDataFrame(rainfall_interior_raster_df,rainfall_interior_raster_df@data) 
+
+rainfall_interior_raster_df&lt;-tidy(rainfall_interior_raster_df, region=<span class="hljs-string">"level"</span>)
+</code></pre>
+
+<p>and now, the map!</p>
+
+<button class="copy-code-button" type="button">Copy</button><pre><code class="hljs xml">
+# Defaults for output .png file
+png("Rainfallavg.png", units="in", width=10, height=9, res=300)
+
+# Use fonts different than ggplot default
+showtext.auto()
+
+rain_avg_plot<span class="hljs-tag">&lt;<span class="hljs-name">-ggplot()+</span>
+
+# <span class="hljs-attr">The</span> <span class="hljs-attr">sf</span> <span class="hljs-attr">object</span> <span class="hljs-attr">used</span> <span class="hljs-attr">to</span> <span class="hljs-attr">fill</span> <span class="hljs-attr">the</span> <span class="hljs-attr">colors</span> <span class="hljs-attr">using</span> <span class="hljs-attr">the</span> <span class="hljs-attr">viridis</span> <span class="hljs-attr">palette</span>
+  <span class="hljs-attr">geom_sf</span>(<span class="hljs-attr">data</span>=<span class="hljs-string">rainfall_interior_raster_poly,</span> <span class="hljs-attr">aes</span>(<span class="hljs-attr">fill</span>=<span class="hljs-string">level),</span> <span class="hljs-attr">color</span>=<span class="hljs-string">NA)+</span>
+
+# <span class="hljs-attr">the</span> <span class="hljs-attr">df</span> <span class="hljs-attr">object</span> <span class="hljs-attr">will</span> <span class="hljs-attr">be</span> <span class="hljs-attr">used</span> <span class="hljs-attr">to</span> <span class="hljs-attr">create</span> <span class="hljs-attr">a</span> <span class="hljs-attr">light</span> <span class="hljs-attr">grey</span> <span class="hljs-attr">outline</span> <span class="hljs-attr">of</span> <span class="hljs-attr">the</span> <span class="hljs-attr">polygon</span> <span class="hljs-attr">object</span>
+  <span class="hljs-attr">geom_polygon</span>(<span class="hljs-attr">data</span>=<span class="hljs-string">rainfall_interior_raster_df,</span> <span class="hljs-attr">aes</span>(<span class="hljs-attr">long</span>,<span class="hljs-attr">lat</span>,<span class="hljs-attr">group</span>=<span class="hljs-string">group),</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">NA,</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#3E3E3E"</span>, <span class="hljs-attr">size</span>=<span class="hljs-string">.3)+</span>
+
+# <span class="hljs-attr">another</span> <span class="hljs-attr">geom_polygon</span> <span class="hljs-attr">for</span> <span class="hljs-attr">the</span> <span class="hljs-attr">Australia</span> <span class="hljs-attr">shapefile</span> 
+  <span class="hljs-attr">geom_polygon</span>(<span class="hljs-attr">data</span> = <span class="hljs-string">australia_fortified,</span> 
+               <span class="hljs-attr">aes</span>(<span class="hljs-attr">x</span> = <span class="hljs-string">long,</span> 
+                   <span class="hljs-attr">y</span> = <span class="hljs-string">lat,</span> 
+                   <span class="hljs-attr">group</span> = <span class="hljs-string">group),</span> 
+               <span class="hljs-attr">fill</span> = <span class="hljs-string">NA,</span> 
+               <span class="hljs-attr">color</span> = <span class="hljs-string">"#3E3E3E"</span>, 
+               <span class="hljs-attr">size</span> = <span class="hljs-string">0.3)</span> +
+# <span class="hljs-attr">Add</span> <span class="hljs-attr">in</span> <span class="hljs-attr">the</span> <span class="hljs-attr">major</span> <span class="hljs-attr">cities</span> <span class="hljs-attr">as</span> <span class="hljs-attr">points</span> <span class="hljs-attr">similar</span> <span class="hljs-attr">to</span> <span class="hljs-attr">the</span> <span class="hljs-attr">temperature</span> <span class="hljs-attr">map</span>
+  <span class="hljs-attr">geom_point</span>(<span class="hljs-attr">data</span>=<span class="hljs-string">australia_cities,aes(long,lat),</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#D8D0D0"</span>)+
+  <span class="hljs-attr">geom_text_repel</span>(<span class="hljs-attr">data</span>=<span class="hljs-string">australia_cities,aes(long,lat,label</span>=<span class="hljs-string">city_name),</span> <span class="hljs-attr">size</span>=<span class="hljs-string">12,</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#D8D0D0"</span>)+
+
+# <span class="hljs-attr">Use</span> <span class="hljs-attr">the</span> <span class="hljs-attr">viridis</span> <span class="hljs-attr">scale</span> <span class="hljs-attr">option</span> <span class="hljs-attr">to</span> <span class="hljs-attr">manually</span> <span class="hljs-attr">set</span> <span class="hljs-attr">the</span> <span class="hljs-attr">breakpoints</span>
+  <span class="hljs-attr">scale_fill_viridis_c</span>(<span class="hljs-attr">option</span>=<span class="hljs-string">"viridis"</span>, <span class="hljs-attr">breaks</span>=<span class="hljs-string">c(1,2,3,4,5,6,7,8,9,10),</span> <span class="hljs-attr">label</span>=<span class="hljs-string">c(</span>"<span class="hljs-attr">0</span>","<span class="hljs-attr">1</span>","<span class="hljs-attr">5</span>","<span class="hljs-attr">10</span>","<span class="hljs-attr">25</span>","<span class="hljs-attr">50</span>","<span class="hljs-attr">100</span>","<span class="hljs-attr">200</span>","<span class="hljs-attr">300</span>","<span class="hljs-attr">400</span>+"))+
+
+# <span class="hljs-attr">Use</span> <span class="hljs-attr">coord_sf</span>() <span class="hljs-attr">to</span> <span class="hljs-attr">compliment</span> <span class="hljs-attr">the</span> <span class="hljs-attr">sf</span> <span class="hljs-attr">object</span> <span class="hljs-attr">used</span> <span class="hljs-attr">for</span> <span class="hljs-attr">the</span> <span class="hljs-attr">map</span>
+  <span class="hljs-attr">coord_sf</span>() +
+# <span class="hljs-attr">Set</span> <span class="hljs-attr">theme</span> <span class="hljs-attr">to</span> <span class="hljs-attr">dark_theme_gray</span>()
+  <span class="hljs-attr">dark_theme_gray</span>()+
+# <span class="hljs-attr">Map</span> <span class="hljs-attr">labelling</span>
+  <span class="hljs-attr">labs</span>(<span class="hljs-attr">title</span>=<span class="hljs-string">"Australia Climate Map"</span>,
+       <span class="hljs-attr">subtitle</span>=<span class="hljs-string">"Rainfall Totals December 2019"</span>,
+       <span class="hljs-attr">caption</span>=<span class="hljs-string">"Source: Australian Government Bureau of Meteorology"</span>)+
+# <span class="hljs-attr">Theme</span> <span class="hljs-attr">attributes</span>
+  <span class="hljs-attr">theme</span>(<span class="hljs-attr">plot.title</span> = <span class="hljs-string">element_text(family</span>=<span class="hljs-string">"Roboto"</span>, <span class="hljs-attr">size</span>=<span class="hljs-string">100,color</span>=<span class="hljs-string">"#D7D7D7"</span>, <span class="hljs-attr">face</span>=<span class="hljs-string">"bold"</span>),
+        <span class="hljs-attr">plot.subtitle</span>=<span class="hljs-string">element_text(family</span>=<span class="hljs-string">"Roboto"</span>, <span class="hljs-attr">size</span>=<span class="hljs-string">50,</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#D7D7D7"</span>),
+        <span class="hljs-attr">plot.background</span> = <span class="hljs-string">element_rect(fill</span> = <span class="hljs-string">"grey10"</span>),
+        <span class="hljs-attr">legend.text</span>=<span class="hljs-string">element_text(color</span>=<span class="hljs-string">"#B3B3B3"</span>, <span class="hljs-attr">size</span>=<span class="hljs-string">40,</span> <span class="hljs-attr">lineheight</span> = <span class="hljs-string">.3),</span>
+        <span class="hljs-attr">legend.title</span>=<span class="hljs-string">element_text(color</span>=<span class="hljs-string">"#B3B3B3"</span>, <span class="hljs-attr">size</span>=<span class="hljs-string">40,</span> <span class="hljs-attr">vjust</span>=<span class="hljs-string">.8),</span>
+        <span class="hljs-attr">panel.background</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">panel.grid.major</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">panel.grid.minor</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">legend.background</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">axis.ticks</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">legend.key</span> = <span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">axis.text</span>=<span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">axis.title</span>=<span class="hljs-string">element_blank(),</span>
+        <span class="hljs-attr">legend.position</span> = <span class="hljs-string">"bottom"</span>,
+        <span class="hljs-attr">legend.justification</span>=<span class="hljs-string">"right"</span>,
+        <span class="hljs-attr">plot.caption</span>=<span class="hljs-string">element_text(hjust</span>=<span class="hljs-string">0,size</span>=<span class="hljs-string">36))+</span>
+# <span class="hljs-attr">Legend</span> <span class="hljs-attr">attributes</span>  
+<span class="hljs-attr">guides</span>(<span class="hljs-attr">fill</span>=<span class="hljs-string">guide_colorbar(title</span>=<span class="hljs-string">"Rainfall(mm)"</span>,<span class="hljs-attr">ticks</span>=<span class="hljs-string">FALSE,</span> <span class="hljs-attr">direction</span>=<span class="hljs-string">"horizontal"</span>, <span class="hljs-attr">barwidth</span> = <span class="hljs-string">20,</span>  <span class="hljs-attr">barheight</span>=<span class="hljs-string">.8,label.position</span>=<span class="hljs-string">"bottom"</span>, <span class="hljs-attr">title.position</span> = <span class="hljs-string">"top"</span>, <span class="hljs-attr">title.vjust</span> = <span class="hljs-string">-5,</span> <span class="hljs-attr">title.hjust</span>=<span class="hljs-string">.5,</span> <span class="hljs-attr">label.vjust</span>=<span class="hljs-string">5))</span>
+<span class="hljs-attr">rain_avg_plot</span>
+<span class="hljs-attr">dev.off</span>()
+</span></code></pre>
+
+<p><img src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/Rainfallavg2.png" alt="December 2019 Rainfall Avg" width="85%" height="85%" class="center"></p>
+
+  </div>
+ <footer>
+</footer>
+</article>
+
+
+<div class="pagination">
+  
+    <a href="http://samia.rbind.io/post/making-an-animated-measles-map-a-tidy-tuesday-project/" class="button big previous"><i class="fas fa-angle-left"></i> Visualizing 75 Years of Measles Incidence Using gganimate: A Tidy Tuesday Project</a>
+  
+  
+    <a href="http://samia.rbind.io/post/syntax-highlighting-in-html/" class="button big next">Customizing HTML Codeblocks with Highlight.JS <i class="fas fa-angle-right"></i></a>
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  
+    
+      <section id="categories">
+        <header>
+          <h1><i class="far fa-folder"></i>&nbsp;<a href="http://samia.rbind.io/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="http://samia.rbind.io/categories/r/">r<span class="count">3</span></a>
+            
+          
+          </li><li>
+            
+              <a href="http://samia.rbind.io/categories/data-viz/">data-viz<span class="count">2</span></a>
+            
+          
+          </li><li>
+            
+              <a href="http://samia.rbind.io/categories/html/">html<span class="count">1</span></a>
+            
+          
+          </li><li>
+            
+              <a href="http://samia.rbind.io/categories/javascript/">javascript<span class="count">1</span></a>
+            
+          
+          </li><li>
+            
+              <a href="http://samia.rbind.io/categories/web-development/">web-development<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+</section>
+
+      <footer id="site-footer">
+  
+  
+  <p class="copyright">
+    
+      © 2020
+      
+        samia.rbind.io
+      
+    . <br>
+    Theme: <a href="https://github.com/pacollins/hugo-future-imperfect-slim" target="_blank" rel="noopener">Hugo Future Imperfect Slim</a><br>A <a href="https://html5up.net/future-imperfect" target="_blank" rel="noopener">HTML5 UP port</a> | Powered by <a href="https://gohugo.io/" title="0.57.2" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="http://samia.rbind.io/post/australia-wildfires-a-tidy-tuesday-project-from-january-2020/#" class="fas fa-arrow-up fa-2x" style="display: inline;"></a>
+
+      
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/highlight.min.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/html.min.js"></script><script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/css.min.js"></script><script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/js.min.js"></script><script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/toml.min.js"></script><script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/r.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/jquery-3.3.1.min.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/skel.min.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/jquery.fancybox.min.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/util.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/main.js"></script>
+  <script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/add-on.js"></script>
+  
+
+
+
+
+
+    </div><script src="./Visualizing Climate Data_ A Tidy Tuesday Project from January 2020 using data from the Australia Wildfires - samia.rbind.io_files/clipboard-polyfill.promise.js" integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=" crossorigin="anonymous"></script>
+  
+
+</body></html>
