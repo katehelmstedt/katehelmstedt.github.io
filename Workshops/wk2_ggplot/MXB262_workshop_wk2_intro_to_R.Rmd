@@ -127,7 +127,7 @@ This unit is all about data visualisation, which means we need data. To make thi
 > 5. Add a plot of one of the datasets listed on the ([R data packages](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) webpage. Use the `plot()` function that we already used in the code chunk above.
 
 ```{r firstplot, eval=FALSE}
-# Your first plot! In these tutorials, you can type directly into this box and press "Run Code". If you need to start over from the original prompt, click "Start Over"
+# Your first plot! 
 plot()
 ```
 
@@ -138,7 +138,7 @@ Packages in R can contain functions as well as data. R comes with some base pack
 
 To install a package use the `install.package("package_name")` function (do this on every new computer), and to load the package use `library(package_name)` (do this every time you re-open R).    
 
-This code chunk shows how to install and load the _ggplot2_ library.  Note that the first line is commented out using `#` to stop the `install.packages()` function being run every time the document is rendered.   You will need to delete the `#` and run both lines. I suggest you add the `#` back in once you have successfully installed ggplot2. 
+This code chunk shows how to install and load the _ggplot2_ library.  Note that the first line is commented out using `#` to stop the `install.packages()` function being run every time the document is rendered.   You will need to delete the `#` and run both lines. 
 
 ```{r library, echo=TRUE, eval=FALSE}
 
@@ -147,11 +147,11 @@ library(ggplot2)
 
 ```
  
-When you are using R directly from the console, you will need to load ggplot2 (and all other packages) every time by typing the `library()` command into the console. In an R markdown file, the packages are all loaded in the first code chunk, along with the `knitr::opts_chunk$set(echo = TRUE)` line, which ensures the code is being printed in each of your code chunks (so when you submit knitted files we can see the code as well as the output -- set to `FALSE` to hide the code). Take a careful look back at that R markdown file now so you can see where I have placed it -- you will need to replicate this for each R markdown file you create, and for each package you will be using. 
+When you are using R directly from the console, you will need to load `ggplot2` (and all other packages) every time you open R Studio by typing the `library()` command into the console. In an R markdown file, the packages are all loaded in the first code chunk, along with the `knitr::opts_chunk$set(echo = TRUE)` line, which ensures the code is being printed in each of your code chunks (so when you submit knitted files we can see the code as well as the output -- set to `FALSE` to hide the code). You will need to replicate this for each R markdown file you create, and for each package you will be using. 
  
 ## 5. Visualisation in R - ggplot()
 
-Throughout these practicals we'll be using Hadley Wickham's `Grammar of Graphics` package (more commonly called `ggplot`). ggplot has a specific format for creating plots, graphs and other visualisations. Once you understand the format, making and customising graphics is intuitive.   
+Throughout these practicals we'll be using Hadley Wickham's `Grammar of Graphics` package (more commonly called `ggplot`). `ggplot` has a specific format for creating plots, graphs and other visualisations. Once you understand the format, making and customising graphics is intuitive.   
 
 You can think of building a plot like building a house, the essential ingredients are: the building materials (your data) and a floor plan (called the `geom` in ggplot). The data is just a useless heap on its own (like bricks and wood), and a floor plan or `geom` achieves nothing without materials. After the house is built you can add fittings and fixtures like taps, door handles, and the house number (title, labels, change the colours). 
 
@@ -208,13 +208,13 @@ You can go back to the exercises you skipped outside of class time, although the
 
 Work through (i.e. use the code to generate for yourselfin your R console in R Studio) the first 3 plots in [Donald Trump's twitter example](http://varianceexplained.org/r/trump-tweets/). We talked about this exploration in the lecture, so if you haven't watched those videos jump back and watch those now.
 
-Although all of the code here is useful, pay particular attention to the ggplot commands being used here. These are all simple, but well-chosen and effective plots. 
+Although all of the code here is useful, pay particular attention to the `ggplot` commands being used here. These are all simple, but well-chosen and effective plots. Although what you're doing here is copy-pasting the code into R to make the plots, please also take some time to examine the commands and the data, so you're getting a first sense of what R and `ggplot` can do.
 
-NOTE 1: you will need to install the three packages used first. If you went right ahead and started following the exercise without reading this note and got your first error -- congratulations on entering the world of R programing, this won't be your last error.
+*NOTE 1:* you will need to install the three packages used first. If you went right ahead and started following the exercise without reading this note and got your first error -- congratulations on entering the world of R programing, this won't be your last error.
 
-NOTE 2: Trump got cancelled on Twitter in 2021! As a result, we won't be able to download his tweets like they do on the blog in their second code chunk. Instead, start by downloading the dataset by running the third code chunk. 
+*NOTE 2:* Trump got cancelled on Twitter in 2021! As a result, we won't be able to download his tweets like they do on the blog in their second code chunk. Instead, start by downloading the dataset by running the third code chunk. 
 
-R is a constantly evolving language. At some point, the authors of the `tidytext` package cleaned up some clunky commands but the blog hasn't been updated. The old piece of code from the blog
+*NOTE 3:* R is a constantly evolving language. At some point, the authors of the `tidytext` package cleaned up some clunky commands but the blog hasn't been updated. The old piece of code from the blog
 
 ```{r lexicon, eval=FALSE}
 nrc <- sentiments %>%
@@ -227,7 +227,7 @@ can now be replaced with one line:
 nrc <- get_sentiments("nrc")
 ```
 
-Once they start getting into the word analysis, they stop walking us through the visualisations. Code for those figures follows here, so keep following and running all of the analysis and data-wrangling on the blog but jump back to grab this code when you reach each of these questions and figures:
+*NOTE 4:* Once they start getting into the word analysis, they stop walking us through the visualisations. Code for those figures follows here, so keep following and running all of the analysis and data-wrangling on the blog but jump back to grab this code when you reach each of these questions and figures:
 
 What were the most common words in Trump's tweets overall?
 

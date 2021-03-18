@@ -1,11 +1,10 @@
 ---
 title: 'MXB262 Workshop week 3: Effective Visual Communication'
 author: "Dr Kate Helmstedt"
-date: 'Semester 1, 2021'
+date: "Semester 1, 2021"
 output:
+  pdf_document: default
   html_document: default
-#output: learnr::tutorial
-#runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}

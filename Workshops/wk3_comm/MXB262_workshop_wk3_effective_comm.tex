@@ -1,0 +1,434 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+            pdftitle={MXB262 Workshop week 3: Effective Visual Communication},
+            pdfauthor={Dr Kate Helmstedt},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{MXB262 Workshop week 3: Effective Visual Communication}
+\author{Dr Kate Helmstedt}
+\date{Semester 1, 2021}
+
+\begin{document}
+\maketitle
+
+\subsection{This week}\label{this-week}
+
+This week you will learn how to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Embed an image in a markdown file\\
+\item
+  Create a story board using the narrative approach to data
+  visualisation\\
+\item
+  Submit an R markdown file for the Problem Solving Task assessment
+  (\textbf{make sure you have a version that knits well before the due
+  date even if it is relatively empty, so that you can post issues to
+  Slack or come to the workshop if you need a hand knitting it for
+  submission})
+\item
+  Start some initial data exploration in R -- we won't be visualising
+  this today, but lots of the techniques you learn will be invaluable
+  when we are exploring data using visualisation next week, and in your
+  projects
+\end{enumerate}
+
+\subsection{1. Adding Images}\label{adding-images}
+
+Since this is a visualisation unit, we will be using and examining many
+different images -- and you will need to submit some in your Problem
+Solving Tasks and Projects. There are two types of images we will be
+using, and each is added to an R markdown document differently. - Most
+frequently, we will be making new visualisations using R commands and
+raw datasets. To make these images, we will add code chunks to the R
+markdown documents that generate the figures. That way, the
+visualisation is created when we knit the R markdown document. -
+Sometimes, including this week, we will need to refer to and examine
+existing images from other sources. These need to be added to the R
+markdown documents. Use the line of code
+\texttt{!{[}Optional\ Caption{]}(insert\ URL\ or\ file\ path)\{width=some\ percentage\ of\ the\ text\ width\ from\ 0\ to\ 100\}}
+to embed images within the R markdown document. This does not need to be
+added within a code chunk.
+
+For example, the command
+\texttt{!{[}What\textquotesingle{}s\ the\ deal\ with\ Leonardo\ DiCaprio{]}(https://i.redd.it/erdv3yn78d941.png)\{width=75\%\}}
+prints one of my favourite visualisations a student found in a previous
+year in this Problem Solving Task, which is being pulled from the reddit
+website
+\includegraphics[width=0.75000\textwidth]{https://i.redd.it/erdv3yn78d941.png}
+
+To find the URL of an image online, right click on the image and select
+``Coppy Image Address''.
+
+To add an image from your computer instead, replace the URL with a file
+path. If you choose to do this, please make sure you're submitting the
+image file along with your code and your knitted version.
+
+\subsection{2. Narrative visualisations and story
+telling}\label{narrative-visualisations-and-story-telling}
+
+In this week's lecture you learnt about:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \emph{Context elements of a story - Who/What/When/How}
+\item
+  \emph{Genres of Narrative Visualisation}
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{https://www.mdpi.com/information/information-09-00065/article_deploy/html/images/information-09-00065-g021-550.jpg}
+\caption{Genres of Narrative Visualisation (Segel, 2010). Source:
+\url{https://www.mdpi.com/2078-2489/9/3/65/htm}}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \emph{Author vs Audience Driven Visualisations} (See lecture notes).
+\end{enumerate}
+
+\subsection{Story board Example 1}\label{story-board-example-1}
+
+Your Problem Solving task this week will be to create a few storyboards
+for different visualisations (including one you need to find yourself!).
+
+We're going to run you through a couple of examples first, which use the
+information you learned in the lecture this week.
+
+\textbf{Title \& Link:}
+\href{https://www.nytimes.com/interactive/2019/02/13/climate/cut-us-emissions-with-policies-from-other-countries.html}{How
+fast emissions would reduce if other plans were adopted} -- take a look
+at the link, it is a graphic that builds on itself to give context.
+
+\textbf{Image:} This is just a static screenshot of an animated
+visualisation, which you will need to include if you use any animated
+visualisations. Please click through to see the whole animation before
+exploring the storyboard below.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75000\textwidth]{https://i1.wp.com/flowingdata.com/wp-content/uploads/2019/02/Cut-U.S.-emissions.png?w=2048\&ssl=1}
+\caption{How fast emissions would reduce if other plans were adopted.
+Sourced from:
+\url{https://i1.wp.com/flowingdata.com/wp-content/uploads/2019/02/Cut-U.S.-emissions.png?w=2048\&ssl=1}}
+\end{figure}
+
+\paragraph{A. Describing the context}\label{a.-describing-the-context}
+
+\textbf{Who is the audience or audiences?: }
+
+Educated readers from the general public (i.e.~not necessarily
+policy-makers or scientists) who are informed about the climate crisis,
+and agree with the goal to reduce emissions.
+
+\textbf{What is the action the visualisation is aiming for? Consider
+each audience here if you have multiple:}
+
+\begin{itemize}
+\tightlist
+\item
+  Agree/learn/realise that even with strong action, emissions goals will
+  be missed.
+\item
+  Act to reduce carbon emissions.
+\item
+  Realise that switching all electricity sources to zero-carbon energy
+  sources will not be enough to reach the national goal.\\
+\item
+  Realise and agree that more drastic and urgent action is needed now.\\
+\item
+  Act to introduce policy that does a better job at reducing emissions
+  to national goal.
+\end{itemize}
+
+\textbf{When can the communication happen, and what tools have been used
+to suggest an order:}
+
+Animated image allows multple shots at communication to build the
+graphic. In each static graphic, multiple factors have been used to
+suggest order: colour, line angle, colour intensity, and enclosure.
+
+\textbf{How has the data been used to convey the action?:}\\
+Line plot of current emissions, compared with line plot of projected
+emissions if zero-carbon energy sources were used, compared with the
+national goal in red. Text labelling has been used.
+
+\paragraph{B. Genre}\label{b.-genre}
+
+\textbf{Which of the seven genres listed above best describes the data
+visualisation?}
+
+Slide show.
+
+\paragraph{C. Author-driven vs
+Reader-driven}\label{c.-author-driven-vs-reader-driven}
+
+\textbf{Where on the spectrum from author- to reader-driven is this
+visualisation?}
+
+Author-driven, since new information is revealed in the order the author
+dictates.
+
+\subsection{Story boardExample 2}\label{story-boardexample-2}
+
+We will work progressively through this one together. This is not a
+marked exercise, but I suggest you think about your answers to practice
+before revealing some suggested answers by hovering your mouse over the
+text. Thinking back to the Leonardo DiCaprio visualisation,
+\includegraphics[width=0.75000\textwidth]{https://i.redd.it/erdv3yn78d941.png}
+
+\paragraph{A. Describing the context}\label{a.-describing-the-context-1}
+
+\textbf{Who is the audience or audiences?: }
+
+ ``Some options include: Leonardo DiCaprio fans, People interested in
+celebrity news''
+
+**``What is the action the visualisation is aiming for? Consider each
+audience here if you have multiple:**
+
+ Some options include: Remember that Leonardo DiCaprio only dates
+younger women, Agree that it is unusual to only date women below 25.
+
+ Answers that are not correct include: Learn the names of Leonardo
+DiCaprio's ex-girlfriends, Remember Leonardo DiCaprio's current age.
+This is because although the visualisation does include this
+information, it is not a key feature or takeaway of the image.
+
+\textbf{When can the communication happen, and what tools have been used
+to suggest an order:}
+
+ All information is given at once in a static image.
+
+ Colour has been used to differentiate between Leonardo DiCaprio's age
+and the ages of the women he dates, suggesting that the ages of the
+women should be read at the same time as one group, and then compared to
+Leonardo. Order down the page suggests that the plot should be read
+first, and then the years that correspond to each ex-partner should be
+read later. The size of a small quote at the bottom (compared to the
+text of the rest of the plot) suggest it should be read last, as an
+additional piece of background information not critical to the story.
+
+\textbf{How has the data been used to convey the action?:}
+
+ A bar plot indicating women's ages, and a time series line plot
+indicating Leonardo DiCaprio's age. These are aligned on the same axis,
+suggesting they are compared at each point in time. Text labelling and
+images have been used to annotated the timeline.
+
+\paragraph{B. Genre}\label{b.-genre-1}
+
+\textbf{Which of the seven genres listed above best describes the data
+visualisation?:}
+
+ Annotated chart.
+
+\paragraph{C. Author-driven vs
+Reader-driven}\label{c.-author-driven-vs-reader-driven-1}
+
+\textbf{Where on the spectrum from author- to reader-driven is this
+visualisation?:}
+
+ Reader-driven as the information can be read in any order.
+
+\subsection{TASK: Create a storyboard}\label{task-create-a-storyboard}
+
+\begin{quote}
+Task 1: Use these principles of narration and stort-telling to
+back-engineer ONE story boards with all of the elements above from the
+list of visualisations below. This will contribute to your Problem
+Solving Task for submission.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://www.abc.net.au/news/2018-11-22/counting-the-cost-of-the-education-revolution/10495756}{Counting
+  the cost of the education revolution}
+\item
+  \href{https://atlas.cancer.org.au/}{Australian Cancer Atlas} - launch
+  the atlas to see the visualisation.\\
+\item
+  \href{https://earth.nullschool.net/\#current/wind/isobaric/1000hPa/orthographic=25.77,0.41,440}{Global
+  wind map}\\
+\item
+  \href{https://www.behance.net/gallery/70033395/The-Most-Violent-Cities/}{The
+  most violent cities in the world}\\
+\item
+  \href{https://www.axios.com/yes-there-really-is-a-lot-of-space-junk-930b166d-68c4-4803-9bd6-9e23514eb942.html}{Yes,
+  there is a lot of space junk}\\
+\item
+  \href{https://showyourstripes.info/}{Climate stripes}
+\end{enumerate}
+
+\textbf{Visualisation Title \& Link:}
+
+\textbf{Image:}
+
+If you're grabbing this from the internet, make sure you right click on
+the image and select (`Copy image address'). If it's an animation,
+you'll need to take a screenshot and embed that filepath here. Please
+include all images in your submission.
+
+\subparagraph{A. Describing the
+context}\label{a.-describing-the-context-2}
+
+\textbf{Who is the audience or audiences?: }
+
+\textbf{What is the action the visualisation is aiming for? Consider
+each audience here:}
+
+\textbf{When can the communication happen, and what tools have been used
+to suggest an order:}
+
+\textbf{How has the data been used to convey the action?:}
+
+\subparagraph{B. Genre}\label{b.-genre-2}
+
+\textbf{Which of the seven genres listed above best dsecribes the data
+visualisation?}
+
+\subparagraph{C. Author-driven vs
+Reader-driven}\label{c.-author-driven-vs-reader-driven-2}
+
+\textbf{Where on the spectrum from author- to reader-driven is this
+visualisation?}
+
+\subsection{TASK: R for Data Science}\label{task-r-for-data-science}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Work through
+  \href{https://r4ds.had.co.nz/data-visualisation.html}{Chapters 4
+  (short) and 5 of R for Data Science}. Read and follow all the examples
+  along in your own R console for:
+\end{enumerate}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://r4ds.had.co.nz/workflow-basics.html}{Chapter 4}\\
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#introduction-2}{Sections
+  5.1}
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#filter-rows-with-filter}{5.2
+  (exercises 1-3)}
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#arrange-rows-with-arrange}{5.3
+  (and all exercises)}
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#select}{5.4 (skip these
+  exercises)}
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#add-new-variables-with-mutate}{5.5
+  (exercises 1-5)}
+\item
+  \href{https://r4ds.had.co.nz/transform.html\#grouped-summaries-with-summarise}{5.6.1
+  and 5.6.2.}
+\end{itemize}
+
+You can go back to the exercises you skipped outside of class time,
+although they aren't critical at this stage of the unit.
+
+\emph{Reminder:} You may want to just play around in R and get things to
+work before copying them into R markdown files for your PST. To do this,
+or to follow along these examples in the textbook, you can type straight
+into the Console. That is quick and easy, but doesn't let you save your
+code. You'll need to load the libraries we need into the Console in that
+case.
+
+If you want to save R code but don't necessarily want it in the .Rmd
+file for your assessment, click File \textgreater{} New file
+\textgreater{} R script, and you can type away in there -- and save it
+as a separate file (similar to an m file in matlab). To run code from an
+R file, highlight the section you want to run and click `Run' above, or
+just copy paste it into the console. That way you can edit multiple
+lines at once, and save the whole script. This is a really useful option
+for keeping useful commends from these workshops all in one place. At
+the beginning of each R script, it is good practice to add the
+\texttt{library()} lines that load the packages you need -- you will
+thank yourself later!
+
+Remember that if you get an error when you try to load a package, you
+might not have installed it on that computer yet.
+\texttt{install.packages("package\_name\_that\_you\_want\_to\_use\_goes\_here\_dont\_forget\_the\_quotation\_marks\_every\_beginner\_does")}
+is your trusty command to install the packages you need.
+
+\end{document}
